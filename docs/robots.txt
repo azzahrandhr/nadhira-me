@@ -1,1 +1,1 @@
-Sitemap: nadhira.me/sitemap.xml
+Sitemap: https://nadhira.me/sitemap.xml
