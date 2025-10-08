@@ -1,1 +1,1 @@
-Sitemap: https://azzahrandhr.github.io/nadhira-me/sitemap.xml
+Sitemap: nadhira.me/sitemap.xml
