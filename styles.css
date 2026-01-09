@@ -2,8 +2,8 @@
   --text: #111;
   --muted: #666;
   --bg: white;            /* shade for background #EADBDD*/
-  --bg-light: white;      /* lighter shade for navbar #F5EDEE*/
-  --border: white;        /* matching muted border #D4C4C7*/
+  --bg-light: #F5EDEE;      /* lighter shade for navbar #F5EDEE*/
+  --border: grey;        /* matching muted border #D4C4C7*/
 }
 
 /* Add background to body */
@@ -42,14 +42,6 @@ body {
   color: var(--text) !important;
 }
 
-/* Hide Quarto's title block */
-.quarto-title-block {
-  display: none;
-}
-
-#title-block-header {
-  display: none;
-}
 
 /* Hero */
 .hero {
