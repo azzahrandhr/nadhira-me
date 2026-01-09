@@ -1,9 +1,9 @@
 :root {
   --text: #111;
   --muted: #666;
-  --bg: #EADBDD;            /* shade for background */
-  --bg-light: #F5EDEE;      /* lighter shade for navbar */
-  --border: #D4C4C7;        /* matching muted border */
+  --bg: white;            /* shade for background #EADBDD*/
+  --bg-light: white;      /* lighter shade for navbar #F5EDEE*/
+  --border: white;        /* matching muted border #D4C4C7*/
 }
 
 /* Add background to body */
