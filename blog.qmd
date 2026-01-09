@@ -1,5 +1,5 @@
 ---
-title: "Blog post's"
+title: "Blog"
 listing:
   contents: posts
   sort-ui: true
