@@ -18,6 +18,8 @@ website:
         href: "#about"
       - text: "Interests"
         href: "#interests"
+      - text: "Blog"
+        href: blog.qmd
 
 format:
   html:

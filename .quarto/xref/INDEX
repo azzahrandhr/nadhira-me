@@ -10,5 +10,17 @@
   },
   "about.qmd": {
     "about.html": "5fe26699"
+  },
+  "posts/rdd-education-unemployment/index.qmd": {
+    "index.html": "4024cd0a"
+  },
+  "blog.qmd": {
+    "blog.html": "a109d045"
+  },
+  "posts/rdd-education-employment/index.qmd": {
+    "index.html": "1528c242"
+  },
+  "posts/replication-rct-authorian/index.qmd": {
+    "index.html": "8b729981"
   }
 }

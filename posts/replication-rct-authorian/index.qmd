@@ -1,0 +1,778 @@
+---
+title: "Sources of Authoritarian Responsiveness: A Field Experiment in China"
+subtitle: "Replication of Chen, Pan and Xu (2016)"
+author: "Nadhira A. Hendra"
+date: "December 26, 2025"
+date-modified: last-modified
+format: 
+  html:
+    toc: true
+    toc-depth: 2
+    theme: cosmo
+    code-copy: true
+    code-fold: false
+    title-block-banner: true
+    title-block-banner-color: "#f8f9fa"
+bibliography: references.bib
+---
+# Sources of Authoritarian Responsiveness: A Field Experiment in China : Replication of Chen, Pan and Xu (2016)
+```{r}
+#| label: setup
+#| include: false
+
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+
+# Load packages
+library(foreign)
+library(haven)
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(lmtest)
+library(sandwich)
+library(boot)
+library(estimatr)
+library(fixest)
+library(ri2)
+library(stargazer)
+library(knitr)
+library(kableExtra)
+```
+
+## Introduction
+
+In one of my class project, I got to pick a research study to replicate, and I immediately knew I wanted to work with this one when saw it online because it reminds me so much of what I see happening back home.
+
+If you've ever spent time on Indonesian social media, you know how powerful netizens can be. A complaint about bad service goes viral on Twitter? Companies scramble to respond. A politician's family member gets caught doing something shady and people start talking on Instagram? Before you know it, it's on the national news. I've watched the power of people coming together online to make their voices heard, and actually getting results.
+
+While this research is not about that, it give a glimpse of insight into how this all works. It's about understanding the mechanisms behind it. <i>What makes some online movements take off while others fizzle out? How do institutions actually respond to online pressure?</i> These are questions I find fascinating.
+
+So for this replication project, I'm excited to get into the methodology and see what insights I can pull out that might help us better understand these digital dynamics.
+
+## Research Design and Findings
+
+A growing body of research suggests that authoritarian regimes are responsive to societal actors, but understanding the sources of authoritarian responsiveness remains limited because of challenges in measurement and causal identification. [@chen2016sources] assess the main hypotheses in this literature by conducting an online field experiment across 2,103 (with 2,013 successfully posted) Chinese counties and examining the factors that shape officials' incentives to respond to citizens in an authoritarian context. Existing research suggests that responsiveness among county level officials in China may stem from three possible sources: a desire to mitigate the threat of collective action, a desire to appear capable in the eyes of upper-level officials, and a desire to satisfy party members. These arguments lead to three hypotheses for responsiveness among county-level governments in China:
+
+- **H1**: Assignment to threats of collective action increases responsiveness of county-level officials to citizen demands.
+
+- **H2**: Assignment to threats of evoking oversight from upper-level government increases responsiveness of county-level officials to citizen demands.
+
+- **H3**: Assignment to claims of CCP membership and loyalty to the Party increases responsiveness of county-level officials to citizen demands.
+
+The authors test these hypotheses by posting requests on county government web forums in China and tracking the responses they receive from government officials.
+
+The outcome of interest is the responsiveness of county governments. Responsiveness was measured in four ways: (1) whether there was a response, (2) the timing of the response if one was given, (3) whether the response was viewable by the general public, and (4) the specific content of the response. The authors found that, at baseline, approximately one-third of county governments respond to citizen demands expressed online. They found statistically significant effects on responsiveness for both the threat of collective action and the threat of tattling to upper-level government. They found no statistically significant effect for requests in which the sender identified as a loyal, long-standing member of the Chinese Communist Party. Moreover, the authors also found that the threat of collective action made local officials more publicly responsive.
+
+This replication is organized into two sections. I begin by replicating the main table of the article, and then proceed to explore the heterogenous treatment effect across counties with different unemployment rates and government fiscal capacities.
+
+## Replication of the Main Results
+
+```{r}
+#| label: load-data
+
+set.seed(123)
+d <- read.dta("forum.dta")
+```
+
+### Covariate Balance across Treatment Groups
+
+In my replication on Covariate Balance across Treatment Groups, it is confirmed that randomization was successful. All 27 covariates, including population, GDP, education level, and government fiscal indicators, are balanced across the four treatment groups. All p-values from the F-tests exceed 0.10. This indicates that there are no statistically significant differences between groups prior to treatment.
+
+```{r}
+#| label: tbl-balance
+#| tbl-cap: "Covariate Balance Across Treatment Conditions"
+
+table1_balance_check <- function(d) {
+  
+  # Define the covariates to check
+  covar_list <- c("logpop", "logpop00", "popgrow", "sexratio", "logpopden", 
+                  "migrant", "nonagrhh", "urban", "eduyr", "illit", "minor", 
+                  "unemploy", "wk_agr", "wk_ind", "wk_ser", "income", "logincome", 
+                  "loggdp", "avggrowth", "logoutput_agr", "logoutput_ind", 
+                  "logoutput_ser", "numlfirm", "loginvest", "logsaving", 
+                  "loggov_rev", "loggov_exp")
+  
+  # Better variable labels
+  var_labels <- c("Log Population (2010)", "Log Population (2000)", "Population Growth", 
+                  "Sex Ratio", "Log Population Density", "Migrant %", "Non-Agricultural HH %",
+                  "Urban %", "Education Years", "Illiteracy %", "Minor %", "Unemployment %",
+                  "Workers in Agriculture %", "Workers in Industry %", "Workers in Services %",
+                  "Income", "Log Income", "Log GDP", "Average Growth",
+                  "Log Agricultural Output", "Log Industrial Output", "Log Service Output",
+                  "Number of Large Firms", "Log Investment", "Log Savings",
+                  "Log Government Revenue", "Log Government Expenditure")
+  
+  # Calculate means by treatment group
+  means_control <- d %>% 
+    filter(treat == 0) %>% 
+    select(all_of(covar_list)) %>%
+    summarise_all(~mean(.x, na.rm = TRUE)) %>%
+    pivot_longer(everything(), names_to = "Variable", values_to = "Control")
+  
+  means_collective <- d %>% 
+    filter(treat == 1) %>% 
+    select(all_of(covar_list)) %>%
+    summarise_all(~mean(.x, na.rm = TRUE)) %>%
+    pivot_longer(everything(), names_to = "Variable", values_to = "CA Threat")
+  
+  means_individual <- d %>% 
+    filter(treat == 2) %>% 
+    select(all_of(covar_list)) %>%
+    summarise_all(~mean(.x, na.rm = TRUE)) %>%
+    pivot_longer(everything(), names_to = "Variable", values_to = "CA Tattle Threat")
+  
+  means_loyalty <- d %>% 
+    filter(treat == 3) %>% 
+    select(all_of(covar_list)) %>%
+    summarise_all(~mean(.x, na.rm = TRUE)) %>%
+    pivot_longer(everything(), names_to = "Variable", values_to = "Loyalty Claim")
+  
+  # Perform F-tests for balance
+  ftest_results <- sapply(covar_list, function(var) {
+    formula <- as.formula(paste(var, "~ factor(treat)"))
+    model <- lm(formula, data = d)
+    anova_result <- anova(model)
+    p_value <- anova_result$`Pr(>F)`[1]
+    return(p_value)
+  })
+  
+  # Combine into final balance table
+  balance_table <- means_control %>%
+    left_join(means_collective, by = "Variable") %>%
+    left_join(means_individual, by = "Variable") %>%
+    left_join(means_loyalty, by = "Variable") %>%
+    mutate(
+      `P-value` = ftest_results,
+      Variable = var_labels
+    )
+  
+  return(balance_table)
+}
+
+# Generate the balance table
+results_table1 <- table1_balance_check(d)
+
+# Display 
+results_table1 %>%
+  kable(
+    booktabs = TRUE,
+    digits = 1,
+    col.names = c("Variable", "Control", "CA Threat ", "Tattle Threat","Loyalty Claim", "P-value"),
+    align = c("l", "c", "c", "c", "c", "c")
+  ) %>%
+  kable_styling(
+    bootstrap_options = c("striped", "hover", "condensed"),
+    full_width = FALSE,
+    position = "center"
+  ) %>%
+  add_header_above(c(" " = 1, "Treatment Group" = 4, " " = 1)) %>%
+  footnote(
+    general = "P-values from F-tests of joint significance across treatment groups. All p-values > 0.10 indicate successful randomization.",
+    general_title = "Note:",
+    footnote_as_chunk = TRUE
+  )
+```
+
+### Causal Effect of Treatments on Government Responses
+
+For the Causal Effect of Treatments on Government Responses replication, I find that it closely matches the original findings. The threat of collective action increases government responsiveness by about 7.7 pp in unconditional models (all counties) and about 10.1 pp in conditional models (counties where posts were successfully made). The threat of tattling to upper-level government shows similar effects, increasing responsiveness by 6.8 pp unconditionally and 8.3 pp conditionally. Claims of CCP loyalty show smaller, statistically insignificant effects of around 3–4 pp. These results are robust to the inclusion of prefectural fixed effects and sociodemographic controls.
+
+```{r}
+#| label: tbl-causal-effects
+#| tbl-cap: "The Causal Effects of Treatments on Government Responses"
+#| results: asis
+
+# Run models using lm() 
+# Model 1: Unconditional - no controls
+model1 <- lm(response ~ tr1 + tr2 + tr3, data = d)
+
+# Model 2: Unconditional - with prefecture FE
+model2 <- lm(response ~ tr1 + tr2 + tr3 + factor(city), data = d)
+
+# Model 3: Unconditional - with FE + sociodemographic controls
+model3 <- lm(response ~ tr1 + tr2 + tr3 + factor(city) + 
+               logpop + nonagrhh + urban + eduyr + unemploy + minor, 
+             data = d)
+
+# Models 4-6: Conditional on posted == 1
+d_posted <- subset(d, posted == 1)
+
+model4 <- lm(response ~ tr1 + tr2 + tr3, data = d_posted)
+
+model5 <- lm(response ~ tr1 + tr2 + tr3 + factor(city), data = d_posted)
+
+model6 <- lm(response ~ tr1 + tr2 + tr3 + factor(city) + 
+               logpop + nonagrhh + urban + eduyr + unemploy + minor +
+               forum_response + forum_recent_response + forum_imme_viewable +
+               post_email + post_name + post_idnum + post_tel + post_address,
+             data = d_posted)
+
+# Get robust SEs for each model
+robust_se <- list(
+  sqrt(diag(vcovHC(model1, type = "HC1"))),
+  sqrt(diag(vcovHC(model2, type = "HC1"))),
+  sqrt(diag(vcovHC(model3, type = "HC1"))),
+  sqrt(diag(vcovHC(model4, type = "HC1"))),
+  sqrt(diag(vcovHC(model5, type = "HC1"))),
+  sqrt(diag(vcovHC(model6, type = "HC1")))
+)
+
+stargazer(model1, model2, model3, model4, model5, model6,
+          type = "html",  
+          se = robust_se,
+          keep = c("tr1", "tr2", "tr3", "Constant"),
+          covariate.labels = c("T1: collective action threat",
+                               "T2: tattling threat", 
+                               "T3: claims of loyalty"),
+          dep.var.labels = "Government Response (0 or 1)",
+          column.labels = c("Unconditional", "Conditional"),
+          column.separate = c(3, 3),
+          add.lines = list(
+            c("Prefectural dummies", "", "yes", "yes", "", "yes", "yes"),
+            c("Sociodemographic controls", "", "", "yes", "", "", "yes"),
+            c("Forum characteristics", "", "", "", "", "", "yes")
+          ),
+          omit.stat = c("f", "ser", "adj.rsq"),
+          notes = "Huber White robust standard errors are in parentheses."
+)
+```
+
+### Causal Effect of Treatment on Publicly Viewable Responses
+
+In examining the Causal Effect of Treatment on Publicly Viewable Responses, I observe whether the responses were made publicly viewable or not. The collective action threat increases public responses by about 7.9 pp unconditionally and 10.6 pp conditionally.
+
+```{r}
+#| label: tbl-public-responses
+#| tbl-cap: "The Causal Effects of Treatments on Publicly Viewable Responses"
+#| results: asis
+
+d$tr1 <- as.numeric(d$treat == 1)
+d$tr2 <- as.numeric(d$treat == 2)
+d$tr3 <- as.numeric(d$treat == 3)
+
+# Model 1: Unconditional
+model3_1 <- lm(response_public ~ tr1 + tr2 + tr3, data = d)
+
+# Model 2: With controls
+model3_2 <- lm(response_public ~ tr1 + tr2 + tr3 + factor(city) + 
+               logpop + nonagrhh + urban + eduyr + unemploy + minor, 
+             data = d)
+
+# Models 3-4: Conditional on posted == 1
+d_posted <- subset(d, posted == 1)
+
+model3_3 <- lm(response_public ~ tr1 + tr2 + tr3, data = d_posted)
+
+model3_4 <- lm(response_public ~ tr1 + tr2 + tr3 + factor(city) + 
+                 logpop + nonagrhh + urban + eduyr + unemploy + minor +
+                 forum_response + forum_recent_response +
+                 forum_imme_viewable +
+                 post_email + post_name + post_idnum + post_tel +
+                 post_address,
+               data = d_posted)
+
+# Get robust SEs for each model
+robust_se_t3 <- list(
+  sqrt(diag(vcovHC(model3_1, type = "HC1"))),
+  sqrt(diag(vcovHC(model3_2, type = "HC1"))),
+  sqrt(diag(vcovHC(model3_3, type = "HC1"))),
+  sqrt(diag(vcovHC(model3_4, type = "HC1")))
+)
+
+# Create Table 3 (Columns 1-4)
+stargazer(model3_1, model3_2, model3_3, model3_4,
+          type = "html",
+          se = robust_se_t3,
+          keep = c("tr1", "tr2", "tr3", "Constant"),
+          covariate.labels = c("T1: collective action threat",
+                               "T2: tattling threat", 
+                               "T3: claims of loyalty"),
+          dep.var.labels = "Publicly Viewable Response (0 or 1)",
+          column.labels = c("Unconditional", "Conditional"),
+          column.separate = c(2, 2),
+          add.lines = list(
+            c("Prefectural dummies", "", "yes", "", "yes"),
+            c("Sociodemographic controls", "", "yes", "", "yes"),
+            c("Forum characteristics", "", "", "", "yes")
+          ),
+          omit.stat = c("f", "ser", "adj.rsq"),
+          notes = "Huber White robust standard errors are in parentheses."
+)
+```
+
+### Causal Effect of Treatment on Publicly Viewable Response
+
+When examining the proportion of responses made public, the public responses rate increases by 9.3 pp compared to control, while tattling decreases it by -2.5 pp. This suggests that the government responds to collective action threats, not just by responding more but by responding more publicly. The replication also shows similar findings with the paper.
+
+```{r}
+#| label: tbl-proportion-public
+#| tbl-cap: "Proportion of Responses Made Public"
+
+# Calculate Ratio of Public Responses
+# Split data by treatment group
+d0 <- subset(d, treat == 0)
+d1 <- subset(d, treat == 1)
+d2 <- subset(d, treat == 2)
+d3 <- subset(d, treat == 3)
+
+n0 <- nrow(d0); n1 <- nrow(d1); n2 <- nrow(d2); n3 <- nrow(d3)
+
+# Point estimates: ratio of public responses among all responses
+ratio0 <- sum(d0$response == 1 & d0$response_public == 1) / sum(d0$response == 1)
+ratio1 <- sum(d1$response == 1 & d1$response_public == 1) / sum(d1$response == 1)
+ratio2 <- sum(d2$response == 1 & d2$response_public == 1) / sum(d2$response == 1)
+ratio3 <- sum(d3$response == 1 & d3$response_public == 1) / sum(d3$response == 1)
+
+# Bootstrap for standard errors
+nboots <- 1000
+results <- matrix(NA, 4, nboots)
+
+for(i in 1:nboots) {
+  s0 <- d0[sample(1:n0, n0, replace = TRUE), ]
+  s1 <- d1[sample(1:n1, n1, replace = TRUE), ]
+  s2 <- d2[sample(1:n2, n2, replace = TRUE), ]
+  s3 <- d3[sample(1:n3, n3, replace = TRUE), ]
+  
+  b_ratio0 <- sum(s0$response == 1 & s0$response_public == 1) / sum(s0$response == 1)
+  b_ratio1 <- sum(s1$response == 1 & s1$response_public == 1) / sum(s1$response == 1)
+  b_ratio2 <- sum(s2$response == 1 & s2$response_public == 1) / sum(s2$response == 1)
+  b_ratio3 <- sum(s3$response == 1 & s3$response_public == 1) / sum(s3$response == 1)
+  
+  results[1, i] <- b_ratio1 - b_ratio0
+  results[2, i] <- b_ratio2 - b_ratio0
+  results[3, i] <- b_ratio3 - b_ratio0
+  results[4, i] <- b_ratio0
+}
+
+# Standard errors
+se <- apply(results, 1, sd)
+
+# Create table matching paper format
+col5_table <- data.frame(
+  Variable = c("T1: collective action threat", 
+               "T2: tattling threat", 
+               "T3: claims of loyalty", 
+               "Constant (Control mean)"),
+  Estimate = c(ratio1 - ratio0, ratio2 - ratio0, ratio3 - ratio0, ratio0),
+  SE = se
+)
+
+# Format with SE in parentheses
+col5_table %>%
+  mutate(
+    Estimate = round(Estimate, 3),
+    SE = paste0("(", round(SE, 3), ")")
+  ) %>%
+  kable(
+    booktabs = TRUE,
+    col.names = c("", "Public/All", ""),
+    align = c("l", "c", "c"),
+    escape = FALSE
+  ) %>%
+  kable_styling(
+    bootstrap_options = c("striped", "hover"),
+    full_width = FALSE,
+    position = "center"
+  ) %>%
+  footnote(
+    general = "Standard errors based on nonparametric bootstrapping (1,000 iterations).",
+    general_title = "Note:",
+    footnote_as_chunk = TRUE
+  )
+```
+
+### Content of Responses by Treatment Group
+
+Replication of Content of Responses by Treatment Group shows similar findings to the original paper, illustrating how response content varies by treatment. The control group has a 76.8% non-response rate, while the collective action threat group has only 69.2%. More importantly, compared to the control (12.7%), the collective action threat produces the highest rate of direct information responses (18.5%). The tattling threat also increases direct information responses (16.9%). Lastly, tattling also increases deferral responses (7.0% versus 4.6% for the control).
+
+```{r}
+#| label: tbl-content
+#| tbl-cap: "Content of Responses by Treatment Group"
+
+# Create Table Content of Responses by Treatment Group
+table4_content <- function(d) {
+  
+  # Create response content categories
+  d$content_cat <- ifelse(d$response == 0, 0, d$response_content)
+  
+  # Calculate counts by treatment group
+  results <- d %>%
+    dplyr::group_by(treat) %>%
+    dplyr::summarise(
+      No_Response_N = sum(content_cat == 0 | is.na(content_cat)),
+      Deferral_N = sum(content_cat == 1, na.rm = TRUE),
+      Referral_N = sum(content_cat == 2, na.rm = TRUE),
+      Direct_Info_N = sum(content_cat == 3, na.rm = TRUE),
+      Total = dplyr::n()
+    ) %>%
+    dplyr::mutate(
+      No_Response_Pct = round(No_Response_N / Total * 100, 1),
+      Deferral_Pct = round(Deferral_N / Total * 100, 1),
+      Referral_Pct = round(Referral_N / Total * 100, 1),
+      Direct_Info_Pct = round(Direct_Info_N / Total * 100, 1)
+    )
+  
+  # Format table with N and % combined in same column (like the paper)
+  table4 <- data.frame(
+    Treatment = c("Control", "T1: collective action threat", 
+                  "T2: tattling threat", "T3: claims of loyalty"),
+    No_Response = paste0(results$No_Response_N, " (", results$No_Response_Pct, "%)"),
+    Deferral = paste0(results$Deferral_N, " (", results$Deferral_Pct, "%)"),
+    Referral = paste0(results$Referral_N, " (", results$Referral_Pct, "%)"),
+    Direct_Info = paste0(results$Direct_Info_N, " (", results$Direct_Info_Pct, "%)")
+  )
+  
+  return(table4)
+}
+
+# Generate Table 4
+table4 <- table4_content(d)
+
+# Display with kableExtra
+table4 %>%
+  kable(
+    booktabs = TRUE,
+    col.names = c("", "No Response", "Deferral", "Referral", "Direct Info"),
+    align = c("l", "c", "c", "c", "c")
+  ) %>%
+  kable_styling(
+    bootstrap_options = c("striped", "hover"),
+    full_width = FALSE,
+    position = "center"
+  )
+```
+
+## Extension: Heterogeneous Treatment Effects
+
+```{r}
+#| label: setup-hte
+
+# Condition on posted == 1 (like Tables A3-A6 in paper)
+d_posted <- subset(d, posted == 1)
+
+# Create treatment indicators if not already done
+d_posted$tr1 <- as.numeric(d_posted$treat == 1)
+d_posted$tr2 <- as.numeric(d_posted$treat == 2)
+d_posted$tr3 <- as.numeric(d_posted$treat == 3)
+
+# Create subgroup indicators using median split
+# Unemployment
+median_unemploy <- median(d_posted$unemploy, na.rm = TRUE)
+d_posted$high_unemploy <- ifelse(d_posted$unemploy >= median_unemploy, 1, 0)
+
+# Government fiscal capacity (log government revenue)
+median_gov_rev <- median(d_posted$loggov_rev, na.rm = TRUE)
+d_posted$high_gov_rev <- ifelse(d_posted$loggov_rev >= median_gov_rev, 1, 0)
+```
+
+### Heterogeneous Treatment Effects by Unemployment Rate
+
+In this section, I examine whether the treatment effect varies across subgroups, specifically by unemployment rate characteristics across counties. I look for heterogeneous treatment effects by unemployment rate because high-unemployment areas might have greater potential risk for social unrest. When officials in high-unemployment counties see a collective action threat, they might respond differently: either being more responsive because there are more aggrieved citizens who might actually mobilize, or being less responsive because they regularly receive more complaints.
+
+To categorize high and low unemployment rates, I split the sample at the median unemployment rate. The table below presents results split by the median unemployment rate (2.26%). Additionally, to formally test whether the observed differences are statistically significant, I conducted randomization inference. For unemployment rate, I conducted two-tailed tests examining whether treatment effects differ between high and low unemployment counties.
+
+The findings reveal that treatment effects are notably larger in low-unemployment counties. For the collective action threat, the effect on responsiveness is 13.9 pp in low-unemployment areas versus 6.2 pp in high-unemployment counties. However, this difference is not statistically significant (p = 0.205). For public responses, the collective action effect is 15.0 percentage points in low-unemployment areas versus 6.0 percentage points in high-unemployment areas. This difference approaches marginal significance (p = 0.096), suggesting there may be some heterogeneity in how governments make responses publicly visible. For the tattling threat, the difference in effects on responsiveness between low and high unemployment counties is also not statistically significant (p = 0.497).
+
+```{r}
+#| label: tbl-hte-unemployment
+#| tbl-cap: "Heterogeneous Treatment Effects by Unemployment Rate"
+
+# Remove NAs from the data first
+d_posted_clean <- d_posted[!is.na(d_posted$high_unemploy) & 
+                            !is.na(d_posted$response) & 
+                            !is.na(d_posted$response_public), ]
+
+# Run models
+model_unemp_high_resp <- lm(response ~ tr1 + tr2 + tr3, 
+                             data = subset(d_posted_clean, high_unemploy == 1))
+model_unemp_high_pub <- lm(response_public ~ tr1 + tr2 + tr3, 
+                            data = subset(d_posted_clean, high_unemploy == 1))
+model_unemp_low_resp <- lm(response ~ tr1 + tr2 + tr3, 
+                            data = subset(d_posted_clean, high_unemploy == 0))
+model_unemp_low_pub <- lm(response_public ~ tr1 + tr2 + tr3, 
+                           data = subset(d_posted_clean, high_unemploy == 0))
+
+# Function to extract coefficient and SE
+extract_coef <- function(model, var) {
+  coef_val <- round(coef(model)[var], 3)
+  se_val <- round(sqrt(diag(vcovHC(model, type = "HC1")))[var], 3)
+  return(c(coef_val, se_val))
+}
+
+# Build the table manually
+hte_unemp_table <- data.frame(
+  Variable = c("T1: collective action threat", "", 
+               "T2: tattling threat", "",
+               "T3: claims of loyalty", "",
+               "Constant", "",
+               "Observations", "R-squared"),
+  High_Resp = c(extract_coef(model_unemp_high_resp, "tr1")[1],
+                paste0("(", extract_coef(model_unemp_high_resp, "tr1")[2], ")"),
+                extract_coef(model_unemp_high_resp, "tr2")[1],
+                paste0("(", extract_coef(model_unemp_high_resp, "tr2")[2], ")"),
+                extract_coef(model_unemp_high_resp, "tr3")[1],
+                paste0("(", extract_coef(model_unemp_high_resp, "tr3")[2], ")"),
+                extract_coef(model_unemp_high_resp, "(Intercept)")[1],
+                paste0("(", extract_coef(model_unemp_high_resp, "(Intercept)")[2], ")"),
+                nobs(model_unemp_high_resp),
+                round(summary(model_unemp_high_resp)$r.squared, 3)),
+  High_Pub = c(extract_coef(model_unemp_high_pub, "tr1")[1],
+               paste0("(", extract_coef(model_unemp_high_pub, "tr1")[2], ")"),
+               extract_coef(model_unemp_high_pub, "tr2")[1],
+               paste0("(", extract_coef(model_unemp_high_pub, "tr2")[2], ")"),
+               extract_coef(model_unemp_high_pub, "tr3")[1],
+               paste0("(", extract_coef(model_unemp_high_pub, "tr3")[2], ")"),
+               extract_coef(model_unemp_high_pub, "(Intercept)")[1],
+               paste0("(", extract_coef(model_unemp_high_pub, "(Intercept)")[2], ")"),
+               nobs(model_unemp_high_pub),
+               round(summary(model_unemp_high_pub)$r.squared, 3)),
+  Low_Resp = c(extract_coef(model_unemp_low_resp, "tr1")[1],
+               paste0("(", extract_coef(model_unemp_low_resp, "tr1")[2], ")"),
+               extract_coef(model_unemp_low_resp, "tr2")[1],
+               paste0("(", extract_coef(model_unemp_low_resp, "tr2")[2], ")"),
+               extract_coef(model_unemp_low_resp, "tr3")[1],
+               paste0("(", extract_coef(model_unemp_low_resp, "tr3")[2], ")"),
+               extract_coef(model_unemp_low_resp, "(Intercept)")[1],
+               paste0("(", extract_coef(model_unemp_low_resp, "(Intercept)")[2], ")"),
+               nobs(model_unemp_low_resp),
+               round(summary(model_unemp_low_resp)$r.squared, 3)),
+  Low_Pub = c(extract_coef(model_unemp_low_pub, "tr1")[1],
+              paste0("(", extract_coef(model_unemp_low_pub, "tr1")[2], ")"),
+              extract_coef(model_unemp_low_pub, "tr2")[1],
+              paste0("(", extract_coef(model_unemp_low_pub, "tr2")[2], ")"),
+              extract_coef(model_unemp_low_pub, "tr3")[1],
+              paste0("(", extract_coef(model_unemp_low_pub, "tr3")[2], ")"),
+              extract_coef(model_unemp_low_pub, "(Intercept)")[1],
+              paste0("(", extract_coef(model_unemp_low_pub, "(Intercept)")[2], ")"),
+              nobs(model_unemp_low_pub),
+              round(summary(model_unemp_low_pub)$r.squared, 3))
+)
+
+# Display table
+hte_unemp_table %>%
+  kable(
+    booktabs = TRUE,
+    col.names = c("", "Response", "Public", "Response", "Public"),
+    align = c("l", "c", "c", "c", "c")
+  ) %>%
+  kable_styling(
+    bootstrap_options = c("striped", "hover"),
+    full_width = FALSE,
+    position = "center"
+  ) %>%
+  add_header_above(c(" " = 1, "High Unemployment" = 2, "Low Unemployment" = 2)) %>%
+  footnote(
+    general = "Huber White robust standard errors in parentheses.",
+    general_title = "Note:",
+    footnote_as_chunk = TRUE
+  )
+```
+
+```{r}
+#| label: ri-unemployment
+
+# Unemployment Rate Randomization Inference
+
+n_perms <- 1000
+
+# T1 (Collective Action) vs Control only
+d_t1 <- subset(d_posted_clean, treat %in% c(0, 1))
+d_t1$treated <- ifelse(d_t1$treat == 1, 1, 0)
+
+# T2 (Tattling) vs Control only
+d_t2 <- subset(d_posted_clean, treat %in% c(0, 2))
+d_t2$treated <- ifelse(d_t2$treat == 2, 1, 0)
+
+
+# Calculate difference in CATEs between subgroups
+get_cate_difference <- function(data, outcome, treated, subgroup) {
+  # CATE in HIGH subgroup (subgroup == 1)
+  high_treat_mean <- mean(data[[outcome]][data[[subgroup]] == 1 & data[[treated]] == 1], na.rm = TRUE)
+  high_ctrl_mean  <- mean(data[[outcome]][data[[subgroup]] == 1 & data[[treated]] == 0], na.rm = TRUE)
+  cate_high <- high_treat_mean - high_ctrl_mean
+  
+  # CATE in LOW subgroup (subgroup == 0)
+  low_treat_mean <- mean(data[[outcome]][data[[subgroup]] == 0 & data[[treated]] == 1], na.rm = TRUE)
+  low_ctrl_mean  <- mean(data[[outcome]][data[[subgroup]] == 0 & data[[treated]] == 0], na.rm = TRUE)
+  cate_low <- low_treat_mean - low_ctrl_mean
+  
+  # Difference: LOW minus HIGH
+  return(cate_low - cate_high)
+}
+
+
+# --- T1 on Response ---
+obs_diff_t1_resp <- get_cate_difference(d_t1, "response", "treated", "high_unemploy")
+
+perm_diffs_t1_resp <- numeric(n_perms)
+for (i in 1:n_perms) {
+  d_t1$high_unemploy_perm <- sample(d_t1$high_unemploy)
+  perm_diffs_t1_resp[i] <- get_cate_difference(d_t1, "response", "treated", "high_unemploy_perm")
+}
+
+p_value_t1_resp <- mean(abs(perm_diffs_t1_resp) >= abs(obs_diff_t1_resp))
+
+# --- T1 on Public Response ---
+obs_diff_t1_pub <- get_cate_difference(d_t1, "response_public", "treated", "high_unemploy")
+
+perm_diffs_t1_pub <- numeric(n_perms)
+for (i in 1:n_perms) {
+  d_t1$high_unemploy_perm <- sample(d_t1$high_unemploy)
+  perm_diffs_t1_pub[i] <- get_cate_difference(d_t1, "response_public", "treated", "high_unemploy_perm")
+}
+
+p_value_t1_pub <- mean(abs(perm_diffs_t1_pub) >= abs(obs_diff_t1_pub))
+
+# --- T2 on Response ---
+obs_diff_t2_resp <- get_cate_difference(d_t2, "response", "treated", "high_unemploy")
+
+perm_diffs_t2_resp <- numeric(n_perms)
+for (i in 1:n_perms) {
+  d_t2$high_unemploy_perm <- sample(d_t2$high_unemploy)
+  perm_diffs_t2_resp[i] <- get_cate_difference(d_t2, "response", "treated", "high_unemploy_perm")
+}
+
+p_value_t2_resp <- mean(abs(perm_diffs_t2_resp) >= abs(obs_diff_t2_resp))
+```
+
+### Heterogeneous Treatment Effects by Government Fiscal Capacity
+
+Government fiscal capacity directly determines staffing levels, technical infrastructure, and additional resources that could be predictive of the paper's outcome (responsiveness). My hypothesis here is that higher government fiscal capacity would show a larger effect on responsiveness.
+
+I use the same methodology for splitting. I split the sample by median log government revenue (5.85). Here, the pattern shows that the effects are slightly larger in high fiscal capacity counties (11.9% for collective action) compared to low fiscal capacity counties (9.2%). However, for public responses, the difference is more pronounced, as we observe that the collective action threat increases public responses by 14.0 percentage points in high fiscal capacity counties versus 7.3 percentage points in low fiscal capacity counties.
+
+For government fiscal capacity, I conducted one-tailed tests based on the expectation that well-resourced governments would be more responsive to citizen demands. The test does not show statistically significant evidence that high-fiscal-capacity counties have higher responsiveness (p = 0.318) or higher public responses (p = 0.108). The latter approaches marginal significance, suggesting some evidence that governments with greater fiscal resources may be more likely to respond publicly when threatened with collective action. However, we cannot reject the null hypothesis of homogeneous treatment effects at conventional levels. This may reflect limited statistical power to detect heterogeneity within subgroups, or it may indicate that the true heterogeneity is modest in magnitude.
+
+```{r}
+#| label: tbl-hte-fiscal
+#| tbl-cap: "Heterogeneous Treatment Effects by Government Fiscal Capacity"
+
+# Remove NAs
+d_posted_clean2 <- d_posted[!is.na(d_posted$high_gov_rev) & 
+                             !is.na(d_posted$response) & 
+                             !is.na(d_posted$response_public), ]
+
+# Run models
+model_gov_high_resp <- lm(response ~ tr1 + tr2 + tr3, 
+                           data = subset(d_posted_clean2, high_gov_rev == 1))
+model_gov_high_pub <- lm(response_public ~ tr1 + tr2 + tr3, 
+                          data = subset(d_posted_clean2, high_gov_rev == 1))
+model_gov_low_resp <- lm(response ~ tr1 + tr2 + tr3, 
+                          data = subset(d_posted_clean2, high_gov_rev == 0))
+model_gov_low_pub <- lm(response_public ~ tr1 + tr2 + tr3, 
+                         data = subset(d_posted_clean2, high_gov_rev == 0))
+
+# Build the table manually
+hte_gov_table <- data.frame(
+  Variable = c("T1: collective action threat", "", 
+               "T2: tattling threat", "",
+               "T3: claims of loyalty", "",
+               "Constant", "",
+               "Observations", "R-squared"),
+  High_Resp = c(extract_coef(model_gov_high_resp, "tr1")[1],
+                paste0("(", extract_coef(model_gov_high_resp, "tr1")[2], ")"),
+                extract_coef(model_gov_high_resp, "tr2")[1],
+                paste0("(", extract_coef(model_gov_high_resp, "tr2")[2], ")"),
+                extract_coef(model_gov_high_resp, "tr3")[1],
+                paste0("(", extract_coef(model_gov_high_resp, "tr3")[2], ")"),
+                extract_coef(model_gov_high_resp, "(Intercept)")[1],
+                paste0("(", extract_coef(model_gov_high_resp, "(Intercept)")[2], ")"),
+                nobs(model_gov_high_resp),
+                round(summary(model_gov_high_resp)$r.squared, 3)),
+  High_Pub = c(extract_coef(model_gov_high_pub, "tr1")[1],
+               paste0("(", extract_coef(model_gov_high_pub, "tr1")[2], ")"),
+               extract_coef(model_gov_high_pub, "tr2")[1],
+               paste0("(", extract_coef(model_gov_high_pub, "tr2")[2], ")"),
+               extract_coef(model_gov_high_pub, "tr3")[1],
+               paste0("(", extract_coef(model_gov_high_pub, "tr3")[2], ")"),
+               extract_coef(model_gov_high_pub, "(Intercept)")[1],
+               paste0("(", extract_coef(model_gov_high_pub, "(Intercept)")[2], ")"),
+               nobs(model_gov_high_pub),
+               round(summary(model_gov_high_pub)$r.squared, 3)),
+  Low_Resp = c(extract_coef(model_gov_low_resp, "tr1")[1],
+               paste0("(", extract_coef(model_gov_low_resp, "tr1")[2], ")"),
+               extract_coef(model_gov_low_resp, "tr2")[1],
+               paste0("(", extract_coef(model_gov_low_resp, "tr2")[2], ")"),
+               extract_coef(model_gov_low_resp, "tr3")[1],
+               paste0("(", extract_coef(model_gov_low_resp, "tr3")[2], ")"),
+               extract_coef(model_gov_low_resp, "(Intercept)")[1],
+               paste0("(", extract_coef(model_gov_low_resp, "(Intercept)")[2], ")"),
+               nobs(model_gov_low_resp),
+               round(summary(model_gov_low_resp)$r.squared, 3)),
+  Low_Pub = c(extract_coef(model_gov_low_pub, "tr1")[1],
+              paste0("(", extract_coef(model_gov_low_pub, "tr1")[2], ")"),
+              extract_coef(model_gov_low_pub, "tr2")[1],
+              paste0("(", extract_coef(model_gov_low_pub, "tr2")[2], ")"),
+              extract_coef(model_gov_low_pub, "tr3")[1],
+              paste0("(", extract_coef(model_gov_low_pub, "tr3")[2], ")"),
+              extract_coef(model_gov_low_pub, "(Intercept)")[1],
+              paste0("(", extract_coef(model_gov_low_pub, "(Intercept)")[2], ")"),
+              nobs(model_gov_low_pub),
+              round(summary(model_gov_low_pub)$r.squared, 3))
+)
+
+# Display table
+hte_gov_table %>%
+  kable(
+    booktabs = TRUE,
+    col.names = c("", "Response", "Public", "Response", "Public"),
+    align = c("l", "c", "c", "c", "c")
+  ) %>%
+  kable_styling(
+    bootstrap_options = c("striped", "hover"),
+    full_width = FALSE,
+    position = "center"
+  ) %>%
+  add_header_above(c(" " = 1, "High Fiscal Capacity" = 2, "Low Fiscal Capacity" = 2)) %>%
+  footnote(
+    general = "Huber White robust standard errors in parentheses.",
+    general_title = "Note:",
+    footnote_as_chunk = TRUE
+  )
+```
+
+```{r}
+#| label: ri-fiscal
+
+# Testing if HIGH fiscal capacity has LARGER treatment effects
+
+# For fiscal capacity
+d_fiscal <- subset(d_posted_clean2, treat %in% c(0, 1))
+d_fiscal$treated <- ifelse(d_fiscal$treat == 1, 1, 0)
+
+# --- T1 on Response ---
+obs_diff_fiscal_resp <- get_cate_difference(d_fiscal, "response", "treated", "high_gov_rev")
+
+perm_diffs_fiscal_resp <- numeric(n_perms)
+for (i in 1:n_perms) {
+  d_fiscal$high_gov_rev_perm <- sample(d_fiscal$high_gov_rev)
+  perm_diffs_fiscal_resp[i] <- get_cate_difference(d_fiscal, "response", "treated", "high_gov_rev_perm")
+}
+
+# One-tailed: proportion where permuted diff < observed diff
+p_value_fiscal_resp <- mean(perm_diffs_fiscal_resp <= obs_diff_fiscal_resp)
+
+# --- T1 on Public Response ---
+obs_diff_fiscal_pub <- get_cate_difference(d_fiscal, "response_public", "treated", "high_gov_rev")
+
+perm_diffs_fiscal_pub <- numeric(n_perms)
+for (i in 1:n_perms) {
+  d_fiscal$high_gov_rev_perm <- sample(d_fiscal$high_gov_rev)
+  perm_diffs_fiscal_pub[i] <- get_cate_difference(d_fiscal, "response_public", "treated", "high_gov_rev_perm")
+}
+
+p_value_fiscal_pub <- mean(perm_diffs_fiscal_pub <= obs_diff_fiscal_pub)
+```
+
+## Conclusion
+
+This replication successfully reproduces the main findings of Chen, Pan, and Xu (2016). Threats of collective action and threats of tattling to superiors both significantly increase government responsiveness in authoritarian China, while claims of party loyalty did not show any significant effect.
+
+The extension analysis examines whether these effects are heterogeneous across county characteristics. Descriptively, treatment effects appear larger in counties with lower unemployment and higher fiscal capacity. However, randomization inference tests indicate that most of these differences are not statistically significant at conventional levels. For unemployment, the difference in collective action effects on public responses comes closest to significance (p = 0.096), but we cannot reject the null of equal treatment effects for responsiveness (p = 0.205) or for the tattling treatment (p = 0.497). For fiscal capacity, the one-tailed tests also fail to reach significance for responsiveness (p = 0.318), though the difference for public responses approaches marginal significance (p = 0.108). These findings suggest that either the study lacks sufficient power to detect treatment effect heterogeneity, or the true heterogeneity is modest in magnitude.
+
+The original study provides compelling evidence that even vague threats of collective action can make authoritarian governments more responsive. My replication confirms these findings. While the extension suggests that local economic and fiscal conditions may moderate how officials respond to citizen demands, these patterns require further investigation with larger samples or more targeted designs to confirm.
+
+## References
+
+::: {#refs}
+:::
