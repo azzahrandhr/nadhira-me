@@ -5,20 +5,27 @@ project:
 website:
   description: "A blog built with Quarto"
   site-url: "https://nadhira.me" # you must change this appropriately for RSS feeds to work properly
-  title: "nadhira-me"
+  title: ""
   navbar:
-    right:
-      - about.qmd
+    background: light
+    search: true
+    pinned: true
+    tools:
       - icon: github
-        href: https://github.com/
-      - icon: twitter
-        href: https://twitter.com
+        href: https://github.com/azzahrandhr
+    left:
+      - text: "About"
+        href: "#about"
+      - text: "Interests"
+        href: "#interests"
+      - text: "Blog"
+        href: "#blog"
+
 format:
   html:
-    theme:
-      - cosmo
-      - brand
+    theme: cosmo
     css: styles.css
+    page-layout: full
 
 
-
+  

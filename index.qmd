@@ -1,15 +1,26 @@
 ---
-title: "nadhira-me"
-listing:
-  contents: posts
-  feed: true
-  sort: "date desc"
-  type: default
-  categories: true
-  sort-ui: false
-  filter-ui: false
-page-layout: full
-title-block-banner: true
+title: ""
+format:
+  html:
+    page-layout: full
 ---
 
+<div class="hero">
+  <img src="profile.jpg" alt="Nadhira" class="avatar" />
+  <h1>Hi, I'm Nadhira! 👋</h1>
+  <p>
+    I'm a first year graduate student in **Quantitative Methods in the Social Sciences** at Columbia University, previously I work as a data analyst in [Traveloka](https://www.traveloka.com/en-en) and [OCBC](https://www.ocbc.com/business-banking). My interest focuses in the field of data analysis, causal inference, and field experimentation, particularly as tools to create meaningful societal impact. You can get in touch with me via email [nah2181@columbia.edu](mailto:nah2181@columbia.edu) or at [LinkedIn](https://linkedin.com/in/azzahrandhr)
+  </p>
+</div>
 
+<section id="interests">
+  <h2>Interests</h2>
+  <ul>
+    <li><strong>Causal inference and Field experiments</strong></li>
+    <li><strong>Climate </strong> - climate impacts on vulnerable populations, adaptation policy</li>
+    <li><strong>Gender & Education</strong> - education interventions, gender equity, human capital</li>
+  </ul>
+</section>
+<footer>
+  © 2026 Nadhira
+</footer>
