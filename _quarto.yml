@@ -13,11 +13,11 @@ website:
     tools:
       - icon: github
         href: https://github.com/azzahrandhr
+      - icon: linkedin
+        href: https://www.linkedin.com/in/azzahrandhr/
     left:
       - text: "About"
         href: "#about"
-      - text: "Interests"
-        href: "#interests"
       - text: "Blog"
         href: blog.qmd
 

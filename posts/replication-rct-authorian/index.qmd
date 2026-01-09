@@ -12,6 +12,8 @@ format:
     code-copy: true
     code-fold: true
 bibliography: references.bib
+nocite: |
+  @*
 ---
 ```{r}
 #| label: setup
