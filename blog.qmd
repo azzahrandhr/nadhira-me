@@ -5,6 +5,5 @@ listing:
   sort-ui: true
   filter-ui: true
   type: table
-  fields: [date, author, reading-time, title, image,description]
-  categories: unnumbered
+  fields: [date, author, reading-time, title, description]
 ---

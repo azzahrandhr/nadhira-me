@@ -22,6 +22,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 /* CSS for citations */
 div.csl-bib-body { }
 div.csl-entry {
@@ -89,22 +124,6 @@ div.csl-indent {
     "search-label": "Search"
   }
 }</script>
-<style>
-
-      .quarto-title-block .quarto-title-banner h1,
-      .quarto-title-block .quarto-title-banner h2,
-      .quarto-title-block .quarto-title-banner h3,
-      .quarto-title-block .quarto-title-banner h4,
-      .quarto-title-block .quarto-title-banner h5,
-      .quarto-title-block .quarto-title-banner h6
-      {
-        color: #f8f9fa;
-      }
-
-      .quarto-title-block .quarto-title-banner {
-        color: #f8f9fa;
-      }
-</style>
 <script src="../../site_libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="../../site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 
@@ -192,15 +211,22 @@ div.csl-indent {
     <h2 id="toc-title">On this page</h2>
    
   <ul class="collapse">
-  <li><a href="#sources-of-authoritarian-responsiveness-a-field-experiment-in-china-replication-of-chen-pan-and-xu-2016" id="toc-sources-of-authoritarian-responsiveness-a-field-experiment-in-china-replication-of-chen-pan-and-xu-2016" class="nav-link active" data-scroll-target="#sources-of-authoritarian-responsiveness-a-field-experiment-in-china-replication-of-chen-pan-and-xu-2016">Sources of Authoritarian Responsiveness: A Field Experiment in China : Replication of Chen, Pan and Xu (2016)</a>
-  <ul class="collapse">
-  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
   <li><a href="#research-design-and-findings" id="toc-research-design-and-findings" class="nav-link" data-scroll-target="#research-design-and-findings">Research Design and Findings</a></li>
-  <li><a href="#replication-of-the-main-results" id="toc-replication-of-the-main-results" class="nav-link" data-scroll-target="#replication-of-the-main-results">Replication of the Main Results</a></li>
-  <li><a href="#extension-heterogeneous-treatment-effects" id="toc-extension-heterogeneous-treatment-effects" class="nav-link" data-scroll-target="#extension-heterogeneous-treatment-effects">Extension: Heterogeneous Treatment Effects</a></li>
+  <li><a href="#replication-of-the-main-results" id="toc-replication-of-the-main-results" class="nav-link" data-scroll-target="#replication-of-the-main-results">Replication of the Main Results</a>
+  <ul class="collapse">
+  <li><a href="#covariate-balance-across-treatment-groups" id="toc-covariate-balance-across-treatment-groups" class="nav-link" data-scroll-target="#covariate-balance-across-treatment-groups">Covariate Balance across Treatment Groups</a></li>
+  <li><a href="#causal-effect-of-treatments-on-government-responses" id="toc-causal-effect-of-treatments-on-government-responses" class="nav-link" data-scroll-target="#causal-effect-of-treatments-on-government-responses">Causal Effect of Treatments on Government Responses</a></li>
+  <li><a href="#causal-effect-of-treatment-on-publicly-viewable-responses" id="toc-causal-effect-of-treatment-on-publicly-viewable-responses" class="nav-link" data-scroll-target="#causal-effect-of-treatment-on-publicly-viewable-responses">Causal Effect of Treatment on Publicly Viewable Responses</a></li>
+  <li><a href="#causal-effect-of-treatment-on-publicly-viewable-response" id="toc-causal-effect-of-treatment-on-publicly-viewable-response" class="nav-link" data-scroll-target="#causal-effect-of-treatment-on-publicly-viewable-response">Causal Effect of Treatment on Publicly Viewable Response</a></li>
+  <li><a href="#content-of-responses-by-treatment-group" id="toc-content-of-responses-by-treatment-group" class="nav-link" data-scroll-target="#content-of-responses-by-treatment-group">Content of Responses by Treatment Group</a></li>
+  </ul></li>
+  <li><a href="#extension-heterogeneous-treatment-effects" id="toc-extension-heterogeneous-treatment-effects" class="nav-link" data-scroll-target="#extension-heterogeneous-treatment-effects">Extension: Heterogeneous Treatment Effects</a>
+  <ul class="collapse">
+  <li><a href="#heterogeneous-treatment-effects-by-government-fiscal-capacity" id="toc-heterogeneous-treatment-effects-by-government-fiscal-capacity" class="nav-link" data-scroll-target="#heterogeneous-treatment-effects-by-government-fiscal-capacity">Heterogeneous Treatment Effects by Government Fiscal Capacity</a></li>
+  </ul></li>
   <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
-  </ul></li>
   </ul>
 </nav>
     </div>
@@ -211,18 +237,17 @@ div.csl-indent {
 
 
 
-<section id="sources-of-authoritarian-responsiveness-a-field-experiment-in-china-replication-of-chen-pan-and-xu-2016" class="level1">
-<h1>Sources of Authoritarian Responsiveness: A Field Experiment in China : Replication of Chen, Pan and Xu (2016)</h1>
-<section id="introduction" class="level2">
-<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p>In one of my class project, I got to pick a research study to replicate, and I immediately knew I wanted to work with this one when saw it online because it reminds me so much of what I see happening back home.</p>
-<p>If you’ve ever spent time on Indonesian social media, you know how powerful netizens can be. A complaint about bad service goes viral on Twitter? Companies scramble to respond. A politician’s family member gets caught doing something shady and people start talking on Instagram? Before you know it, it’s on the national news. I’ve watched this happen over and over—people coming together online to make their voices heard, and actually getting results.</p>
-<p>While this research is not about that, it give a glimpse of insight into how this all works. It’s about understanding the mechanisms behind it. <i>What makes some online movements take off while others fizzle out? How do institutions actually respond to online pressure?</i> These are questions I find fascinating.</p>
+<section id="introduction" class="level1">
+<h1>Introduction</h1>
+<p>In one of my class project, I got to pick a research study to replicate. When I saw this paper online, I immediately knew that I wanted to work with this one. Why? because it reminds me of what I see happening back home.</p>
+<p>I think Indonesian netizens can be incredibly powerful—and sometimes downright scary. A complaint about bad service on Twitter? Companies go into damage-control mode 🔥. A politician’s family member gets caught doing something shady and people start talking on Instagram? Before you know it, it’s on the national news. I’ve watched the power of people coming together online to make their voices heard, and actually getting results.</p>
+<p>This research reminds me of that, it give a glimpse of insight into how this authoritarian respond to society. It’s about understanding the mechanisms behind it.</p>
+<p><strong><i> How do institutions actually respond to online pressure?</i></strong></p>
 <p>So for this replication project, I’m excited to get into the methodology and see what insights I can pull out that might help us better understand these digital dynamics.</p>
 </section>
-<section id="research-design-and-findings" class="level2">
-<h2 class="anchored" data-anchor-id="research-design-and-findings">Research Design and Findings</h2>
-<p>A growing body of research suggests that authoritarian regimes are responsive to societal actors, but understanding the sources of authoritarian responsiveness remains limited because of challenges in measurement and causal identification. <span class="citation" data-cites="chen2016sources">(<a href="#ref-chen2016sources" role="doc-biblioref">Chen, Pan, and Xu 2016</a>)</span> assess the main hypotheses in this literature by conducting an online field experiment across 2,103 (with 2,013 successfully posted) Chinese counties and examining the factors that shape officials’ incentives to respond to citizens in an authoritarian context. Existing research suggests that responsiveness among county-level officials in China may stem from three possible sources: a desire to mitigate the threat of collective action, a desire to appear capable in the eyes of upper-level officials, and a desire to satisfy party members. These arguments lead to three hypotheses for responsiveness among county-level governments in China:</p>
+<section id="research-design-and-findings" class="level1">
+<h1>Research Design and Findings</h1>
+<p>A growing body of research suggests that authoritarian regimes are responsive to societal actors, but understanding the sources of authoritarian responsiveness remains limited because of challenges in measurement and causal identification. <span class="citation" data-cites="chen2016sources">(<a href="#ref-chen2016sources" role="doc-biblioref">Chen, Pan, and Xu 2016</a>)</span> assess the main hypotheses in this literature by conducting an online field experiment across 2,103 (with 2,013 successfully posted) Chinese counties and examining the factors that shape officials’ incentives to respond to citizens in an authoritarian context. Existing research suggests that responsiveness among county level officials in China may stem from three possible sources: a desire to mitigate the threat of collective action, a desire to appear capable in the eyes of upper-level officials, and a desire to satisfy party members. These arguments lead to three hypotheses for responsiveness among county-level governments in China:</p>
 <ul>
 <li><p><strong>H1</strong>: Assignment to threats of collective action increases responsiveness of county-level officials to citizen demands.</p></li>
 <li><p><strong>H2</strong>: Assignment to threats of evoking oversight from upper-level government increases responsiveness of county-level officials to citizen demands.</p></li>
@@ -232,12 +257,111 @@ div.csl-indent {
 <p>The outcome of interest is the responsiveness of county governments. Responsiveness was measured in four ways: (1) whether there was a response, (2) the timing of the response if one was given, (3) whether the response was viewable by the general public, and (4) the specific content of the response. The authors found that, at baseline, approximately one-third of county governments respond to citizen demands expressed online. They found statistically significant effects on responsiveness for both the threat of collective action and the threat of tattling to upper-level government. They found no statistically significant effect for requests in which the sender identified as a loyal, long-standing member of the Chinese Communist Party. Moreover, the authors also found that the threat of collective action made local officials more publicly responsive.</p>
 <p>This replication is organized into two sections. I begin by replicating the main table of the article, and then proceed to explore the heterogenous treatment effect across counties with different unemployment rates and government fiscal capacities.</p>
 </section>
-<section id="replication-of-the-main-results" class="level2">
-<h2 class="anchored" data-anchor-id="replication-of-the-main-results">Replication of the Main Results</h2>
-<section id="covariate-balance-across-treatment-groups" class="level3">
-<h3 class="anchored" data-anchor-id="covariate-balance-across-treatment-groups">Covariate Balance across Treatment Groups</h3>
+<section id="replication-of-the-main-results" class="level1">
+<h1>Replication of the Main Results</h1>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2181</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">read.dta</span>(<span class="st">"forum.dta"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<section id="covariate-balance-across-treatment-groups" class="level2">
+<h2 class="anchored" data-anchor-id="covariate-balance-across-treatment-groups">Covariate Balance across Treatment Groups</h2>
 <p>In my replication on Covariate Balance across Treatment Groups, it is confirmed that randomization was successful. All 27 covariates, including population, GDP, education level, and government fiscal indicators, are balanced across the four treatment groups. All p-values from the F-tests exceed 0.10. This indicates that there are no statistically significant differences between groups prior to treatment.</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>table1_balance_check <span class="ot">&lt;-</span> <span class="cf">function</span>(d) {</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Define the covariates to check</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  covar_list <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"logpop"</span>, <span class="st">"logpop00"</span>, <span class="st">"popgrow"</span>, <span class="st">"sexratio"</span>, <span class="st">"logpopden"</span>, </span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"migrant"</span>, <span class="st">"nonagrhh"</span>, <span class="st">"urban"</span>, <span class="st">"eduyr"</span>, <span class="st">"illit"</span>, <span class="st">"minor"</span>, </span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"unemploy"</span>, <span class="st">"wk_agr"</span>, <span class="st">"wk_ind"</span>, <span class="st">"wk_ser"</span>, <span class="st">"income"</span>, <span class="st">"logincome"</span>, </span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"loggdp"</span>, <span class="st">"avggrowth"</span>, <span class="st">"logoutput_agr"</span>, <span class="st">"logoutput_ind"</span>, </span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"logoutput_ser"</span>, <span class="st">"numlfirm"</span>, <span class="st">"loginvest"</span>, <span class="st">"logsaving"</span>, </span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"loggov_rev"</span>, <span class="st">"loggov_exp"</span>)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Better variable labels</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  var_labels <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Log Population (2010)"</span>, <span class="st">"Log Population (2000)"</span>, <span class="st">"Population Growth"</span>, </span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"Sex Ratio"</span>, <span class="st">"Log Population Density"</span>, <span class="st">"Migrant %"</span>, <span class="st">"Non-Agricultural HH %"</span>,</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"Urban %"</span>, <span class="st">"Education Years"</span>, <span class="st">"Illiteracy %"</span>, <span class="st">"Minor %"</span>, <span class="st">"Unemployment %"</span>,</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"Workers in Agriculture %"</span>, <span class="st">"Workers in Industry %"</span>, <span class="st">"Workers in Services %"</span>,</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"Income"</span>, <span class="st">"Log Income"</span>, <span class="st">"Log GDP"</span>, <span class="st">"Average Growth"</span>,</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"Log Agricultural Output"</span>, <span class="st">"Log Industrial Output"</span>, <span class="st">"Log Service Output"</span>,</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"Number of Large Firms"</span>, <span class="st">"Log Investment"</span>, <span class="st">"Log Savings"</span>,</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"Log Government Revenue"</span>, <span class="st">"Log Government Expenditure"</span>)</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Calculate means by treatment group</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>  means_control <span class="ot">&lt;-</span> d <span class="sc">%&gt;%</span> </span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(treat <span class="sc">==</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="fu">all_of</span>(covar_list)) <span class="sc">%&gt;%</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise_all</span>(<span class="sc">~</span><span class="fu">mean</span>(.x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pivot_longer</span>(<span class="fu">everything</span>(), <span class="at">names_to =</span> <span class="st">"Variable"</span>, <span class="at">values_to =</span> <span class="st">"Control"</span>)</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>  means_collective <span class="ot">&lt;-</span> d <span class="sc">%&gt;%</span> </span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(treat <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="fu">all_of</span>(covar_list)) <span class="sc">%&gt;%</span></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise_all</span>(<span class="sc">~</span><span class="fu">mean</span>(.x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pivot_longer</span>(<span class="fu">everything</span>(), <span class="at">names_to =</span> <span class="st">"Variable"</span>, <span class="at">values_to =</span> <span class="st">"CA Threat"</span>)</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>  means_individual <span class="ot">&lt;-</span> d <span class="sc">%&gt;%</span> </span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(treat <span class="sc">==</span> <span class="dv">2</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="fu">all_of</span>(covar_list)) <span class="sc">%&gt;%</span></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise_all</span>(<span class="sc">~</span><span class="fu">mean</span>(.x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pivot_longer</span>(<span class="fu">everything</span>(), <span class="at">names_to =</span> <span class="st">"Variable"</span>, <span class="at">values_to =</span> <span class="st">"CA Tattle Threat"</span>)</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>  means_loyalty <span class="ot">&lt;-</span> d <span class="sc">%&gt;%</span> </span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(treat <span class="sc">==</span> <span class="dv">3</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="fu">all_of</span>(covar_list)) <span class="sc">%&gt;%</span></span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise_all</span>(<span class="sc">~</span><span class="fu">mean</span>(.x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pivot_longer</span>(<span class="fu">everything</span>(), <span class="at">names_to =</span> <span class="st">"Variable"</span>, <span class="at">values_to =</span> <span class="st">"Loyalty Claim"</span>)</span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Perform F-tests for balance</span></span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>  ftest_results <span class="ot">&lt;-</span> <span class="fu">sapply</span>(covar_list, <span class="cf">function</span>(var) {</span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>    formula <span class="ot">&lt;-</span> <span class="fu">as.formula</span>(<span class="fu">paste</span>(var, <span class="st">"~ factor(treat)"</span>))</span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>    model <span class="ot">&lt;-</span> <span class="fu">lm</span>(formula, <span class="at">data =</span> d)</span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>    anova_result <span class="ot">&lt;-</span> <span class="fu">anova</span>(model)</span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>    p_value <span class="ot">&lt;-</span> anova_result<span class="sc">$</span><span class="st">`</span><span class="at">Pr(&gt;F)</span><span class="st">`</span>[<span class="dv">1</span>]</span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(p_value)</span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Combine into final balance table</span></span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a>  balance_table <span class="ot">&lt;-</span> means_control <span class="sc">%&gt;%</span></span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>    <span class="fu">left_join</span>(means_collective, <span class="at">by =</span> <span class="st">"Variable"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>    <span class="fu">left_join</span>(means_individual, <span class="at">by =</span> <span class="st">"Variable"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>    <span class="fu">left_join</span>(means_loyalty, <span class="at">by =</span> <span class="st">"Variable"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(</span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>      <span class="st">`</span><span class="at">P-value</span><span class="st">`</span> <span class="ot">=</span> ftest_results,</span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a>      <span class="at">Variable =</span> var_labels</span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(balance_table)</span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate the balance table</span></span>
+<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a>results_table1 <span class="ot">&lt;-</span> <span class="fu">table1_balance_check</span>(d)</span>
+<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a><span class="co"># Display </span></span>
+<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a>results_table1 <span class="sc">%&gt;%</span></span>
+<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(</span>
+<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a>    <span class="at">booktabs =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a>    <span class="at">digits =</span> <span class="dv">1</span>,</span>
+<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a>    <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"Variable"</span>, <span class="st">"Control"</span>, <span class="st">"CA Threat "</span>, <span class="st">"Tattle Threat"</span>,<span class="st">"Loyalty Claim"</span>, <span class="st">"P-value"</span>),</span>
+<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a>    <span class="at">align =</span> <span class="fu">c</span>(<span class="st">"l"</span>, <span class="st">"c"</span>, <span class="st">"c"</span>, <span class="st">"c"</span>, <span class="st">"c"</span>, <span class="st">"c"</span>)</span>
+<span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(</span>
+<span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a>    <span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>, <span class="st">"condensed"</span>),</span>
+<span id="cb2-81"><a href="#cb2-81" aria-hidden="true" tabindex="-1"></a>    <span class="at">full_width =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb2-82"><a href="#cb2-82" aria-hidden="true" tabindex="-1"></a>    <span class="at">position =</span> <span class="st">"center"</span></span>
+<span id="cb2-83"><a href="#cb2-83" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb2-84"><a href="#cb2-84" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_header_above</span>(<span class="fu">c</span>(<span class="st">" "</span> <span class="ot">=</span> <span class="dv">1</span>, <span class="st">"Treatment Group"</span> <span class="ot">=</span> <span class="dv">4</span>, <span class="st">" "</span> <span class="ot">=</span> <span class="dv">1</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb2-85"><a href="#cb2-85" aria-hidden="true" tabindex="-1"></a>  <span class="fu">footnote</span>(</span>
+<span id="cb2-86"><a href="#cb2-86" aria-hidden="true" tabindex="-1"></a>    <span class="at">general =</span> <span class="st">"P-values from F-tests of joint significance across treatment groups. All p-values &gt; 0.10 indicate successful randomization."</span>,</span>
+<span id="cb2-87"><a href="#cb2-87" aria-hidden="true" tabindex="-1"></a>    <span class="at">general_title =</span> <span class="st">"Note:"</span>,</span>
+<span id="cb2-88"><a href="#cb2-88" aria-hidden="true" tabindex="-1"></a>    <span class="at">footnote_as_chunk =</span> <span class="cn">TRUE</span></span>
+<span id="cb2-89"><a href="#cb2-89" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 <div id="tbl-balance" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-balance-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -506,9 +630,65 @@ Treatment Group
 </div>
 </div>
 </section>
-<section id="causal-effect-of-treatments-on-government-responses" class="level3">
-<h3 class="anchored" data-anchor-id="causal-effect-of-treatments-on-government-responses">Causal Effect of Treatments on Government Responses</h3>
-<p>For the Causal Effect of Treatments on Government Responses replication, I find that it closely matches the original findings. The threat of collective action increases government responsiveness by about 7.7 pp in unconditional models (all counties) and about 10.1 pp in conditional models (counties where posts were successfully made). The threat of tattling to upper-level government shows similar effects, increasing responsiveness by 6.8 pp unconditionally and 8.3 pp conditionally. Claims of CCP loyalty show smaller, statistically insignificant effects of around 3–4 pp.&nbsp;These results are robust to the inclusion of prefectural fixed effects and sociodemographic controls.</p>
+<section id="causal-effect-of-treatments-on-government-responses" class="level2">
+<h2 class="anchored" data-anchor-id="causal-effect-of-treatments-on-government-responses">Causal Effect of Treatments on Government Responses</h2>
+<p>For the Causal Effect of Treatments on Government Responses replication, I find that it closely matches the original findings. The threat of collective action increases government responsiveness by about 7.7 pp in unconditional models (all counties) and about 10.1 pp in conditional models (counties where posts were successfully made). The threat of tattling to upper-level government shows similar effects, increasing responsiveness by 6.8 pp unconditionally and 8.3 pp conditionally. Claims of CCP loyalty show smaller, statistically insignificant effects of around 3–4 pp.&nbsp;These results are robust to the inclusion of pref ectural fixed effects and sociodemographic controls.</p>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Run models using lm() </span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Model 1: Unconditional - no controls</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(response <span class="sc">~</span> tr1 <span class="sc">+</span> tr2 <span class="sc">+</span> tr3, <span class="at">data =</span> d)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Model 2: Unconditional - with prefecture FE</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>model2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(response <span class="sc">~</span> tr1 <span class="sc">+</span> tr2 <span class="sc">+</span> tr3 <span class="sc">+</span> <span class="fu">factor</span>(city), <span class="at">data =</span> d)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Model 3: Unconditional - with FE + sociodemographic controls</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>model3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(response <span class="sc">~</span> tr1 <span class="sc">+</span> tr2 <span class="sc">+</span> tr3 <span class="sc">+</span> <span class="fu">factor</span>(city) <span class="sc">+</span> </span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>               logpop <span class="sc">+</span> nonagrhh <span class="sc">+</span> urban <span class="sc">+</span> eduyr <span class="sc">+</span> unemploy <span class="sc">+</span> minor, </span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>             <span class="at">data =</span> d)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Models 4-6: Conditional on posted == 1</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>d_posted <span class="ot">&lt;-</span> <span class="fu">subset</span>(d, posted <span class="sc">==</span> <span class="dv">1</span>)</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>model4 <span class="ot">&lt;-</span> <span class="fu">lm</span>(response <span class="sc">~</span> tr1 <span class="sc">+</span> tr2 <span class="sc">+</span> tr3, <span class="at">data =</span> d_posted)</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>model5 <span class="ot">&lt;-</span> <span class="fu">lm</span>(response <span class="sc">~</span> tr1 <span class="sc">+</span> tr2 <span class="sc">+</span> tr3 <span class="sc">+</span> <span class="fu">factor</span>(city), <span class="at">data =</span> d_posted)</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>model6 <span class="ot">&lt;-</span> <span class="fu">lm</span>(response <span class="sc">~</span> tr1 <span class="sc">+</span> tr2 <span class="sc">+</span> tr3 <span class="sc">+</span> <span class="fu">factor</span>(city) <span class="sc">+</span> </span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>               logpop <span class="sc">+</span> nonagrhh <span class="sc">+</span> urban <span class="sc">+</span> eduyr <span class="sc">+</span> unemploy <span class="sc">+</span> minor <span class="sc">+</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>               forum_response <span class="sc">+</span> forum_recent_response <span class="sc">+</span> forum_imme_viewable <span class="sc">+</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>               post_email <span class="sc">+</span> post_name <span class="sc">+</span> post_idnum <span class="sc">+</span> post_tel <span class="sc">+</span> post_address,</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>             <span class="at">data =</span> d_posted)</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Get robust SEs for each model</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>robust_se <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sqrt</span>(<span class="fu">diag</span>(<span class="fu">vcovHC</span>(model1, <span class="at">type =</span> <span class="st">"HC1"</span>))),</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sqrt</span>(<span class="fu">diag</span>(<span class="fu">vcovHC</span>(model2, <span class="at">type =</span> <span class="st">"HC1"</span>))),</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sqrt</span>(<span class="fu">diag</span>(<span class="fu">vcovHC</span>(model3, <span class="at">type =</span> <span class="st">"HC1"</span>))),</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sqrt</span>(<span class="fu">diag</span>(<span class="fu">vcovHC</span>(model4, <span class="at">type =</span> <span class="st">"HC1"</span>))),</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sqrt</span>(<span class="fu">diag</span>(<span class="fu">vcovHC</span>(model5, <span class="at">type =</span> <span class="st">"HC1"</span>))),</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sqrt</span>(<span class="fu">diag</span>(<span class="fu">vcovHC</span>(model6, <span class="at">type =</span> <span class="st">"HC1"</span>)))</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a><span class="fu">stargazer</span>(model1, model2, model3, model4, model5, model6,</span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>          <span class="at">type =</span> <span class="st">"html"</span>,  </span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>          <span class="at">se =</span> robust_se,</span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>          <span class="at">keep =</span> <span class="fu">c</span>(<span class="st">"tr1"</span>, <span class="st">"tr2"</span>, <span class="st">"tr3"</span>, <span class="st">"Constant"</span>),</span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>          <span class="at">covariate.labels =</span> <span class="fu">c</span>(<span class="st">"T1: collective action threat"</span>,</span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"T2: tattling threat"</span>, </span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"T3: claims of loyalty"</span>),</span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>          <span class="at">dep.var.labels =</span> <span class="st">"Government Response (0 or 1)"</span>,</span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>          <span class="at">column.labels =</span> <span class="fu">c</span>(<span class="st">"Unconditional"</span>, <span class="st">"Conditional"</span>),</span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>          <span class="at">column.separate =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">3</span>),</span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>          <span class="at">add.lines =</span> <span class="fu">list</span>(</span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>            <span class="fu">c</span>(<span class="st">"Prefectural dummies"</span>, <span class="st">""</span>, <span class="st">"yes"</span>, <span class="st">"yes"</span>, <span class="st">""</span>, <span class="st">"yes"</span>, <span class="st">"yes"</span>),</span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>            <span class="fu">c</span>(<span class="st">"Sociodemographic controls"</span>, <span class="st">""</span>, <span class="st">""</span>, <span class="st">"yes"</span>, <span class="st">""</span>, <span class="st">""</span>, <span class="st">"yes"</span>),</span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>            <span class="fu">c</span>(<span class="st">"Forum characteristics"</span>, <span class="st">""</span>, <span class="st">""</span>, <span class="st">""</span>, <span class="st">""</span>, <span class="st">""</span>, <span class="st">"yes"</span>)</span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a>          ),</span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a>          <span class="at">omit.stat =</span> <span class="fu">c</span>(<span class="st">"f"</span>, <span class="st">"ser"</span>, <span class="st">"adj.rsq"</span>),</span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a>          <span class="at">notes =</span> <span class="st">"Huber White robust standard errors are in parentheses."</span></span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 <div id="tbl-causal-effects" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-causal-effects-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -952,9 +1132,64 @@ Huber White robust standard errors are in parentheses.
 </figure>
 </div>
 </section>
-<section id="causal-effect-of-treatment-on-publicly-viewable-responses" class="level3">
-<h3 class="anchored" data-anchor-id="causal-effect-of-treatment-on-publicly-viewable-responses">Causal Effect of Treatment on Publicly Viewable Responses</h3>
+<section id="causal-effect-of-treatment-on-publicly-viewable-responses" class="level2">
+<h2 class="anchored" data-anchor-id="causal-effect-of-treatment-on-publicly-viewable-responses">Causal Effect of Treatment on Publicly Viewable Responses</h2>
 <p>In examining the Causal Effect of Treatment on Publicly Viewable Responses, I observe whether the responses were made publicly viewable or not. The collective action threat increases public responses by about 7.9 pp unconditionally and 10.6 pp conditionally.</p>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>d<span class="sc">$</span>tr1 <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(d<span class="sc">$</span>treat <span class="sc">==</span> <span class="dv">1</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>d<span class="sc">$</span>tr2 <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(d<span class="sc">$</span>treat <span class="sc">==</span> <span class="dv">2</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>d<span class="sc">$</span>tr3 <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(d<span class="sc">$</span>treat <span class="sc">==</span> <span class="dv">3</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Model 1: Unconditional</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>model3_1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(response_public <span class="sc">~</span> tr1 <span class="sc">+</span> tr2 <span class="sc">+</span> tr3, <span class="at">data =</span> d)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Model 2: With controls</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>model3_2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(response_public <span class="sc">~</span> tr1 <span class="sc">+</span> tr2 <span class="sc">+</span> tr3 <span class="sc">+</span> <span class="fu">factor</span>(city) <span class="sc">+</span> </span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>               logpop <span class="sc">+</span> nonagrhh <span class="sc">+</span> urban <span class="sc">+</span> eduyr <span class="sc">+</span> unemploy <span class="sc">+</span> minor, </span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>             <span class="at">data =</span> d)</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Models 3-4: Conditional on posted == 1</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>d_posted <span class="ot">&lt;-</span> <span class="fu">subset</span>(d, posted <span class="sc">==</span> <span class="dv">1</span>)</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>model3_3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(response_public <span class="sc">~</span> tr1 <span class="sc">+</span> tr2 <span class="sc">+</span> tr3, <span class="at">data =</span> d_posted)</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>model3_4 <span class="ot">&lt;-</span> <span class="fu">lm</span>(response_public <span class="sc">~</span> tr1 <span class="sc">+</span> tr2 <span class="sc">+</span> tr3 <span class="sc">+</span> <span class="fu">factor</span>(city) <span class="sc">+</span> </span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>                 logpop <span class="sc">+</span> nonagrhh <span class="sc">+</span> urban <span class="sc">+</span> eduyr <span class="sc">+</span> unemploy <span class="sc">+</span> minor <span class="sc">+</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>                 forum_response <span class="sc">+</span> forum_recent_response <span class="sc">+</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>                 forum_imme_viewable <span class="sc">+</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>                 post_email <span class="sc">+</span> post_name <span class="sc">+</span> post_idnum <span class="sc">+</span> post_tel <span class="sc">+</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>                 post_address,</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>               <span class="at">data =</span> d_posted)</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Get robust SEs for each model</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>robust_se_t3 <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sqrt</span>(<span class="fu">diag</span>(<span class="fu">vcovHC</span>(model3_1, <span class="at">type =</span> <span class="st">"HC1"</span>))),</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sqrt</span>(<span class="fu">diag</span>(<span class="fu">vcovHC</span>(model3_2, <span class="at">type =</span> <span class="st">"HC1"</span>))),</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sqrt</span>(<span class="fu">diag</span>(<span class="fu">vcovHC</span>(model3_3, <span class="at">type =</span> <span class="st">"HC1"</span>))),</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sqrt</span>(<span class="fu">diag</span>(<span class="fu">vcovHC</span>(model3_4, <span class="at">type =</span> <span class="st">"HC1"</span>)))</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a><span class="co"># Create Table 3 (Columns 1-4)</span></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a><span class="fu">stargazer</span>(model3_1, model3_2, model3_3, model3_4,</span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>          <span class="at">type =</span> <span class="st">"html"</span>,</span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>          <span class="at">se =</span> robust_se_t3,</span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>          <span class="at">keep =</span> <span class="fu">c</span>(<span class="st">"tr1"</span>, <span class="st">"tr2"</span>, <span class="st">"tr3"</span>, <span class="st">"Constant"</span>),</span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>          <span class="at">covariate.labels =</span> <span class="fu">c</span>(<span class="st">"T1: collective action threat"</span>,</span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"T2: tattling threat"</span>, </span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"T3: claims of loyalty"</span>),</span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>          <span class="at">dep.var.labels =</span> <span class="st">"Publicly Viewable Response (0 or 1)"</span>,</span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>          <span class="at">column.labels =</span> <span class="fu">c</span>(<span class="st">"Unconditional"</span>, <span class="st">"Conditional"</span>),</span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>          <span class="at">column.separate =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>),</span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a>          <span class="at">add.lines =</span> <span class="fu">list</span>(</span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a>            <span class="fu">c</span>(<span class="st">"Prefectural dummies"</span>, <span class="st">""</span>, <span class="st">"yes"</span>, <span class="st">""</span>, <span class="st">"yes"</span>),</span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a>            <span class="fu">c</span>(<span class="st">"Sociodemographic controls"</span>, <span class="st">""</span>, <span class="st">"yes"</span>, <span class="st">""</span>, <span class="st">"yes"</span>),</span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a>            <span class="fu">c</span>(<span class="st">"Forum characteristics"</span>, <span class="st">""</span>, <span class="st">""</span>, <span class="st">""</span>, <span class="st">"yes"</span>)</span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a>          ),</span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a>          <span class="at">omit.stat =</span> <span class="fu">c</span>(<span class="st">"f"</span>, <span class="st">"ser"</span>, <span class="st">"adj.rsq"</span>),</span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a>          <span class="at">notes =</span> <span class="st">"Huber White robust standard errors are in parentheses."</span></span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 <div id="tbl-public-responses" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-public-responses-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1302,10 +1537,84 @@ Huber White robust standard errors are in parentheses.
 </figure>
 </div>
 </section>
-<section id="causal-effect-of-treatment-on-publicly-viewable-response" class="level3">
-<h3 class="anchored" data-anchor-id="causal-effect-of-treatment-on-publicly-viewable-response">Causal Effect of Treatment on Publicly Viewable Response</h3>
+<section id="causal-effect-of-treatment-on-publicly-viewable-response" class="level2">
+<h2 class="anchored" data-anchor-id="causal-effect-of-treatment-on-publicly-viewable-response">Causal Effect of Treatment on Publicly Viewable Response</h2>
 <p>When examining the proportion of responses made public, the public responses rate increases by 9.3 pp compared to control, while tattling decreases it by -2.5 pp.&nbsp;This suggests that the government responds to collective action threats, not just by responding more but by responding more publicly. The replication also shows similar findings with the paper.</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate Ratio of Public Responses</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Split data by treatment group</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>d0 <span class="ot">&lt;-</span> <span class="fu">subset</span>(d, treat <span class="sc">==</span> <span class="dv">0</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>d1 <span class="ot">&lt;-</span> <span class="fu">subset</span>(d, treat <span class="sc">==</span> <span class="dv">1</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>d2 <span class="ot">&lt;-</span> <span class="fu">subset</span>(d, treat <span class="sc">==</span> <span class="dv">2</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>d3 <span class="ot">&lt;-</span> <span class="fu">subset</span>(d, treat <span class="sc">==</span> <span class="dv">3</span>)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>n0 <span class="ot">&lt;-</span> <span class="fu">nrow</span>(d0); n1 <span class="ot">&lt;-</span> <span class="fu">nrow</span>(d1); n2 <span class="ot">&lt;-</span> <span class="fu">nrow</span>(d2); n3 <span class="ot">&lt;-</span> <span class="fu">nrow</span>(d3)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Point estimates: ratio of public responses among all responses</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>ratio0 <span class="ot">&lt;-</span> <span class="fu">sum</span>(d0<span class="sc">$</span>response <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> d0<span class="sc">$</span>response_public <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">/</span> <span class="fu">sum</span>(d0<span class="sc">$</span>response <span class="sc">==</span> <span class="dv">1</span>)</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>ratio1 <span class="ot">&lt;-</span> <span class="fu">sum</span>(d1<span class="sc">$</span>response <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> d1<span class="sc">$</span>response_public <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">/</span> <span class="fu">sum</span>(d1<span class="sc">$</span>response <span class="sc">==</span> <span class="dv">1</span>)</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>ratio2 <span class="ot">&lt;-</span> <span class="fu">sum</span>(d2<span class="sc">$</span>response <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> d2<span class="sc">$</span>response_public <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">/</span> <span class="fu">sum</span>(d2<span class="sc">$</span>response <span class="sc">==</span> <span class="dv">1</span>)</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>ratio3 <span class="ot">&lt;-</span> <span class="fu">sum</span>(d3<span class="sc">$</span>response <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> d3<span class="sc">$</span>response_public <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">/</span> <span class="fu">sum</span>(d3<span class="sc">$</span>response <span class="sc">==</span> <span class="dv">1</span>)</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Bootstrap for standard errors</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>nboots <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="cn">NA</span>, <span class="dv">4</span>, nboots)</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>nboots) {</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>  s0 <span class="ot">&lt;-</span> d0[<span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span>n0, n0, <span class="at">replace =</span> <span class="cn">TRUE</span>), ]</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>  s1 <span class="ot">&lt;-</span> d1[<span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span>n1, n1, <span class="at">replace =</span> <span class="cn">TRUE</span>), ]</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>  s2 <span class="ot">&lt;-</span> d2[<span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span>n2, n2, <span class="at">replace =</span> <span class="cn">TRUE</span>), ]</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>  s3 <span class="ot">&lt;-</span> d3[<span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span>n3, n3, <span class="at">replace =</span> <span class="cn">TRUE</span>), ]</span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>  b_ratio0 <span class="ot">&lt;-</span> <span class="fu">sum</span>(s0<span class="sc">$</span>response <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> s0<span class="sc">$</span>response_public <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">/</span> <span class="fu">sum</span>(s0<span class="sc">$</span>response <span class="sc">==</span> <span class="dv">1</span>)</span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>  b_ratio1 <span class="ot">&lt;-</span> <span class="fu">sum</span>(s1<span class="sc">$</span>response <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> s1<span class="sc">$</span>response_public <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">/</span> <span class="fu">sum</span>(s1<span class="sc">$</span>response <span class="sc">==</span> <span class="dv">1</span>)</span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>  b_ratio2 <span class="ot">&lt;-</span> <span class="fu">sum</span>(s2<span class="sc">$</span>response <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> s2<span class="sc">$</span>response_public <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">/</span> <span class="fu">sum</span>(s2<span class="sc">$</span>response <span class="sc">==</span> <span class="dv">1</span>)</span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>  b_ratio3 <span class="ot">&lt;-</span> <span class="fu">sum</span>(s3<span class="sc">$</span>response <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> s3<span class="sc">$</span>response_public <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">/</span> <span class="fu">sum</span>(s3<span class="sc">$</span>response <span class="sc">==</span> <span class="dv">1</span>)</span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>  results[<span class="dv">1</span>, i] <span class="ot">&lt;-</span> b_ratio1 <span class="sc">-</span> b_ratio0</span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>  results[<span class="dv">2</span>, i] <span class="ot">&lt;-</span> b_ratio2 <span class="sc">-</span> b_ratio0</span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>  results[<span class="dv">3</span>, i] <span class="ot">&lt;-</span> b_ratio3 <span class="sc">-</span> b_ratio0</span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>  results[<span class="dv">4</span>, i] <span class="ot">&lt;-</span> b_ratio0</span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Standard errors</span></span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>se <span class="ot">&lt;-</span> <span class="fu">apply</span>(results, <span class="dv">1</span>, sd)</span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a><span class="co"># Create table matching paper format</span></span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a>col5_table <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a>  <span class="at">Variable =</span> <span class="fu">c</span>(<span class="st">"T1: collective action threat"</span>, </span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a>               <span class="st">"T2: tattling threat"</span>, </span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a>               <span class="st">"T3: claims of loyalty"</span>, </span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a>               <span class="st">"Constant (Control mean)"</span>),</span>
+<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a>  <span class="at">Estimate =</span> <span class="fu">c</span>(ratio1 <span class="sc">-</span> ratio0, ratio2 <span class="sc">-</span> ratio0, ratio3 <span class="sc">-</span> ratio0, ratio0),</span>
+<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a>  <span class="at">SE =</span> se</span>
+<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a><span class="co"># Format with SE in parentheses</span></span>
+<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a>col5_table <span class="sc">%&gt;%</span></span>
+<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a>    <span class="at">Estimate =</span> <span class="fu">round</span>(Estimate, <span class="dv">3</span>),</span>
+<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a>    <span class="at">SE =</span> <span class="fu">paste0</span>(<span class="st">"("</span>, <span class="fu">round</span>(SE, <span class="dv">3</span>), <span class="st">")"</span>)</span>
+<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(</span>
+<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a>    <span class="at">booktabs =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb5-58"><a href="#cb5-58" aria-hidden="true" tabindex="-1"></a>    <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">""</span>, <span class="st">"Public/All"</span>, <span class="st">""</span>),</span>
+<span id="cb5-59"><a href="#cb5-59" aria-hidden="true" tabindex="-1"></a>    <span class="at">align =</span> <span class="fu">c</span>(<span class="st">"l"</span>, <span class="st">"c"</span>, <span class="st">"c"</span>),</span>
+<span id="cb5-60"><a href="#cb5-60" aria-hidden="true" tabindex="-1"></a>    <span class="at">escape =</span> <span class="cn">FALSE</span></span>
+<span id="cb5-61"><a href="#cb5-61" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb5-62"><a href="#cb5-62" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(</span>
+<span id="cb5-63"><a href="#cb5-63" aria-hidden="true" tabindex="-1"></a>    <span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>),</span>
+<span id="cb5-64"><a href="#cb5-64" aria-hidden="true" tabindex="-1"></a>    <span class="at">full_width =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb5-65"><a href="#cb5-65" aria-hidden="true" tabindex="-1"></a>    <span class="at">position =</span> <span class="st">"center"</span></span>
+<span id="cb5-66"><a href="#cb5-66" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb5-67"><a href="#cb5-67" aria-hidden="true" tabindex="-1"></a>  <span class="fu">footnote</span>(</span>
+<span id="cb5-68"><a href="#cb5-68" aria-hidden="true" tabindex="-1"></a>    <span class="at">general =</span> <span class="st">"Standard errors based on nonparametric bootstrapping (1,000 iterations)."</span>,</span>
+<span id="cb5-69"><a href="#cb5-69" aria-hidden="true" tabindex="-1"></a>    <span class="at">general_title =</span> <span class="st">"Note:"</span>,</span>
+<span id="cb5-70"><a href="#cb5-70" aria-hidden="true" tabindex="-1"></a>    <span class="at">footnote_as_chunk =</span> <span class="cn">TRUE</span></span>
+<span id="cb5-71"><a href="#cb5-71" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 <div id="tbl-proportion-public" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-proportion-public-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1325,22 +1634,22 @@ Table&nbsp;4: Proportion of Responses Made Public
 <tr class="odd">
 <td style="text-align: left;">T1: collective action threat</td>
 <td style="text-align: center;">0.093</td>
-<td style="text-align: center;">(0.045)</td>
+<td style="text-align: center;">(0.05)</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">T2: tattling threat</td>
 <td style="text-align: center;">-0.025</td>
-<td style="text-align: center;">(0.05)</td>
+<td style="text-align: center;">(0.051)</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">T3: claims of loyalty</td>
 <td style="text-align: center;">0.037</td>
-<td style="text-align: center;">(0.051)</td>
+<td style="text-align: center;">(0.05)</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Constant (Control mean)</td>
 <td style="text-align: center;">0.663</td>
-<td style="text-align: center;">(0.037)</td>
+<td style="text-align: center;">(0.039)</td>
 </tr>
 </tbody><tfoot>
 <tr class="odd">
@@ -1357,10 +1666,64 @@ Table&nbsp;4: Proportion of Responses Made Public
 </div>
 </div>
 </section>
-<section id="content-of-responses-by-treatment-group" class="level3">
-<h3 class="anchored" data-anchor-id="content-of-responses-by-treatment-group">Content of Responses by Treatment Group</h3>
+<section id="content-of-responses-by-treatment-group" class="level2">
+<h2 class="anchored" data-anchor-id="content-of-responses-by-treatment-group">Content of Responses by Treatment Group</h2>
 <p>Replication of Content of Responses by Treatment Group shows similar findings to the original paper, illustrating how response content varies by treatment. The control group has a 76.8% non-response rate, while the collective action threat group has only 69.2%. More importantly, compared to the control (12.7%), the collective action threat produces the highest rate of direct information responses (18.5%). The tattling threat also increases direct information responses (16.9%). Lastly, tattling also increases deferral responses (7.0% versus 4.6% for the control).</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create Table Content of Responses by Treatment Group</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>table4_content <span class="ot">&lt;-</span> <span class="cf">function</span>(d) {</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Create response content categories</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  d<span class="sc">$</span>content_cat <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(d<span class="sc">$</span>response <span class="sc">==</span> <span class="dv">0</span>, <span class="dv">0</span>, d<span class="sc">$</span>response_content)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Calculate counts by treatment group</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  results <span class="ot">&lt;-</span> d <span class="sc">%&gt;%</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">group_by</span>(treat) <span class="sc">%&gt;%</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">summarise</span>(</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>      <span class="at">No_Response_N =</span> <span class="fu">sum</span>(content_cat <span class="sc">==</span> <span class="dv">0</span> <span class="sc">|</span> <span class="fu">is.na</span>(content_cat)),</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>      <span class="at">Deferral_N =</span> <span class="fu">sum</span>(content_cat <span class="sc">==</span> <span class="dv">1</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>      <span class="at">Referral_N =</span> <span class="fu">sum</span>(content_cat <span class="sc">==</span> <span class="dv">2</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>      <span class="at">Direct_Info_N =</span> <span class="fu">sum</span>(content_cat <span class="sc">==</span> <span class="dv">3</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>      <span class="at">Total =</span> dplyr<span class="sc">::</span><span class="fu">n</span>()</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">%&gt;%</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>      <span class="at">No_Response_Pct =</span> <span class="fu">round</span>(No_Response_N <span class="sc">/</span> Total <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>),</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>      <span class="at">Deferral_Pct =</span> <span class="fu">round</span>(Deferral_N <span class="sc">/</span> Total <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>),</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>      <span class="at">Referral_Pct =</span> <span class="fu">round</span>(Referral_N <span class="sc">/</span> Total <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>),</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>      <span class="at">Direct_Info_Pct =</span> <span class="fu">round</span>(Direct_Info_N <span class="sc">/</span> Total <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>)</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Format table with N and % combined in same column (like the paper)</span></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>  table4 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">Treatment =</span> <span class="fu">c</span>(<span class="st">"Control"</span>, <span class="st">"T1: collective action threat"</span>, </span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"T2: tattling threat"</span>, <span class="st">"T3: claims of loyalty"</span>),</span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">No_Response =</span> <span class="fu">paste0</span>(results<span class="sc">$</span>No_Response_N, <span class="st">" ("</span>, results<span class="sc">$</span>No_Response_Pct, <span class="st">"%)"</span>),</span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">Deferral =</span> <span class="fu">paste0</span>(results<span class="sc">$</span>Deferral_N, <span class="st">" ("</span>, results<span class="sc">$</span>Deferral_Pct, <span class="st">"%)"</span>),</span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">Referral =</span> <span class="fu">paste0</span>(results<span class="sc">$</span>Referral_N, <span class="st">" ("</span>, results<span class="sc">$</span>Referral_Pct, <span class="st">"%)"</span>),</span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">Direct_Info =</span> <span class="fu">paste0</span>(results<span class="sc">$</span>Direct_Info_N, <span class="st">" ("</span>, results<span class="sc">$</span>Direct_Info_Pct, <span class="st">"%)"</span>)</span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(table4)</span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate Table 4</span></span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>table4 <span class="ot">&lt;-</span> <span class="fu">table4_content</span>(d)</span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a><span class="co"># Display with kableExtra</span></span>
+<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a>table4 <span class="sc">%&gt;%</span></span>
+<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(</span>
+<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a>    <span class="at">booktabs =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a>    <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">""</span>, <span class="st">"No Response"</span>, <span class="st">"Deferral"</span>, <span class="st">"Referral"</span>, <span class="st">"Direct Info"</span>),</span>
+<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a>    <span class="at">align =</span> <span class="fu">c</span>(<span class="st">"l"</span>, <span class="st">"c"</span>, <span class="st">"c"</span>, <span class="st">"c"</span>, <span class="st">"c"</span>)</span>
+<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(</span>
+<span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a>    <span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>),</span>
+<span id="cb6-49"><a href="#cb6-49" aria-hidden="true" tabindex="-1"></a>    <span class="at">full_width =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb6-50"><a href="#cb6-50" aria-hidden="true" tabindex="-1"></a>    <span class="at">position =</span> <span class="st">"center"</span></span>
+<span id="cb6-51"><a href="#cb6-51" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 <div id="tbl-content" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-content-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1416,14 +1779,127 @@ Table&nbsp;5: Content of Responses by Treatment Group
 </div>
 </section>
 </section>
-<section id="extension-heterogeneous-treatment-effects" class="level2">
-<h2 class="anchored" data-anchor-id="extension-heterogeneous-treatment-effects">Extension: Heterogeneous Treatment Effects</h2>
+<section id="extension-heterogeneous-treatment-effects" class="level1">
+<h1>Extension: Heterogeneous Treatment Effects</h1>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Condition on posted == 1 (like Tables A3-A6 in paper)</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>d_posted <span class="ot">&lt;-</span> <span class="fu">subset</span>(d, posted <span class="sc">==</span> <span class="dv">1</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create treatment indicators if not already done</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>d_posted<span class="sc">$</span>tr1 <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(d_posted<span class="sc">$</span>treat <span class="sc">==</span> <span class="dv">1</span>)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>d_posted<span class="sc">$</span>tr2 <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(d_posted<span class="sc">$</span>treat <span class="sc">==</span> <span class="dv">2</span>)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>d_posted<span class="sc">$</span>tr3 <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(d_posted<span class="sc">$</span>treat <span class="sc">==</span> <span class="dv">3</span>)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Create subgroup indicators using median split</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Unemployment</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>median_unemploy <span class="ot">&lt;-</span> <span class="fu">median</span>(d_posted<span class="sc">$</span>unemploy, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>d_posted<span class="sc">$</span>high_unemploy <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(d_posted<span class="sc">$</span>unemploy <span class="sc">&gt;=</span> median_unemploy, <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Government fiscal capacity (log government revenue)</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>median_gov_rev <span class="ot">&lt;-</span> <span class="fu">median</span>(d_posted<span class="sc">$</span>loggov_rev, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>d_posted<span class="sc">$</span>high_gov_rev <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(d_posted<span class="sc">$</span>loggov_rev <span class="sc">&gt;=</span> median_gov_rev, <span class="dv">1</span>, <span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
 <section id="heterogeneous-treatment-effects-by-unemployment-rate" class="level3">
 <h3 class="anchored" data-anchor-id="heterogeneous-treatment-effects-by-unemployment-rate">Heterogeneous Treatment Effects by Unemployment Rate</h3>
 <p>In this section, I examine whether the treatment effect varies across subgroups, specifically by unemployment rate characteristics across counties. I look for heterogeneous treatment effects by unemployment rate because high-unemployment areas might have greater potential risk for social unrest. When officials in high-unemployment counties see a collective action threat, they might respond differently: either being more responsive because there are more aggrieved citizens who might actually mobilize, or being less responsive because they regularly receive more complaints.</p>
 <p>To categorize high and low unemployment rates, I split the sample at the median unemployment rate. The table below presents results split by the median unemployment rate (2.26%). Additionally, to formally test whether the observed differences are statistically significant, I conducted randomization inference. For unemployment rate, I conducted two-tailed tests examining whether treatment effects differ between high and low unemployment counties.</p>
 <p>The findings reveal that treatment effects are notably larger in low-unemployment counties. For the collective action threat, the effect on responsiveness is 13.9 pp in low-unemployment areas versus 6.2 pp in high-unemployment counties. However, this difference is not statistically significant (p = 0.205). For public responses, the collective action effect is 15.0 percentage points in low-unemployment areas versus 6.0 percentage points in high-unemployment areas. This difference approaches marginal significance (p = 0.096), suggesting there may be some heterogeneity in how governments make responses publicly visible. For the tattling threat, the difference in effects on responsiveness between low and high unemployment counties is also not statistically significant (p = 0.497).</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove NAs from the data first</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>d_posted_clean <span class="ot">&lt;-</span> d_posted[<span class="sc">!</span><span class="fu">is.na</span>(d_posted<span class="sc">$</span>high_unemploy) <span class="sc">&amp;</span> </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>                            <span class="sc">!</span><span class="fu">is.na</span>(d_posted<span class="sc">$</span>response) <span class="sc">&amp;</span> </span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>                            <span class="sc">!</span><span class="fu">is.na</span>(d_posted<span class="sc">$</span>response_public), ]</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Run models</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>model_unemp_high_resp <span class="ot">&lt;-</span> <span class="fu">lm</span>(response <span class="sc">~</span> tr1 <span class="sc">+</span> tr2 <span class="sc">+</span> tr3, </span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>                             <span class="at">data =</span> <span class="fu">subset</span>(d_posted_clean, high_unemploy <span class="sc">==</span> <span class="dv">1</span>))</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>model_unemp_high_pub <span class="ot">&lt;-</span> <span class="fu">lm</span>(response_public <span class="sc">~</span> tr1 <span class="sc">+</span> tr2 <span class="sc">+</span> tr3, </span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>                            <span class="at">data =</span> <span class="fu">subset</span>(d_posted_clean, high_unemploy <span class="sc">==</span> <span class="dv">1</span>))</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>model_unemp_low_resp <span class="ot">&lt;-</span> <span class="fu">lm</span>(response <span class="sc">~</span> tr1 <span class="sc">+</span> tr2 <span class="sc">+</span> tr3, </span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>                            <span class="at">data =</span> <span class="fu">subset</span>(d_posted_clean, high_unemploy <span class="sc">==</span> <span class="dv">0</span>))</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>model_unemp_low_pub <span class="ot">&lt;-</span> <span class="fu">lm</span>(response_public <span class="sc">~</span> tr1 <span class="sc">+</span> tr2 <span class="sc">+</span> tr3, </span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>                           <span class="at">data =</span> <span class="fu">subset</span>(d_posted_clean, high_unemploy <span class="sc">==</span> <span class="dv">0</span>))</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Function to extract coefficient and SE</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>extract_coef <span class="ot">&lt;-</span> <span class="cf">function</span>(model, var) {</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>  coef_val <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">coef</span>(model)[var], <span class="dv">3</span>)</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>  se_val <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">sqrt</span>(<span class="fu">diag</span>(<span class="fu">vcovHC</span>(model, <span class="at">type =</span> <span class="st">"HC1"</span>)))[var], <span class="dv">3</span>)</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">c</span>(coef_val, se_val))</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Build the table manually</span></span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>hte_unemp_table <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>  <span class="at">Variable =</span> <span class="fu">c</span>(<span class="st">"T1: collective action threat"</span>, <span class="st">""</span>, </span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>               <span class="st">"T2: tattling threat"</span>, <span class="st">""</span>,</span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>               <span class="st">"T3: claims of loyalty"</span>, <span class="st">""</span>,</span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>               <span class="st">"Constant"</span>, <span class="st">""</span>,</span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>               <span class="st">"Observations"</span>, <span class="st">"R-squared"</span>),</span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>  <span class="at">High_Resp =</span> <span class="fu">c</span>(<span class="fu">extract_coef</span>(model_unemp_high_resp, <span class="st">"tr1"</span>)[<span class="dv">1</span>],</span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a>                <span class="fu">paste0</span>(<span class="st">"("</span>, <span class="fu">extract_coef</span>(model_unemp_high_resp, <span class="st">"tr1"</span>)[<span class="dv">2</span>], <span class="st">")"</span>),</span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a>                <span class="fu">extract_coef</span>(model_unemp_high_resp, <span class="st">"tr2"</span>)[<span class="dv">1</span>],</span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>                <span class="fu">paste0</span>(<span class="st">"("</span>, <span class="fu">extract_coef</span>(model_unemp_high_resp, <span class="st">"tr2"</span>)[<span class="dv">2</span>], <span class="st">")"</span>),</span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a>                <span class="fu">extract_coef</span>(model_unemp_high_resp, <span class="st">"tr3"</span>)[<span class="dv">1</span>],</span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a>                <span class="fu">paste0</span>(<span class="st">"("</span>, <span class="fu">extract_coef</span>(model_unemp_high_resp, <span class="st">"tr3"</span>)[<span class="dv">2</span>], <span class="st">")"</span>),</span>
+<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a>                <span class="fu">extract_coef</span>(model_unemp_high_resp, <span class="st">"(Intercept)"</span>)[<span class="dv">1</span>],</span>
+<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a>                <span class="fu">paste0</span>(<span class="st">"("</span>, <span class="fu">extract_coef</span>(model_unemp_high_resp, <span class="st">"(Intercept)"</span>)[<span class="dv">2</span>], <span class="st">")"</span>),</span>
+<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a>                <span class="fu">nobs</span>(model_unemp_high_resp),</span>
+<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a>                <span class="fu">round</span>(<span class="fu">summary</span>(model_unemp_high_resp)<span class="sc">$</span>r.squared, <span class="dv">3</span>)),</span>
+<span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a>  <span class="at">High_Pub =</span> <span class="fu">c</span>(<span class="fu">extract_coef</span>(model_unemp_high_pub, <span class="st">"tr1"</span>)[<span class="dv">1</span>],</span>
+<span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a>               <span class="fu">paste0</span>(<span class="st">"("</span>, <span class="fu">extract_coef</span>(model_unemp_high_pub, <span class="st">"tr1"</span>)[<span class="dv">2</span>], <span class="st">")"</span>),</span>
+<span id="cb8-42"><a href="#cb8-42" aria-hidden="true" tabindex="-1"></a>               <span class="fu">extract_coef</span>(model_unemp_high_pub, <span class="st">"tr2"</span>)[<span class="dv">1</span>],</span>
+<span id="cb8-43"><a href="#cb8-43" aria-hidden="true" tabindex="-1"></a>               <span class="fu">paste0</span>(<span class="st">"("</span>, <span class="fu">extract_coef</span>(model_unemp_high_pub, <span class="st">"tr2"</span>)[<span class="dv">2</span>], <span class="st">")"</span>),</span>
+<span id="cb8-44"><a href="#cb8-44" aria-hidden="true" tabindex="-1"></a>               <span class="fu">extract_coef</span>(model_unemp_high_pub, <span class="st">"tr3"</span>)[<span class="dv">1</span>],</span>
+<span id="cb8-45"><a href="#cb8-45" aria-hidden="true" tabindex="-1"></a>               <span class="fu">paste0</span>(<span class="st">"("</span>, <span class="fu">extract_coef</span>(model_unemp_high_pub, <span class="st">"tr3"</span>)[<span class="dv">2</span>], <span class="st">")"</span>),</span>
+<span id="cb8-46"><a href="#cb8-46" aria-hidden="true" tabindex="-1"></a>               <span class="fu">extract_coef</span>(model_unemp_high_pub, <span class="st">"(Intercept)"</span>)[<span class="dv">1</span>],</span>
+<span id="cb8-47"><a href="#cb8-47" aria-hidden="true" tabindex="-1"></a>               <span class="fu">paste0</span>(<span class="st">"("</span>, <span class="fu">extract_coef</span>(model_unemp_high_pub, <span class="st">"(Intercept)"</span>)[<span class="dv">2</span>], <span class="st">")"</span>),</span>
+<span id="cb8-48"><a href="#cb8-48" aria-hidden="true" tabindex="-1"></a>               <span class="fu">nobs</span>(model_unemp_high_pub),</span>
+<span id="cb8-49"><a href="#cb8-49" aria-hidden="true" tabindex="-1"></a>               <span class="fu">round</span>(<span class="fu">summary</span>(model_unemp_high_pub)<span class="sc">$</span>r.squared, <span class="dv">3</span>)),</span>
+<span id="cb8-50"><a href="#cb8-50" aria-hidden="true" tabindex="-1"></a>  <span class="at">Low_Resp =</span> <span class="fu">c</span>(<span class="fu">extract_coef</span>(model_unemp_low_resp, <span class="st">"tr1"</span>)[<span class="dv">1</span>],</span>
+<span id="cb8-51"><a href="#cb8-51" aria-hidden="true" tabindex="-1"></a>               <span class="fu">paste0</span>(<span class="st">"("</span>, <span class="fu">extract_coef</span>(model_unemp_low_resp, <span class="st">"tr1"</span>)[<span class="dv">2</span>], <span class="st">")"</span>),</span>
+<span id="cb8-52"><a href="#cb8-52" aria-hidden="true" tabindex="-1"></a>               <span class="fu">extract_coef</span>(model_unemp_low_resp, <span class="st">"tr2"</span>)[<span class="dv">1</span>],</span>
+<span id="cb8-53"><a href="#cb8-53" aria-hidden="true" tabindex="-1"></a>               <span class="fu">paste0</span>(<span class="st">"("</span>, <span class="fu">extract_coef</span>(model_unemp_low_resp, <span class="st">"tr2"</span>)[<span class="dv">2</span>], <span class="st">")"</span>),</span>
+<span id="cb8-54"><a href="#cb8-54" aria-hidden="true" tabindex="-1"></a>               <span class="fu">extract_coef</span>(model_unemp_low_resp, <span class="st">"tr3"</span>)[<span class="dv">1</span>],</span>
+<span id="cb8-55"><a href="#cb8-55" aria-hidden="true" tabindex="-1"></a>               <span class="fu">paste0</span>(<span class="st">"("</span>, <span class="fu">extract_coef</span>(model_unemp_low_resp, <span class="st">"tr3"</span>)[<span class="dv">2</span>], <span class="st">")"</span>),</span>
+<span id="cb8-56"><a href="#cb8-56" aria-hidden="true" tabindex="-1"></a>               <span class="fu">extract_coef</span>(model_unemp_low_resp, <span class="st">"(Intercept)"</span>)[<span class="dv">1</span>],</span>
+<span id="cb8-57"><a href="#cb8-57" aria-hidden="true" tabindex="-1"></a>               <span class="fu">paste0</span>(<span class="st">"("</span>, <span class="fu">extract_coef</span>(model_unemp_low_resp, <span class="st">"(Intercept)"</span>)[<span class="dv">2</span>], <span class="st">")"</span>),</span>
+<span id="cb8-58"><a href="#cb8-58" aria-hidden="true" tabindex="-1"></a>               <span class="fu">nobs</span>(model_unemp_low_resp),</span>
+<span id="cb8-59"><a href="#cb8-59" aria-hidden="true" tabindex="-1"></a>               <span class="fu">round</span>(<span class="fu">summary</span>(model_unemp_low_resp)<span class="sc">$</span>r.squared, <span class="dv">3</span>)),</span>
+<span id="cb8-60"><a href="#cb8-60" aria-hidden="true" tabindex="-1"></a>  <span class="at">Low_Pub =</span> <span class="fu">c</span>(<span class="fu">extract_coef</span>(model_unemp_low_pub, <span class="st">"tr1"</span>)[<span class="dv">1</span>],</span>
+<span id="cb8-61"><a href="#cb8-61" aria-hidden="true" tabindex="-1"></a>              <span class="fu">paste0</span>(<span class="st">"("</span>, <span class="fu">extract_coef</span>(model_unemp_low_pub, <span class="st">"tr1"</span>)[<span class="dv">2</span>], <span class="st">")"</span>),</span>
+<span id="cb8-62"><a href="#cb8-62" aria-hidden="true" tabindex="-1"></a>              <span class="fu">extract_coef</span>(model_unemp_low_pub, <span class="st">"tr2"</span>)[<span class="dv">1</span>],</span>
+<span id="cb8-63"><a href="#cb8-63" aria-hidden="true" tabindex="-1"></a>              <span class="fu">paste0</span>(<span class="st">"("</span>, <span class="fu">extract_coef</span>(model_unemp_low_pub, <span class="st">"tr2"</span>)[<span class="dv">2</span>], <span class="st">")"</span>),</span>
+<span id="cb8-64"><a href="#cb8-64" aria-hidden="true" tabindex="-1"></a>              <span class="fu">extract_coef</span>(model_unemp_low_pub, <span class="st">"tr3"</span>)[<span class="dv">1</span>],</span>
+<span id="cb8-65"><a href="#cb8-65" aria-hidden="true" tabindex="-1"></a>              <span class="fu">paste0</span>(<span class="st">"("</span>, <span class="fu">extract_coef</span>(model_unemp_low_pub, <span class="st">"tr3"</span>)[<span class="dv">2</span>], <span class="st">")"</span>),</span>
+<span id="cb8-66"><a href="#cb8-66" aria-hidden="true" tabindex="-1"></a>              <span class="fu">extract_coef</span>(model_unemp_low_pub, <span class="st">"(Intercept)"</span>)[<span class="dv">1</span>],</span>
+<span id="cb8-67"><a href="#cb8-67" aria-hidden="true" tabindex="-1"></a>              <span class="fu">paste0</span>(<span class="st">"("</span>, <span class="fu">extract_coef</span>(model_unemp_low_pub, <span class="st">"(Intercept)"</span>)[<span class="dv">2</span>], <span class="st">")"</span>),</span>
+<span id="cb8-68"><a href="#cb8-68" aria-hidden="true" tabindex="-1"></a>              <span class="fu">nobs</span>(model_unemp_low_pub),</span>
+<span id="cb8-69"><a href="#cb8-69" aria-hidden="true" tabindex="-1"></a>              <span class="fu">round</span>(<span class="fu">summary</span>(model_unemp_low_pub)<span class="sc">$</span>r.squared, <span class="dv">3</span>))</span>
+<span id="cb8-70"><a href="#cb8-70" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb8-71"><a href="#cb8-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-72"><a href="#cb8-72" aria-hidden="true" tabindex="-1"></a><span class="co"># Display table</span></span>
+<span id="cb8-73"><a href="#cb8-73" aria-hidden="true" tabindex="-1"></a>hte_unemp_table <span class="sc">%&gt;%</span></span>
+<span id="cb8-74"><a href="#cb8-74" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(</span>
+<span id="cb8-75"><a href="#cb8-75" aria-hidden="true" tabindex="-1"></a>    <span class="at">booktabs =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb8-76"><a href="#cb8-76" aria-hidden="true" tabindex="-1"></a>    <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">""</span>, <span class="st">"Response"</span>, <span class="st">"Public"</span>, <span class="st">"Response"</span>, <span class="st">"Public"</span>),</span>
+<span id="cb8-77"><a href="#cb8-77" aria-hidden="true" tabindex="-1"></a>    <span class="at">align =</span> <span class="fu">c</span>(<span class="st">"l"</span>, <span class="st">"c"</span>, <span class="st">"c"</span>, <span class="st">"c"</span>, <span class="st">"c"</span>)</span>
+<span id="cb8-78"><a href="#cb8-78" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb8-79"><a href="#cb8-79" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(</span>
+<span id="cb8-80"><a href="#cb8-80" aria-hidden="true" tabindex="-1"></a>    <span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>),</span>
+<span id="cb8-81"><a href="#cb8-81" aria-hidden="true" tabindex="-1"></a>    <span class="at">full_width =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb8-82"><a href="#cb8-82" aria-hidden="true" tabindex="-1"></a>    <span class="at">position =</span> <span class="st">"center"</span></span>
+<span id="cb8-83"><a href="#cb8-83" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb8-84"><a href="#cb8-84" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_header_above</span>(<span class="fu">c</span>(<span class="st">" "</span> <span class="ot">=</span> <span class="dv">1</span>, <span class="st">"High Unemployment"</span> <span class="ot">=</span> <span class="dv">2</span>, <span class="st">"Low Unemployment"</span> <span class="ot">=</span> <span class="dv">2</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb8-85"><a href="#cb8-85" aria-hidden="true" tabindex="-1"></a>  <span class="fu">footnote</span>(</span>
+<span id="cb8-86"><a href="#cb8-86" aria-hidden="true" tabindex="-1"></a>    <span class="at">general =</span> <span class="st">"Huber White robust standard errors in parentheses."</span>,</span>
+<span id="cb8-87"><a href="#cb8-87" aria-hidden="true" tabindex="-1"></a>    <span class="at">general_title =</span> <span class="st">"Note:"</span>,</span>
+<span id="cb8-88"><a href="#cb8-88" aria-hidden="true" tabindex="-1"></a>    <span class="at">footnote_as_chunk =</span> <span class="cn">TRUE</span></span>
+<span id="cb8-89"><a href="#cb8-89" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 <div id="tbl-hte-unemployment" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-hte-unemployment-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1544,13 +2020,164 @@ Low Unemployment
 </figure>
 </div>
 </div>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Unemployment Rate Randomization Inference</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>n_perms <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co"># T1 (Collective Action) vs Control only</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>d_t1 <span class="ot">&lt;-</span> <span class="fu">subset</span>(d_posted_clean, treat <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>))</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>d_t1<span class="sc">$</span>treated <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(d_t1<span class="sc">$</span>treat <span class="sc">==</span> <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co"># T2 (Tattling) vs Control only</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>d_t2 <span class="ot">&lt;-</span> <span class="fu">subset</span>(d_posted_clean, treat <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">2</span>))</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>d_t2<span class="sc">$</span>treated <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(d_t2<span class="sc">$</span>treat <span class="sc">==</span> <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate difference in CATEs between subgroups</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>get_cate_difference <span class="ot">&lt;-</span> <span class="cf">function</span>(data, outcome, treated, subgroup) {</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>  <span class="co"># CATE in HIGH subgroup (subgroup == 1)</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>  high_treat_mean <span class="ot">&lt;-</span> <span class="fu">mean</span>(data[[outcome]][data[[subgroup]] <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> data[[treated]] <span class="sc">==</span> <span class="dv">1</span>], <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>  high_ctrl_mean  <span class="ot">&lt;-</span> <span class="fu">mean</span>(data[[outcome]][data[[subgroup]] <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> data[[treated]] <span class="sc">==</span> <span class="dv">0</span>], <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>  cate_high <span class="ot">&lt;-</span> high_treat_mean <span class="sc">-</span> high_ctrl_mean</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>  <span class="co"># CATE in LOW subgroup (subgroup == 0)</span></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>  low_treat_mean <span class="ot">&lt;-</span> <span class="fu">mean</span>(data[[outcome]][data[[subgroup]] <span class="sc">==</span> <span class="dv">0</span> <span class="sc">&amp;</span> data[[treated]] <span class="sc">==</span> <span class="dv">1</span>], <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>  low_ctrl_mean  <span class="ot">&lt;-</span> <span class="fu">mean</span>(data[[outcome]][data[[subgroup]] <span class="sc">==</span> <span class="dv">0</span> <span class="sc">&amp;</span> data[[treated]] <span class="sc">==</span> <span class="dv">0</span>], <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>  cate_low <span class="ot">&lt;-</span> low_treat_mean <span class="sc">-</span> low_ctrl_mean</span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Difference: LOW minus HIGH</span></span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(cate_low <span class="sc">-</span> cate_high)</span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a><span class="co"># --- T1 on Response ---</span></span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>obs_diff_t1_resp <span class="ot">&lt;-</span> <span class="fu">get_cate_difference</span>(d_t1, <span class="st">"response"</span>, <span class="st">"treated"</span>, <span class="st">"high_unemploy"</span>)</span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>perm_diffs_t1_resp <span class="ot">&lt;-</span> <span class="fu">numeric</span>(n_perms)</span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_perms) {</span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>  d_t1<span class="sc">$</span>high_unemploy_perm <span class="ot">&lt;-</span> <span class="fu">sample</span>(d_t1<span class="sc">$</span>high_unemploy)</span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a>  perm_diffs_t1_resp[i] <span class="ot">&lt;-</span> <span class="fu">get_cate_difference</span>(d_t1, <span class="st">"response"</span>, <span class="st">"treated"</span>, <span class="st">"high_unemploy_perm"</span>)</span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a>p_value_t1_resp <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">abs</span>(perm_diffs_t1_resp) <span class="sc">&gt;=</span> <span class="fu">abs</span>(obs_diff_t1_resp))</span>
+<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a><span class="co"># --- T1 on Public Response ---</span></span>
+<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a>obs_diff_t1_pub <span class="ot">&lt;-</span> <span class="fu">get_cate_difference</span>(d_t1, <span class="st">"response_public"</span>, <span class="st">"treated"</span>, <span class="st">"high_unemploy"</span>)</span>
+<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a>perm_diffs_t1_pub <span class="ot">&lt;-</span> <span class="fu">numeric</span>(n_perms)</span>
+<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_perms) {</span>
+<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a>  d_t1<span class="sc">$</span>high_unemploy_perm <span class="ot">&lt;-</span> <span class="fu">sample</span>(d_t1<span class="sc">$</span>high_unemploy)</span>
+<span id="cb9-48"><a href="#cb9-48" aria-hidden="true" tabindex="-1"></a>  perm_diffs_t1_pub[i] <span class="ot">&lt;-</span> <span class="fu">get_cate_difference</span>(d_t1, <span class="st">"response_public"</span>, <span class="st">"treated"</span>, <span class="st">"high_unemploy_perm"</span>)</span>
+<span id="cb9-49"><a href="#cb9-49" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb9-50"><a href="#cb9-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-51"><a href="#cb9-51" aria-hidden="true" tabindex="-1"></a>p_value_t1_pub <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">abs</span>(perm_diffs_t1_pub) <span class="sc">&gt;=</span> <span class="fu">abs</span>(obs_diff_t1_pub))</span>
+<span id="cb9-52"><a href="#cb9-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-53"><a href="#cb9-53" aria-hidden="true" tabindex="-1"></a><span class="co"># --- T2 on Response ---</span></span>
+<span id="cb9-54"><a href="#cb9-54" aria-hidden="true" tabindex="-1"></a>obs_diff_t2_resp <span class="ot">&lt;-</span> <span class="fu">get_cate_difference</span>(d_t2, <span class="st">"response"</span>, <span class="st">"treated"</span>, <span class="st">"high_unemploy"</span>)</span>
+<span id="cb9-55"><a href="#cb9-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-56"><a href="#cb9-56" aria-hidden="true" tabindex="-1"></a>perm_diffs_t2_resp <span class="ot">&lt;-</span> <span class="fu">numeric</span>(n_perms)</span>
+<span id="cb9-57"><a href="#cb9-57" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_perms) {</span>
+<span id="cb9-58"><a href="#cb9-58" aria-hidden="true" tabindex="-1"></a>  d_t2<span class="sc">$</span>high_unemploy_perm <span class="ot">&lt;-</span> <span class="fu">sample</span>(d_t2<span class="sc">$</span>high_unemploy)</span>
+<span id="cb9-59"><a href="#cb9-59" aria-hidden="true" tabindex="-1"></a>  perm_diffs_t2_resp[i] <span class="ot">&lt;-</span> <span class="fu">get_cate_difference</span>(d_t2, <span class="st">"response"</span>, <span class="st">"treated"</span>, <span class="st">"high_unemploy_perm"</span>)</span>
+<span id="cb9-60"><a href="#cb9-60" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb9-61"><a href="#cb9-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-62"><a href="#cb9-62" aria-hidden="true" tabindex="-1"></a>p_value_t2_resp <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">abs</span>(perm_diffs_t2_resp) <span class="sc">&gt;=</span> <span class="fu">abs</span>(obs_diff_t2_resp))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
 </section>
-<section id="heterogeneous-treatment-effects-by-government-fiscal-capacity" class="level3">
-<h3 class="anchored" data-anchor-id="heterogeneous-treatment-effects-by-government-fiscal-capacity">Heterogeneous Treatment Effects by Government Fiscal Capacity</h3>
+<section id="heterogeneous-treatment-effects-by-government-fiscal-capacity" class="level2">
+<h2 class="anchored" data-anchor-id="heterogeneous-treatment-effects-by-government-fiscal-capacity">Heterogeneous Treatment Effects by Government Fiscal Capacity</h2>
 <p>Government fiscal capacity directly determines staffing levels, technical infrastructure, and additional resources that could be predictive of the paper’s outcome (responsiveness). My hypothesis here is that higher government fiscal capacity would show a larger effect on responsiveness.</p>
 <p>I use the same methodology for splitting. I split the sample by median log government revenue (5.85). Here, the pattern shows that the effects are slightly larger in high fiscal capacity counties (11.9% for collective action) compared to low fiscal capacity counties (9.2%). However, for public responses, the difference is more pronounced, as we observe that the collective action threat increases public responses by 14.0 percentage points in high fiscal capacity counties versus 7.3 percentage points in low fiscal capacity counties.</p>
-<p>For government fiscal capacity, I conducted one-tailed tests based on the expectation that well-resourced governments would be more responsive to citizen demands. The test does not show statistically significant evidence that high-fiscal-capacity counties have higher responsiveness (p = 0.318) or higher public responses (p = 0.108). The latter approaches marginal significance, suggesting some evidence that governments with greater fiscal resources may be more likely to respond publicly when threatened with collective action. However, we cannot reject the null hypothesis of homogeneous treatment effects at conventional levels. This may reflect limited statistical power to detect heterogeneity within subgroups, or it may indicate that the true heterogeneity is modest in magnitude.</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove NAs</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>d_posted_clean2 <span class="ot">&lt;-</span> d_posted[<span class="sc">!</span><span class="fu">is.na</span>(d_posted<span class="sc">$</span>high_gov_rev) <span class="sc">&amp;</span> </span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>                             <span class="sc">!</span><span class="fu">is.na</span>(d_posted<span class="sc">$</span>response) <span class="sc">&amp;</span> </span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>                             <span class="sc">!</span><span class="fu">is.na</span>(d_posted<span class="sc">$</span>response_public), ]</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Run models</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>model_gov_high_resp <span class="ot">&lt;-</span> <span class="fu">lm</span>(response <span class="sc">~</span> tr1 <span class="sc">+</span> tr2 <span class="sc">+</span> tr3, </span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>                           <span class="at">data =</span> <span class="fu">subset</span>(d_posted_clean2, high_gov_rev <span class="sc">==</span> <span class="dv">1</span>))</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>model_gov_high_pub <span class="ot">&lt;-</span> <span class="fu">lm</span>(response_public <span class="sc">~</span> tr1 <span class="sc">+</span> tr2 <span class="sc">+</span> tr3, </span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>                          <span class="at">data =</span> <span class="fu">subset</span>(d_posted_clean2, high_gov_rev <span class="sc">==</span> <span class="dv">1</span>))</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>model_gov_low_resp <span class="ot">&lt;-</span> <span class="fu">lm</span>(response <span class="sc">~</span> tr1 <span class="sc">+</span> tr2 <span class="sc">+</span> tr3, </span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>                          <span class="at">data =</span> <span class="fu">subset</span>(d_posted_clean2, high_gov_rev <span class="sc">==</span> <span class="dv">0</span>))</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>model_gov_low_pub <span class="ot">&lt;-</span> <span class="fu">lm</span>(response_public <span class="sc">~</span> tr1 <span class="sc">+</span> tr2 <span class="sc">+</span> tr3, </span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>                         <span class="at">data =</span> <span class="fu">subset</span>(d_posted_clean2, high_gov_rev <span class="sc">==</span> <span class="dv">0</span>))</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Build the table manually</span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>hte_gov_table <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">Variable =</span> <span class="fu">c</span>(<span class="st">"T1: collective action threat"</span>, <span class="st">""</span>, </span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>               <span class="st">"T2: tattling threat"</span>, <span class="st">""</span>,</span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>               <span class="st">"T3: claims of loyalty"</span>, <span class="st">""</span>,</span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>               <span class="st">"Constant"</span>, <span class="st">""</span>,</span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>               <span class="st">"Observations"</span>, <span class="st">"R-squared"</span>),</span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">High_Resp =</span> <span class="fu">c</span>(<span class="fu">extract_coef</span>(model_gov_high_resp, <span class="st">"tr1"</span>)[<span class="dv">1</span>],</span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>                <span class="fu">paste0</span>(<span class="st">"("</span>, <span class="fu">extract_coef</span>(model_gov_high_resp, <span class="st">"tr1"</span>)[<span class="dv">2</span>], <span class="st">")"</span>),</span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>                <span class="fu">extract_coef</span>(model_gov_high_resp, <span class="st">"tr2"</span>)[<span class="dv">1</span>],</span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>                <span class="fu">paste0</span>(<span class="st">"("</span>, <span class="fu">extract_coef</span>(model_gov_high_resp, <span class="st">"tr2"</span>)[<span class="dv">2</span>], <span class="st">")"</span>),</span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a>                <span class="fu">extract_coef</span>(model_gov_high_resp, <span class="st">"tr3"</span>)[<span class="dv">1</span>],</span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a>                <span class="fu">paste0</span>(<span class="st">"("</span>, <span class="fu">extract_coef</span>(model_gov_high_resp, <span class="st">"tr3"</span>)[<span class="dv">2</span>], <span class="st">")"</span>),</span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>                <span class="fu">extract_coef</span>(model_gov_high_resp, <span class="st">"(Intercept)"</span>)[<span class="dv">1</span>],</span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a>                <span class="fu">paste0</span>(<span class="st">"("</span>, <span class="fu">extract_coef</span>(model_gov_high_resp, <span class="st">"(Intercept)"</span>)[<span class="dv">2</span>], <span class="st">")"</span>),</span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a>                <span class="fu">nobs</span>(model_gov_high_resp),</span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a>                <span class="fu">round</span>(<span class="fu">summary</span>(model_gov_high_resp)<span class="sc">$</span>r.squared, <span class="dv">3</span>)),</span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a>  <span class="at">High_Pub =</span> <span class="fu">c</span>(<span class="fu">extract_coef</span>(model_gov_high_pub, <span class="st">"tr1"</span>)[<span class="dv">1</span>],</span>
+<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a>               <span class="fu">paste0</span>(<span class="st">"("</span>, <span class="fu">extract_coef</span>(model_gov_high_pub, <span class="st">"tr1"</span>)[<span class="dv">2</span>], <span class="st">")"</span>),</span>
+<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a>               <span class="fu">extract_coef</span>(model_gov_high_pub, <span class="st">"tr2"</span>)[<span class="dv">1</span>],</span>
+<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a>               <span class="fu">paste0</span>(<span class="st">"("</span>, <span class="fu">extract_coef</span>(model_gov_high_pub, <span class="st">"tr2"</span>)[<span class="dv">2</span>], <span class="st">")"</span>),</span>
+<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a>               <span class="fu">extract_coef</span>(model_gov_high_pub, <span class="st">"tr3"</span>)[<span class="dv">1</span>],</span>
+<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a>               <span class="fu">paste0</span>(<span class="st">"("</span>, <span class="fu">extract_coef</span>(model_gov_high_pub, <span class="st">"tr3"</span>)[<span class="dv">2</span>], <span class="st">")"</span>),</span>
+<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a>               <span class="fu">extract_coef</span>(model_gov_high_pub, <span class="st">"(Intercept)"</span>)[<span class="dv">1</span>],</span>
+<span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a>               <span class="fu">paste0</span>(<span class="st">"("</span>, <span class="fu">extract_coef</span>(model_gov_high_pub, <span class="st">"(Intercept)"</span>)[<span class="dv">2</span>], <span class="st">")"</span>),</span>
+<span id="cb10-41"><a href="#cb10-41" aria-hidden="true" tabindex="-1"></a>               <span class="fu">nobs</span>(model_gov_high_pub),</span>
+<span id="cb10-42"><a href="#cb10-42" aria-hidden="true" tabindex="-1"></a>               <span class="fu">round</span>(<span class="fu">summary</span>(model_gov_high_pub)<span class="sc">$</span>r.squared, <span class="dv">3</span>)),</span>
+<span id="cb10-43"><a href="#cb10-43" aria-hidden="true" tabindex="-1"></a>  <span class="at">Low_Resp =</span> <span class="fu">c</span>(<span class="fu">extract_coef</span>(model_gov_low_resp, <span class="st">"tr1"</span>)[<span class="dv">1</span>],</span>
+<span id="cb10-44"><a href="#cb10-44" aria-hidden="true" tabindex="-1"></a>               <span class="fu">paste0</span>(<span class="st">"("</span>, <span class="fu">extract_coef</span>(model_gov_low_resp, <span class="st">"tr1"</span>)[<span class="dv">2</span>], <span class="st">")"</span>),</span>
+<span id="cb10-45"><a href="#cb10-45" aria-hidden="true" tabindex="-1"></a>               <span class="fu">extract_coef</span>(model_gov_low_resp, <span class="st">"tr2"</span>)[<span class="dv">1</span>],</span>
+<span id="cb10-46"><a href="#cb10-46" aria-hidden="true" tabindex="-1"></a>               <span class="fu">paste0</span>(<span class="st">"("</span>, <span class="fu">extract_coef</span>(model_gov_low_resp, <span class="st">"tr2"</span>)[<span class="dv">2</span>], <span class="st">")"</span>),</span>
+<span id="cb10-47"><a href="#cb10-47" aria-hidden="true" tabindex="-1"></a>               <span class="fu">extract_coef</span>(model_gov_low_resp, <span class="st">"tr3"</span>)[<span class="dv">1</span>],</span>
+<span id="cb10-48"><a href="#cb10-48" aria-hidden="true" tabindex="-1"></a>               <span class="fu">paste0</span>(<span class="st">"("</span>, <span class="fu">extract_coef</span>(model_gov_low_resp, <span class="st">"tr3"</span>)[<span class="dv">2</span>], <span class="st">")"</span>),</span>
+<span id="cb10-49"><a href="#cb10-49" aria-hidden="true" tabindex="-1"></a>               <span class="fu">extract_coef</span>(model_gov_low_resp, <span class="st">"(Intercept)"</span>)[<span class="dv">1</span>],</span>
+<span id="cb10-50"><a href="#cb10-50" aria-hidden="true" tabindex="-1"></a>               <span class="fu">paste0</span>(<span class="st">"("</span>, <span class="fu">extract_coef</span>(model_gov_low_resp, <span class="st">"(Intercept)"</span>)[<span class="dv">2</span>], <span class="st">")"</span>),</span>
+<span id="cb10-51"><a href="#cb10-51" aria-hidden="true" tabindex="-1"></a>               <span class="fu">nobs</span>(model_gov_low_resp),</span>
+<span id="cb10-52"><a href="#cb10-52" aria-hidden="true" tabindex="-1"></a>               <span class="fu">round</span>(<span class="fu">summary</span>(model_gov_low_resp)<span class="sc">$</span>r.squared, <span class="dv">3</span>)),</span>
+<span id="cb10-53"><a href="#cb10-53" aria-hidden="true" tabindex="-1"></a>  <span class="at">Low_Pub =</span> <span class="fu">c</span>(<span class="fu">extract_coef</span>(model_gov_low_pub, <span class="st">"tr1"</span>)[<span class="dv">1</span>],</span>
+<span id="cb10-54"><a href="#cb10-54" aria-hidden="true" tabindex="-1"></a>              <span class="fu">paste0</span>(<span class="st">"("</span>, <span class="fu">extract_coef</span>(model_gov_low_pub, <span class="st">"tr1"</span>)[<span class="dv">2</span>], <span class="st">")"</span>),</span>
+<span id="cb10-55"><a href="#cb10-55" aria-hidden="true" tabindex="-1"></a>              <span class="fu">extract_coef</span>(model_gov_low_pub, <span class="st">"tr2"</span>)[<span class="dv">1</span>],</span>
+<span id="cb10-56"><a href="#cb10-56" aria-hidden="true" tabindex="-1"></a>              <span class="fu">paste0</span>(<span class="st">"("</span>, <span class="fu">extract_coef</span>(model_gov_low_pub, <span class="st">"tr2"</span>)[<span class="dv">2</span>], <span class="st">")"</span>),</span>
+<span id="cb10-57"><a href="#cb10-57" aria-hidden="true" tabindex="-1"></a>              <span class="fu">extract_coef</span>(model_gov_low_pub, <span class="st">"tr3"</span>)[<span class="dv">1</span>],</span>
+<span id="cb10-58"><a href="#cb10-58" aria-hidden="true" tabindex="-1"></a>              <span class="fu">paste0</span>(<span class="st">"("</span>, <span class="fu">extract_coef</span>(model_gov_low_pub, <span class="st">"tr3"</span>)[<span class="dv">2</span>], <span class="st">")"</span>),</span>
+<span id="cb10-59"><a href="#cb10-59" aria-hidden="true" tabindex="-1"></a>              <span class="fu">extract_coef</span>(model_gov_low_pub, <span class="st">"(Intercept)"</span>)[<span class="dv">1</span>],</span>
+<span id="cb10-60"><a href="#cb10-60" aria-hidden="true" tabindex="-1"></a>              <span class="fu">paste0</span>(<span class="st">"("</span>, <span class="fu">extract_coef</span>(model_gov_low_pub, <span class="st">"(Intercept)"</span>)[<span class="dv">2</span>], <span class="st">")"</span>),</span>
+<span id="cb10-61"><a href="#cb10-61" aria-hidden="true" tabindex="-1"></a>              <span class="fu">nobs</span>(model_gov_low_pub),</span>
+<span id="cb10-62"><a href="#cb10-62" aria-hidden="true" tabindex="-1"></a>              <span class="fu">round</span>(<span class="fu">summary</span>(model_gov_low_pub)<span class="sc">$</span>r.squared, <span class="dv">3</span>))</span>
+<span id="cb10-63"><a href="#cb10-63" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb10-64"><a href="#cb10-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-65"><a href="#cb10-65" aria-hidden="true" tabindex="-1"></a><span class="co"># Display table</span></span>
+<span id="cb10-66"><a href="#cb10-66" aria-hidden="true" tabindex="-1"></a>hte_gov_table <span class="sc">%&gt;%</span></span>
+<span id="cb10-67"><a href="#cb10-67" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(</span>
+<span id="cb10-68"><a href="#cb10-68" aria-hidden="true" tabindex="-1"></a>    <span class="at">booktabs =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb10-69"><a href="#cb10-69" aria-hidden="true" tabindex="-1"></a>    <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">""</span>, <span class="st">"Response"</span>, <span class="st">"Public"</span>, <span class="st">"Response"</span>, <span class="st">"Public"</span>),</span>
+<span id="cb10-70"><a href="#cb10-70" aria-hidden="true" tabindex="-1"></a>    <span class="at">align =</span> <span class="fu">c</span>(<span class="st">"l"</span>, <span class="st">"c"</span>, <span class="st">"c"</span>, <span class="st">"c"</span>, <span class="st">"c"</span>)</span>
+<span id="cb10-71"><a href="#cb10-71" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb10-72"><a href="#cb10-72" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(</span>
+<span id="cb10-73"><a href="#cb10-73" aria-hidden="true" tabindex="-1"></a>    <span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>),</span>
+<span id="cb10-74"><a href="#cb10-74" aria-hidden="true" tabindex="-1"></a>    <span class="at">full_width =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb10-75"><a href="#cb10-75" aria-hidden="true" tabindex="-1"></a>    <span class="at">position =</span> <span class="st">"center"</span></span>
+<span id="cb10-76"><a href="#cb10-76" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb10-77"><a href="#cb10-77" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_header_above</span>(<span class="fu">c</span>(<span class="st">" "</span> <span class="ot">=</span> <span class="dv">1</span>, <span class="st">"High Fiscal Capacity"</span> <span class="ot">=</span> <span class="dv">2</span>, <span class="st">"Low Fiscal Capacity"</span> <span class="ot">=</span> <span class="dv">2</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb10-78"><a href="#cb10-78" aria-hidden="true" tabindex="-1"></a>  <span class="fu">footnote</span>(</span>
+<span id="cb10-79"><a href="#cb10-79" aria-hidden="true" tabindex="-1"></a>    <span class="at">general =</span> <span class="st">"Huber White robust standard errors in parentheses."</span>,</span>
+<span id="cb10-80"><a href="#cb10-80" aria-hidden="true" tabindex="-1"></a>    <span class="at">general_title =</span> <span class="st">"Note:"</span>,</span>
+<span id="cb10-81"><a href="#cb10-81" aria-hidden="true" tabindex="-1"></a>    <span class="at">footnote_as_chunk =</span> <span class="cn">TRUE</span></span>
+<span id="cb10-82"><a href="#cb10-82" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 <div id="tbl-hte-fiscal" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-hte-fiscal-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1671,16 +2298,50 @@ Low Fiscal Capacity
 </figure>
 </div>
 </div>
+<p>For government fiscal capacity, I conducted one-tailed tests based on the expectation that well-resourced governments would be more responsive to citizen demands. The test does not show statistically significant evidence that high-fiscal-capacity counties have higher responsiveness (p = 0.318) or higher public responses (p = 0.108). The latter approaches marginal significance, suggesting some evidence that governments with greater fiscal resources may be more likely to respond publicly when threatened with collective action. However, we cannot reject the null hypothesis of homogeneous treatment effects at conventional levels. This may reflect limited statistical power to detect heterogeneity within subgroups, or it may indicate that the true heterogeneity is modest in magnitude.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Testing if HIGH fiscal capacity has LARGER treatment effects</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co"># For fiscal capacity</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>d_fiscal <span class="ot">&lt;-</span> <span class="fu">subset</span>(d_posted_clean2, treat <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>))</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>d_fiscal<span class="sc">$</span>treated <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(d_fiscal<span class="sc">$</span>treat <span class="sc">==</span> <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co"># --- T1 on Response ---</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>obs_diff_fiscal_resp <span class="ot">&lt;-</span> <span class="fu">get_cate_difference</span>(d_fiscal, <span class="st">"response"</span>, <span class="st">"treated"</span>, <span class="st">"high_gov_rev"</span>)</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>perm_diffs_fiscal_resp <span class="ot">&lt;-</span> <span class="fu">numeric</span>(n_perms)</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_perms) {</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>  d_fiscal<span class="sc">$</span>high_gov_rev_perm <span class="ot">&lt;-</span> <span class="fu">sample</span>(d_fiscal<span class="sc">$</span>high_gov_rev)</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>  perm_diffs_fiscal_resp[i] <span class="ot">&lt;-</span> <span class="fu">get_cate_difference</span>(d_fiscal, <span class="st">"response"</span>, <span class="st">"treated"</span>, <span class="st">"high_gov_rev_perm"</span>)</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a><span class="co"># One-tailed: proportion where permuted diff &lt; observed diff</span></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>p_value_fiscal_resp <span class="ot">&lt;-</span> <span class="fu">mean</span>(perm_diffs_fiscal_resp <span class="sc">&lt;=</span> obs_diff_fiscal_resp)</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a><span class="co"># --- T1 on Public Response ---</span></span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>obs_diff_fiscal_pub <span class="ot">&lt;-</span> <span class="fu">get_cate_difference</span>(d_fiscal, <span class="st">"response_public"</span>, <span class="st">"treated"</span>, <span class="st">"high_gov_rev"</span>)</span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>perm_diffs_fiscal_pub <span class="ot">&lt;-</span> <span class="fu">numeric</span>(n_perms)</span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_perms) {</span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>  d_fiscal<span class="sc">$</span>high_gov_rev_perm <span class="ot">&lt;-</span> <span class="fu">sample</span>(d_fiscal<span class="sc">$</span>high_gov_rev)</span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>  perm_diffs_fiscal_pub[i] <span class="ot">&lt;-</span> <span class="fu">get_cate_difference</span>(d_fiscal, <span class="st">"response_public"</span>, <span class="st">"treated"</span>, <span class="st">"high_gov_rev_perm"</span>)</span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>p_value_fiscal_pub <span class="ot">&lt;-</span> <span class="fu">mean</span>(perm_diffs_fiscal_pub <span class="sc">&lt;=</span> obs_diff_fiscal_pub)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
 </section>
 </section>
-<section id="conclusion" class="level2">
-<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<section id="conclusion" class="level1">
+<h1>Conclusion</h1>
 <p>This replication successfully reproduces the main findings of Chen, Pan, and Xu (2016). Threats of collective action and threats of tattling to superiors both significantly increase government responsiveness in authoritarian China, while claims of party loyalty did not show any significant effect.</p>
 <p>The extension analysis examines whether these effects are heterogeneous across county characteristics. Descriptively, treatment effects appear larger in counties with lower unemployment and higher fiscal capacity. However, randomization inference tests indicate that most of these differences are not statistically significant at conventional levels. For unemployment, the difference in collective action effects on public responses comes closest to significance (p = 0.096), but we cannot reject the null of equal treatment effects for responsiveness (p = 0.205) or for the tattling treatment (p = 0.497). For fiscal capacity, the one-tailed tests also fail to reach significance for responsiveness (p = 0.318), though the difference for public responses approaches marginal significance (p = 0.108). These findings suggest that either the study lacks sufficient power to detect treatment effect heterogeneity, or the true heterogeneity is modest in magnitude.</p>
 <p>The original study provides compelling evidence that even vague threats of collective action can make authoritarian governments more responsive. My replication confirms these findings. While the extension suggests that local economic and fiscal conditions may moderate how officials respond to citizen demands, these patterns require further investigation with larger samples or more targeted designs to confirm.</p>
 </section>
-<section id="references" class="level2">
-<h2 class="anchored" data-anchor-id="references">References</h2>
+<section id="references" class="level1">
+<h1>References</h1>
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
 <div id="ref-chen2016sources" class="csl-entry" role="listitem">
 Chen, Jidong, Jennifer Pan, and Yiqing Xu. 2016. <span>“Sources of Authoritarian Responsiveness: A Field Experiment in China.”</span> <em>American Journal of Political Science</em> 60 (2): 383–400. <a href="https://doi.org/10.1111/ajps.12207">https://doi.org/10.1111/ajps.12207</a>.
@@ -1688,7 +2349,6 @@ Chen, Jidong, Jennifer Pan, and Yiqing Xu. 2016. <span>“Sources of Authoritari
 </div>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
