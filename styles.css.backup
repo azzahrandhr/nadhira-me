@@ -43,6 +43,27 @@ body {
 }
 
 
+/* Remove background from title/header area */
+#title-block-header {
+  background: transparent !important;
+  background-color: transparent !important;
+  max-width: 10000px !important;
+  margin: 0 auto !important;
+  padding: 0 1rem !important;
+}
+
+.quarto-title-block {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+/* Ensure title area aligns with sections */
+.quarto-title-block .quarto-title {
+  max-width: 800px !important;
+  margin: 0 auto !important;
+  padding: 0 1rem !important;
+}
+
 /* Hero */
 .hero {
   max-width: 800px;
@@ -70,4 +91,33 @@ body {
 .hero p {
   color: var(--muted);
   font-size: 1.05rem;
+}
+
+/* Sections */
+section {
+  max-width: 800px;
+  margin: 3.5rem auto;
+  padding: 0 1rem;
+}
+
+section h2 {
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--border);  /* ← Add this */
+}
+
+ul {
+  padding-left: 1.2rem;
+}
+
+li {
+  margin-bottom: 0.5rem;
+}
+
+footer {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: var(--muted);
+  font-size: 0.85rem;
 }
