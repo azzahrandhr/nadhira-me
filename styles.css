@@ -1,56 +1,30 @@
 :root {
-  --text: #111;
-  --muted: #666;
-  --bg: white;            /* shade for background #EADBDD*/
-  --bg-light: #F5EDEE;      /* lighter shade for navbar #F5EDEE*/
-  --border: grey;        /* matching muted border #D4C4C7*/
-}
-
-/* Add background to body */
-body {
-  margin: 0 !important;
-  padding: 0 !important;
-  background-color: var(--bg) !important;
-}
-
-/* Update navbar */
-#quarto-header {
-  position: sticky !important;
-  top: 0 !important;
-  z-index: 1000 !important;
-  border-bottom: 1px solid var(--border) !important;
-  background: var(--bg-light) !important;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.05) !important;
-}
+  --muted: #666;}
 
 .navbar {
-  padding: 0.75rem 0 !important;
-  background: var(--bg-light) !important;
+  background: #F5EDEE !important;
 }
 
-.navbar-default {
-  background: var(--bg-light) !important;
-  background-color: var(--bg-light) !important;
-}
-
-.navbar-nav .nav-link {
-  color: var(--muted) !important;
-  font-size: 0.95rem !important;
-}
-
-.navbar-nav .nav-link:hover {
-  color: var(--text) !important;
-}
-
-
-/* Hero */
+/* Hero - aligned the text to middle, through specification*/
 .hero {
-  max-width: 800px;
+  max-width: 700px;
   margin: 1rem auto 3rem;
   text-align: center;
   padding: 0 1rem;
 }
 
+.hero h1 {
+  font-size: 2.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.hero p {
+  color: var(--muted);
+  font-size: 1.05rem;
+}
+
+
+/* Hero - control the avatar into circle*/
 .avatar {
   width: 150px;
   height: 150px;
@@ -62,12 +36,9 @@ body {
   margin-right: auto;
 }
 
-.hero h1 {
-  font-size: 2.2rem;
-  margin-bottom: 0.5rem;
-}
-
-.hero p {
+footer {
+  text-align: center;
+  padding: 3rem 1rem;
   color: var(--muted);
-  font-size: 1.05rem;
+  font-size: 0.85rem;
 }

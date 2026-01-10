@@ -7,10 +7,14 @@ date-modified: last-modified
 format: 
   html:
     toc: true
-    toc-depth: 2
     theme: cosmo
     code-copy: true
     code-fold: true
+    code-overflow: wrap
+    title-block-banner: white
+    title-block-banner-color: black
+    fig-align: center
+    tbl-colwidths: auto
 bibliography: references.bib
 nocite: |
   @*

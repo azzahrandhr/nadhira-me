@@ -2,8 +2,14 @@
 title: ""
 format:
   html:
-    page-layout: full
+    page-layout: article
 ---
+
+<style>
+body {
+  background: #EADBDD;
+}
+</style>
 
 <div class="hero">
   <img src="profile.jpg" alt="Nadhira" class="avatar" />
