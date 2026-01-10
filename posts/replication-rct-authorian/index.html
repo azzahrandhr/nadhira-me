@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.8.26">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -93,10 +93,10 @@ div.csl-indent {
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-055e62cd80a633adca9b7c56d9558eea.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-3e8f12d1b5c8d04d32925f9f9ead600c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -124,6 +124,23 @@ div.csl-indent {
     "search-label": "Search"
   }
 }</script>
+<style>
+
+      .quarto-title-block .quarto-title-banner h1,
+      .quarto-title-block .quarto-title-banner h2,
+      .quarto-title-block .quarto-title-banner h3,
+      .quarto-title-block .quarto-title-banner h4,
+      .quarto-title-block .quarto-title-banner h5,
+      .quarto-title-block .quarto-title-banner h6
+      {
+        color: black;
+      }
+
+      .quarto-title-block .quarto-title-banner {
+        color: black;
+background: white;
+      }
+</style>
 <script src="../../site_libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="../../site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 
@@ -137,10 +154,6 @@ div.csl-indent {
   <header id="quarto-header" class="headroom fixed-top quarto-banner">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container mx-auto">
-    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
-    </a>
-  </div>
             <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
@@ -193,7 +206,7 @@ div.csl-indent {
       <div>
       <div class="quarto-title-meta-heading">Modified</div>
       <div class="quarto-title-meta-contents">
-        <p class="date-modified">January 9, 2026</p>
+        <p class="date-modified">January 10, 2026</p>
       </div>
     </div>
       
@@ -207,7 +220,7 @@ div.csl-indent {
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
-  <ul class="collapse">
+  <ul>
   <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
   <li><a href="#research-design-and-findings" id="toc-research-design-and-findings" class="nav-link" data-scroll-target="#research-design-and-findings">Research Design and Findings</a></li>
   <li><a href="#replication-of-the-main-results" id="toc-replication-of-the-main-results" class="nav-link" data-scroll-target="#replication-of-the-main-results">Replication of the Main Results</a>
@@ -220,6 +233,7 @@ div.csl-indent {
   </ul></li>
   <li><a href="#extension-heterogeneous-treatment-effects" id="toc-extension-heterogeneous-treatment-effects" class="nav-link" data-scroll-target="#extension-heterogeneous-treatment-effects">Extension: Heterogeneous Treatment Effects</a>
   <ul class="collapse">
+  <li><a href="#heterogeneous-treatment-effects-by-unemployment-rate" id="toc-heterogeneous-treatment-effects-by-unemployment-rate" class="nav-link" data-scroll-target="#heterogeneous-treatment-effects-by-unemployment-rate">Heterogeneous Treatment Effects by Unemployment Rate</a></li>
   <li><a href="#heterogeneous-treatment-effects-by-government-fiscal-capacity" id="toc-heterogeneous-treatment-effects-by-government-fiscal-capacity" class="nav-link" data-scroll-target="#heterogeneous-treatment-effects-by-government-fiscal-capacity">Heterogeneous Treatment Effects by Government Fiscal Capacity</a></li>
   </ul></li>
   <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
@@ -237,7 +251,7 @@ div.csl-indent {
 <section id="introduction" class="level1">
 <h1>Introduction</h1>
 <p>In one of my class project, I got to pick a research study to replicate. When I saw this paper online, I immediately knew that I wanted to work with this one. Why? because it reminds me of what I see happening back home.</p>
-<p>I think Indonesian netizens can be incredibly powerful—and sometimes downright scary. A complaint about bad service on Twitter? Companies go into damage-control mode 🔥. A politician’s family member gets caught doing something shady and people start talking on Instagram? Before you know it, it’s on the national news. I’ve watched the power of people coming together online to make their voices heard, and actually getting results.</p>
+<p>I think Indonesian netizens can be incredibly powerful and sometimes quite scary. A complaint about bad service on Twitter? Companies go into damage-control mode 🔥. A politician’s family member gets caught doing something shady and people start talking on Instagram? Before you know it, it’s on the national news. I’ve watched the power of people coming together online to make their voices heard, and actually getting results.</p>
 <p>This research reminds me of that, it give a glimpse of insight into how this authoritarian respond to society. It’s about understanding the mechanisms behind it.</p>
 <p><strong><i> How do institutions actually respond to online pressure?</i></strong></p>
 <p>So for this replication project, I’m excited to get into the methodology and see what insights I can pull out that might help us better understand these digital dynamics.</p>
