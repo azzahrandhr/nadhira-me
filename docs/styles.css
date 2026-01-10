@@ -1,9 +1,6 @@
 :root {
   --muted: #666;}
 
-.navbar {
-  background: #F5EDEE !important;
-}
 
 /* Hero - aligned the text to middle, through specification*/
 .hero {
@@ -26,8 +23,8 @@
 
 /* Hero - control the avatar into circle*/
 .avatar {
-  width: 150px;
-  height: 150px;
+  width: 220px;
+  height: 220px;
   border-radius: 50%;
   object-fit: cover;
   margin-bottom: 1.5rem;

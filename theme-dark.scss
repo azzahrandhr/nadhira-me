@@ -1,0 +1,20 @@
+/*-- scss:defaults --*/
+// Dark mode navbar colors
+$navbar-bg: #252525;
+$navbar-fg: #e0e0e0;
+
+// Other dark mode customizations (your existing settings)
+$body-bg: #181818;
+$body-color: #ccc;
+$link-color: #75AADB;
+
+$code-block-bg-alpha: -.9;
+
+/*-- scss:rules --*/
+.navbar {
+  background-color: $navbar-bg !important;
+  
+  .navbar-brand, .nav-link {
+    color: $navbar-fg !important;
+  }
+}

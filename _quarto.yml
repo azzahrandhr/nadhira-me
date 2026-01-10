@@ -7,7 +7,6 @@ website:
   site-url: "https://nadhira.me" # you must change this appropriately for RSS feeds to work properly
   title: ""
   navbar:
-    background: light
     search: true
     pinned: true
     tools:
@@ -23,9 +22,12 @@ website:
 
 format:
   html:
-    theme: cosmo
-    css: styles.css
-    page-layout: full
+    respect-user-color-scheme: true
+    theme:
+      light: [cosmo, theme-light.scss]
+      dark: [cosmo, theme-dark.scss]
+execute:
+  freeze: auto
 
 
   

@@ -1,20 +1,12 @@
 ---
 title: "Sources of Authoritarian Responsiveness: A Field Experiment in China"
-subtitle: "Replication of Chen, Pan and Xu (2016)"
+description: "Replication of Chen, Pan and Xu (2016)"
 author: "Nadhira A. Hendra"
 date: "December 26, 2025"
-date-modified: last-modified
+date-modified: "January 7, 2026"
 format: 
   html:
     toc: true
-    theme: cosmo
-    code-copy: true
-    code-fold: true
-    code-overflow: wrap
-    title-block-banner: white
-    title-block-banner-color: black
-    fig-align: center
-    tbl-colwidths: auto
 bibliography: references.bib
 nocite: |
   @*
@@ -76,8 +68,8 @@ This replication is organized into two sections. I begin by replicating the main
 
 ```{r}
 #| label: load-data
-#| code-fold: true
-#| echo: true
+#| code-fold: false
+#| echo: false
 set.seed(2181)
 d <- read.dta("forum.dta")
 ```
@@ -463,6 +455,8 @@ table4 %>%
 
 # Extension: Heterogeneous Treatment Effects
 
+### Heterogeneous Treatment Effects by Unemployment Rate
+
 ```{r}
 #| label: setup-hte
 #| code-fold: true
@@ -486,13 +480,9 @@ median_gov_rev <- median(d_posted$loggov_rev, na.rm = TRUE)
 d_posted$high_gov_rev <- ifelse(d_posted$loggov_rev >= median_gov_rev, 1, 0)
 ```
 
-### Heterogeneous Treatment Effects by Unemployment Rate
-
 In this section, I examine whether the treatment effect varies across subgroups, specifically by unemployment rate characteristics across counties. I look for heterogeneous treatment effects by unemployment rate because high-unemployment areas might have greater potential risk for social unrest. When officials in high-unemployment counties see a collective action threat, they might respond differently: either being more responsive because there are more aggrieved citizens who might actually mobilize, or being less responsive because they regularly receive more complaints.
 
 To categorize high and low unemployment rates, I split the sample at the median unemployment rate. The table below presents results split by the median unemployment rate (2.26%). Additionally, to formally test whether the observed differences are statistically significant, I conducted randomization inference. For unemployment rate, I conducted two-tailed tests examining whether treatment effects differ between high and low unemployment counties.
-
-The findings reveal that treatment effects are notably larger in low-unemployment counties. For the collective action threat, the effect on responsiveness is 13.9 pp in low-unemployment areas versus 6.2 pp in high-unemployment counties. However, this difference is not statistically significant (p = 0.205). For public responses, the collective action effect is 15.0 percentage points in low-unemployment areas versus 6.0 percentage points in high-unemployment areas. This difference approaches marginal significance (p = 0.096), suggesting there may be some heterogeneity in how governments make responses publicly visible. For the tattling threat, the difference in effects on responsiveness between low and high unemployment counties is also not statistically significant (p = 0.497).
 
 ```{r}
 #| label: tbl-hte-unemployment
@@ -590,6 +580,8 @@ hte_unemp_table %>%
     footnote_as_chunk = TRUE
   )
 ```
+
+The findings reveal that treatment effects are notably larger in low-unemployment counties. For the collective action threat, the effect on responsiveness is 13.9 pp in low-unemployment areas versus 6.2 pp in high-unemployment counties. However, this difference is not statistically significant (p = 0.205). For public responses, the collective action effect is 15.0 percentage points in low-unemployment areas versus 6.0 percentage points in high-unemployment areas. This difference approaches marginal significance (p = 0.096), suggesting there may be some heterogeneity in how governments make responses publicly visible. For the tattling threat, the difference in effects on responsiveness between low and high unemployment counties is also not statistically significant (p = 0.497).
 
 ```{r}
 #| label: ri-unemployment
@@ -756,7 +748,6 @@ hte_gov_table %>%
   )
 ```
 
-For government fiscal capacity, I conducted one-tailed tests based on the expectation that well-resourced governments would be more responsive to citizen demands. The test does not show statistically significant evidence that high-fiscal-capacity counties have higher responsiveness (p = 0.318) or higher public responses (p = 0.108). The latter approaches marginal significance, suggesting some evidence that governments with greater fiscal resources may be more likely to respond publicly when threatened with collective action. However, we cannot reject the null hypothesis of homogeneous treatment effects at conventional levels. This may reflect limited statistical power to detect heterogeneity within subgroups, or it may indicate that the true heterogeneity is modest in magnitude.
 ```{r}
 #| label: ri-fiscal
 #| code-fold: true
@@ -791,7 +782,7 @@ for (i in 1:n_perms) {
 
 p_value_fiscal_pub <- mean(perm_diffs_fiscal_pub <= obs_diff_fiscal_pub)
 ```
-
+For government fiscal capacity, I conducted one-tailed tests based on the expectation that well-resourced governments would be more responsive to citizen demands. The test does not show statistically significant evidence that high-fiscal-capacity counties have higher responsiveness (p = 0.318) or higher public responses (p = 0.108). The latter approaches marginal significance, suggesting some evidence that governments with greater fiscal resources may be more likely to respond publicly when threatened with collective action. However, we cannot reject the null hypothesis of homogeneous treatment effects at conventional levels. This may reflect limited statistical power to detect heterogeneity within subgroups, or it may indicate that the true heterogeneity is modest in magnitude.
 # Conclusion
 
 This replication successfully reproduces the main findings of Chen, Pan, and Xu (2016). Threats of collective action and threats of tattling to superiors both significantly increase government responsiveness in authoritarian China, while claims of party loyalty did not show any significant effect.
