@@ -1,38 +1,23 @@
 {
-  "posts/post-with-code/index.qmd": {
-    "index.html": "b5f6f034"
+  "posts/202601_replication-rct-authorian/index.qmd": {
+    "index.html": "a8e710bb"
   },
-  "posts/welcome/index.qmd": {
-    "index.html": "4bbd0907"
-  },
-  "index.qmd": {
-    "index.html": "ce4d2016"
-  },
-  "about.qmd": {
-    "about.html": "5fe26699"
-  },
-  "posts/rdd-education-unemployment/index.qmd": {
-    "index.html": "4024cd0a"
-  },
-  "blog.qmd": {
-    "blog.html": "a109d045"
-  },
-  "posts/rdd-education-employment/index.qmd": {
-    "index.html": "1528c242"
-  },
-  "posts/replication-rct-authorian/index.qmd": {
-    "index.html": "8b729981"
+  "posts/202501_global-development-indicators/index.qmd": {
+    "index.html": "ee4e5f61"
   },
   "posts/0_sample-post/index.qmd": {
-    "index.html": "f92fb7b6"
+    "index.html": "e82d7f5b"
   },
   "posts/index.qmd": {
-    "index.html": "f2cf65fc"
+    "index.html": "88fdf087"
   },
   "posts/about.qmd": {
-    "about.html": "0a37df0b"
+    "about.html": "3c5c4280"
   },
-  "posts/202601_replication-rct-authorian/index.qmd": {
-    "index.html": "10e56c7d"
+  "index.qmd": {
+    "index.html": "c3719767"
+  },
+  "blog.qmd": {
+    "blog.html": "b4473f53"
   }
 }

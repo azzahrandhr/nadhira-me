@@ -1,0 +1,249 @@
+---
+title: "Global Development Indicators: Income, Literacy, and Mortality"
+description: "An Exploratory Analysis of World Bank Data Using Stata"
+draft: true
+author: "Nadhira A. Hendra"
+categories: [stata, development-economics, regression]
+date: "January 12, 2026"
+date-modified: "January 13, 2026"
+format:
+  html:
+    code-fold: false
+    code-tools: true
+    toc: true
+    toc-depth: 3
+execute:
+  eval: false
+  echo: true
+bibliography: references.bib
+nocite: |
+  @*
+---
+```{r setup, include=FALSE}
+library(Statamarkdown)
+knitr::opts_chunk$set(
+  warning = FALSE,
+  message = FALSE,
+  engine.path = list(stata = "/Applications/StataNow/StataBE.app/Contents/MacOS/StataBE")
+)
+```
+
+## Overview
+
+Economic development is multidimensional. While GDP per capita captures material prosperity, it tells us little about whether citizens can read, whether children survive their first year, or whether growth reaches everyone equally. This analysis examines World Bank development indicators across 212 countries to understand how income relates to human development outcomes.
+
+The key questions:
+
+- How unequal is global income distribution?
+- What patterns emerge when comparing the richest and poorest countries?
+- Can simple regression models capture the relationships between income, education, and health?
+
+## Data Preparation
+
+The World Bank Development Indicators dataset contains panel data spanning 2015-2024 for multiple development metrics. The raw data requires substantial cleaning: removing regional aggregates, reshaping from wide to long format, and selecting the most recent available observation for each country-indicator pair.
+
+```{stata data-prep, warning=FALSE}
+*===============================================================================
+* DATA IMPORT AND CLEANING
+*===============================================================================
+
+clear
+
+* Import CSV with proper variable types
+import delimited "wb_indicators_2015_2024.csv", varnames(1) ///
+    numericcols(5 6 7 8 9 10 11 12 13 14)
+
+* Examine initial data structure
+describe
+
+* Generate row ID and remove regional aggregates
+* (entries after row 1085 are regional/world aggregates)
+generate id = _n
+keep if id < 1086
+
+* Reshape from wide to long format
+reshape long yr, i(id) j(year)
+rename yr seriesvalue
+
+* Sort and keep most recent non-missing value per country-indicator
+gsort countrycode seriescode -year
+keep if seriesvalue < .
+gsort seriescode seriesname countrycode countryname -year
+by seriescode seriesname countrycode countryname: keep if _n == 1
+sort countryname seriescode
+
+* Save cleaned long-format data
+save "wb_cleaned_long.dta", replace
+```
+
+## Descriptive Statistics by Indicator
+
+With the cleaned data, we examine the distribution of each development indicator across countries.
+
+```{stata descriptive-stats, warning=FALSE}
+* Load cleaned data
+use "wb_cleaned_long.dta", clear
+
+* Summary statistics by indicator
+bysort seriesname: summarize seriesvalue
+```
+
+The summary statistics reveal substantial variation across all indicators. GDP per capita ranges from under \$300 to over \$100,000, while literacy rates span from 27% to nearly 100%.
+
+## Preparing Data for Regression
+
+To analyze relationships between indicators, we reshape the data to wide format where each country is one observation with separate columns for each indicator.
+
+```{stata reshape-wide, warning=FALSE}
+* Load cleaned data
+use "wb_cleaned_long.dta", clear
+
+* Rename series codes for readability
+replace seriescode = "gdp" if seriescode == "NY.GDP.PCAP.CD"
+replace seriescode = "female_literacy" if seriescode == "SE.ADT.LITR.FE.ZS"
+replace seriescode = "male_literacy" if seriescode == "SE.ADT.LITR.MA.ZS"
+replace seriescode = "adult_literacy" if seriescode == "SE.ADT.LITR.ZS"
+replace seriescode = "mortality" if seriescode == "SP.DYN.IMRT.IN"
+
+* Drop unnecessary variables and reshape wide
+drop id year seriesname
+reshape wide seriesvalue, i(countrycode countryname) j(seriescode) string
+
+* Rename variables for clarity
+rename seriesvaluegdp gdp
+rename seriesvaluefemale_literacy female_literacy
+rename seriesvaluemale_literacy male_literacy
+rename seriesvalueadult_literacy adult_literacy
+rename seriesvaluemortality mortality
+
+* Save wide-format data for analysis
+save "wb_cleaned_wide.dta", replace
+
+describe
+```
+
+## Comparing Rich and Poor Countries
+
+One of the starkest ways to visualize global inequality is to compare development outcomes between the richest and poorest countries by GDP per capita.
+
+```{stata top-bottom-comparison, warning=FALSE}
+* Load wide-format data
+use "wb_cleaned_wide.dta", clear
+
+* Top 50 countries by GDP per capita
+display "=== TOP 50 COUNTRIES BY GDP PER CAPITA ==="
+gsort -gdp
+summarize adult_literacy female_literacy male_literacy mortality in 1/50
+
+* Bottom 50 countries by GDP per capita
+display ""
+display "=== BOTTOM 50 COUNTRIES BY GDP PER CAPITA ==="
+sort gdp
+summarize adult_literacy female_literacy male_literacy mortality in 1/50
+```
+
+The gap is especially striking for infant mortality: the highest mortality rate among wealthy countries is lower than the lowest rate among poor countries—non-overlapping distributions that underscore systemic differences in health infrastructure.
+
+## Distribution Analysis
+
+The distribution of GDP per capita reveals important insights about global inequality.
+
+```{stata distribution, warning=FALSE}
+* Load wide-format data
+use "wb_cleaned_wide.dta", clear
+
+* Detailed distribution statistics
+summarize gdp, detail
+
+display ""
+display "Key insight: Median ($`r(p50)') << Mean ($`r(mean)')"
+display "This right-skewed distribution indicates more low-income countries globally"
+```
+
+## Regression Analysis
+
+### Infant Mortality on GDP Per Capita
+
+```{stata reg-mortality-gdp, warning=FALSE}
+* Load wide-format data
+use "wb_cleaned_wide.dta", clear
+
+* Regression: infant mortality on GDP per capita
+regress mortality gdp
+```
+
+Each additional \$1,000 in GDP per capita is associated with approximately 0.27 fewer infant deaths per 1,000 live births. The negative coefficient aligns with expectations: wealthier countries typically have better healthcare infrastructure.
+
+### Literacy on GDP Per Capita
+
+```{stata reg-literacy-gdp, warning=FALSE}
+* Load wide-format data
+use "wb_cleaned_wide.dta", clear
+
+* Regression: adult literacy on GDP per capita
+regress adult_literacy gdp
+```
+
+Higher GDP is associated with higher literacy rates, though the relationship is modest in magnitude.
+
+### Infant Mortality on Literacy
+
+```{stata reg-mortality-literacy, warning=FALSE}
+* Load wide-format data
+use "wb_cleaned_wide.dta", clear
+
+* Regression: infant mortality on adult literacy
+regress mortality adult_literacy
+```
+
+The strong negative relationship between literacy and mortality suggests that education may be one mechanism through which income improves health outcomes.
+
+## Visualization
+
+```{stata scatter-plot, warning=FALSE, results="hide"}
+* Load wide-format data
+use "wb_cleaned_wide.dta", clear
+
+* Scatter plot with regression line and confidence interval
+twoway (lfitci mortality adult_literacy) ///
+       (scatter mortality adult_literacy, msymbol(circle_hollow)), ///
+    ytitle("Infant Mortality (per 1,000 live births)") ///
+    xtitle("Adult Literacy Rate (%)") ///
+    title("Infant Mortality vs. Adult Literacy Across Countries") ///
+    legend(order(1 "95% CI" 2 "Fitted values" 3 "Countries")) ///
+    graphregion(color(white)) ///
+    scheme(s1mono)
+
+graph export "mortality-literacy-scatter.png", replace width(1200)
+```
+
+![Infant Mortality vs. Adult Literacy](mortality-literacy-scatter.png){#fig-scatter}
+
+## Methodological Note
+
+::: {.callout-tip}
+## Correlation vs. Causation
+
+These regressions document correlational relationships—we cannot claim that increasing GDP would *cause* mortality to fall. Countries with lower mortality might grow faster (reverse causality), or omitted variables like institutional quality could drive both outcomes. Causal identification would require quasi-experimental methods like Regression Discontinuity Design or Instrumental Variables.
+:::
+
+## Gender Gap in Literacy
+
+```{stata gender-gap, warning=FALSE}
+* Load wide-format data
+use "wb_cleaned_wide.dta", clear
+
+* Compare male vs female literacy
+summarize male_literacy female_literacy
+
+* Calculate the gap
+generate literacy_gap = male_literacy - female_literacy
+summarize literacy_gap, detail
+```
+
+The persistent gap between male and female literacy rates reflects socio-cultural norms in many low- and middle-income countries that historically prioritized boys' education.
+
+## References
+
+::: {#refs}
+:::
