@@ -2,6 +2,7 @@
 title: "Sources of Authoritarian Responsiveness: A Field Experiment in China"
 description: "Replication of Chen, Pan and Xu (2016)"
 author: "Nadhira A. Hendra"
+categories: [r, causal-inference]
 date: "December 26, 2025"
 date-modified: "January 7, 2026"
 format: 
