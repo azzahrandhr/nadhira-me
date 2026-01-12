@@ -2,14 +2,7 @@
   {
     "listing": "/blog.html",
     "items": [
-      "/posts/about.html",
-      "/posts/202601_replication-rct-authorian/index.html",
-      "/posts/0_sample-post/index.html",
-      "/posts/index.html"
+      "/posts/202601_replication-rct-authorian/index.html"
     ]
-  },
-  {
-    "listing": "/posts/index.html",
-    "items": []
   }
 ]
