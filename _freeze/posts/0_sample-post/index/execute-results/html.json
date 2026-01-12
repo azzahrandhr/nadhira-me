@@ -1,8 +1,8 @@
 {
-  "hash": "356b59ceb9b6df1cfaba5974639ca942",
+  "hash": "c590afc965508d0e58bfe21ecea4522d",
   "result": {
     "engine": "knitr",
-    "markdown": "---\ntitle: \"Sample Post\"\ndescription: \"Short description\"\ndraft: true\nauthor: \"Nadhira A. Hendra\"\ndate: \"December 26, 2025\"\ndate-modified: \"January 7, 2026\"\nformat: \n  html:\n    toc: true\nbibliography: references.bib\nnocite: |\n  @*\n---\n\n\n# Introduction\n\nPut intro here\n\n**<i> Italic and bold formatting </i>**\n\n\nTo refer citation you could use [@chen2016sources] \n\n# References\n\n::: {#refs}\n:::",
+    "markdown": "---\ntitle: \"Sample Post\"\ndescription: \"Short description\"\ndraft: true\nauthor: \"Nadhira A. Hendra\"\ndate: \"December 26, 2025\"\ndate-modified: \"January 7, 2026\"\nformat: \n  html:\n    toc: true\nbibliography: references.bib\nnocite: |\n  @*\n---\n\n\n# Introduction\n\nPut intro heresç\n\n**<i> Italic and bold formatting </i>**\n\n\nTo refer citation you could use [@chen2016sources] \n\n# References\n\n::: {#refs}\n:::",
     "supporting": [],
     "filters": [
       "rmarkdown/pagebreak.lua"
