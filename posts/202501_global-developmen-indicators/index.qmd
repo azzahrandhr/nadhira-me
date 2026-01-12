@@ -5,35 +5,25 @@ author: "Nadhira A. Hendra"
 date: "January 12, 2026"
 date-modified: "January 7, 2026"
 categories: [stata, development-economics, regression]
-format: 
+format:
   html:
+    code-fold: false
+    code-tools: true
     toc: true
+    toc-depth: 3
+execute:
+  eval: false
+  echo: true
+jupyter: stata
 bibliography: references.bib
 nocite: |
   @*
 ---
-```{r}
-#| label: setup 
-#| include: false
-#| code-fold: true
-#| echo: true
 
-knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
-
-# Load packages
-TBD
+## Stata Code Test
+```{stata}
+display "Hello from Stata!"
+sysuse auto
+summarize price mpg
+describe
 ```
-
-# Introduction
-
-Put intro here
-
-**<i> Italic and bold formatting </i>**
-
-
-To refer citation you could use [@chen2016sources] 
-
-# References
-
-::: {#refs}
-:::
