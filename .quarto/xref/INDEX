@@ -22,5 +22,17 @@
   },
   "posts/replication-rct-authorian/index.qmd": {
     "index.html": "8b729981"
+  },
+  "posts/0_sample-post/index.qmd": {
+    "index.html": "f92fb7b6"
+  },
+  "posts/index.qmd": {
+    "index.html": "f2cf65fc"
+  },
+  "posts/about.qmd": {
+    "about.html": "0a37df0b"
+  },
+  "posts/202601_replication-rct-authorian/index.qmd": {
+    "index.html": "10e56c7d"
   }
 }
