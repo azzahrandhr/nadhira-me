@@ -8,9 +8,9 @@
 
 <meta name="author" content="Nadhira A. Hendra">
 <meta name="dcterms.date" content="2026-01-12">
-<meta name="description" content="An Exploratory Analysis of Global Development Indicators (Income, Literacy, and Mortality)">
+<meta name="description" content="An exploratory data analysis using Stata to investigate GDP, literacy rates, and mortality indicators across countries">
 
-<title>An Exploratory Analysis of World Bank Data Using Stata</title>
+<title>Exploring Global Development Patterns with World Bank Data</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -318,10 +318,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">An Exploratory Analysis of World Bank Data Using Stata</h1>
+      <h1 class="title">Exploring Global Development Patterns with World Bank Data</h1>
                   <div>
         <div class="description">
-          An Exploratory Analysis of Global Development Indicators (Income, Literacy, and Mortality)
+          An exploratory data analysis using Stata to investigate GDP, literacy rates, and mortality indicators across countries
         </div>
       </div>
                           <div class="quarto-categories">
@@ -640,7 +640,7 @@ file wb_cleaned_wide.dta saved
 
 Contains data from wb_cleaned_wide.dta
  Observations:           216                  
-    Variables:             7                  13 Jan 2026 18:20
+    Variables:             7                  13 Jan 2026 23:26
 -------------------------------------------------------------------------------------------
 Variable      Storage   Display    Value
     name         type    format    label      Variable label
@@ -703,19 +703,6 @@ male_liter~y |         47    72.53659    16.63416      35.78       99.7
 </section>
 <section id="distribution-analysis" class="level2">
 <h2 class="anchored" data-anchor-id="distribution-analysis">Distribution Analysis</h2>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Correlation vs.&nbsp;Causation
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>In this document, with the correlational relationships that is present, we cannot claim that increasing GDP would <em>cause</em> mortality to fall. Reason is because in data without randomization presents, there could be reverse causality (e.g Lower mortality might cause countries to grow faster instead of Rich countries might cause lower mortality rates), or omitted variables (e.g like institutional quality could drive both mortality and gdp). To reduce this possibility we would require randomization or quasi-experimental methods like Regression Discontinuity Design or Instrumental Variables. Hence all the data here is not causal</p>
-</div>
-</div>
 <p>The distribution of GDP per capita reveals important insights about global inequality. The median ($8536) is much lower than the Mean ($22654) which indicates there’s more low income countries globally</p>
 <div class="cell">
 <details class="code-fold">
@@ -746,6 +733,19 @@ male_liter~y |         47    72.53659    16.63416      35.78       99.7
 </section>
 <section id="regression-analysis" class="level2">
 <h2 class="anchored" data-anchor-id="regression-analysis">Regression Analysis</h2>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Correlation vs.&nbsp;Causation
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In this document, with the correlational relationships that is present, we cannot claim that increasing GDP would <em>cause</em> mortality to fall. Reason is because in data without randomization presents, there could be reverse causality (e.g Lower mortality might cause countries to grow faster instead of Rich countries might cause lower mortality rates), or omitted variables (e.g like institutional quality could drive both mortality and gdp). To reduce this possibility we would require randomization or quasi-experimental methods like Regression Discontinuity Design or Instrumental Variables. Hence <strong><em>all the interpretation here is not causal</em></strong></p>
+</div>
+</div>
 <section id="infant-mortality-on-gdp-per-capita" class="level3">
 <h3 class="anchored" data-anchor-id="infant-mortality-on-gdp-per-capita">Infant Mortality on GDP Per Capita</h3>
 <div class="cell">
