@@ -4,7 +4,7 @@ description: "Short description"
 draft: true
 author: "Nadhira A. Hendra"
 date: "December 26, 2025"
-date-modified: "January 7, 2026"
+date-modified: "Januçary 7, 2026"
 format: 
   html:
     toc: true
