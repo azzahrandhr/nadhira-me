@@ -1,6 +1,6 @@
 ---
-title: "An Exploratory Analysis of World Bank Data Using Stata"
-description: "An Exploratory Analysis of Global Development Indicators (Income, Literacy, and Mortality)"
+title: "Exploring Global Development Patterns with World Bank Data"
+description: "An exploratory data analysis using Stata to investigate GDP, literacy rates, and mortality indicators across countries"
 author: "Nadhira A. Hendra"
 categories: [stata, development-economics, regression]
 date: "January 12, 2026"
