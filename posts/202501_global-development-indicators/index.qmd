@@ -152,11 +152,6 @@ summarize adult_literacy female_literacy male_literacy mortality in 1/50
 The gap is striking for infant mortality, the highest mortality rate among wealthy countries (11.4 death per 1000 live births) is lower than the lowest rate among poor countries (14.3 death per 1000 live births). It indicates a wide gap and systemic differences in health infrastructure.
 
 ## Distribution Analysis
-::: {.callout-tip}
-## Correlation vs. Causation
-
-In this document, with the correlational relationships that is present, we cannot claim that increasing GDP would *cause* mortality to fall. Reason is because in data without randomization presents, there could be reverse causality (e.g Lower mortality might cause countries to grow faster instead of Rich countries might cause lower mortality rates), or omitted variables (e.g like institutional quality could drive both mortality and gdp). To reduce this possibility we would require randomization or quasi-experimental methods like Regression Discontinuity Design or Instrumental Variables. Hence all the data here is not causal
-:::
 
 The distribution of GDP per capita reveals important insights about global inequality. The median (\$8536) is much lower than the Mean (\$22654) which indicates there's more low income countries globally
 
@@ -169,6 +164,11 @@ summarize gdp, detail
 ```
 
 ## Regression Analysis
+::: {.callout-tip}
+## Correlation vs. Causation
+
+In this document, with the correlational relationships that is present, we cannot claim that increasing GDP would *cause* mortality to fall. Reason is because in data without randomization presents, there could be reverse causality (e.g Lower mortality might cause countries to grow faster instead of Rich countries might cause lower mortality rates), or omitted variables (e.g like institutional quality could drive both mortality and gdp). To reduce this possibility we would require randomization or quasi-experimental methods like Regression Discontinuity Design or Instrumental Variables. Hence ***all the interpretation here is not causal***
+:::
 
 ### Infant Mortality on GDP Per Capita
 
