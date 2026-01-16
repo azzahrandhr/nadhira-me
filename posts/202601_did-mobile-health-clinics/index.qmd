@@ -1,0 +1,225 @@
+---
+title: "Understanding Difference-in-Differences: Mobile Health Clinics in Rural India"
+description: "A practical guide to DiD estimation with Stata, exploring causal inference in health policy evaluation"
+draft: true
+author: "Nadhira A. Hendra"
+categories: [stata, difference-in-difference, development-economics]
+date: "January 15, 2026"
+format:
+  html:
+    code-fold: true
+    toc: true
+    toc-depth: 3
+execute:
+  eval: true
+  echo: true
+---
+
+# Introduction
+
+This analysis started as one of my class assignments in Economic Development at Columbia. The task was to think through the design and estimation of a Difference-in-Differences (DiD) study evaluating mobile health clinics on prenatal care utilization in rural Rajasthan, India.
+
+Unlike my previous post on World Bank indicators (which was purely correlational), this one dives into causal inference. **DiD lets us estimate treatment effects when we have observational data before and during the period of intervention**.
+
+DiD is one of the most widely used quasi-experimental method in empirical economics. It is particularly valuable in context where randomized controlled trial may be infeasible. However, this method also often use in combination with randomization because the **key insight of DiD is that we can observe the change over time in untreated units**, adjusting any baseline difference between control and treatment groups. 
+
+In this post I'll walk through the design, the assumptions to make, and show how to implement it in Stata. This post serves as both a personal reference and hopefully can be a useful resource for others learning causal inference methods.
+
+# The Problem
+
+Imagine researchers want to evaluate a mobile health clinic program that began operating in treatment village in January 2023. The intervention involves sending mobile clinics to **randomly selected villages once per week**, offering free prenatal checkups, basic medications, and health education to pregnant women.
+
+The researchers was able to collected data on prenatal care visits:
+
+- **Before**: 2022 (pre-treatment)
+- **After**: 2023 (post-treatment)
+
+# Why Randomize at the Village Level?
+
+A natural question: why not randomize at the individual level? Why assign entire villages to treatment or control?
+
+Since we're including randomization in this experiment design. one of the assumption need to be made is SUTVA or Non Interference. If we randomized at individual levels, meaning that in one village there could be a group of woman that is assigned to treatment and another groups that is assigned to control, we'd face several problems:
+
+1. **Spillover effects**: If a woman in the treatment group shares information about prenatal benefits with her neighbor in the control group, or if the control woman sees treatment women getting checkups and decides to seek care herself, we'd underestimate the true treatment effect.
+
+2. **Correlated outcomes**: Women within the same village are more alike than women across villages (similar cultural norms, access to facilities, socioeconomic conditions). This means observations aren't truly independent.
+
+3. **Understated standard errors**: Our regression assumes each observation contributes equally independent information. When observations are clustered, we have less effective information than the sample size suggests.
+
+By randomizing at the village level, we cleanly separate treatment and control groups and avoid these violation.
+
+# The DiD Framework
+
+## The 2x2 Grid
+
+What I like about DiD is the simplicity. To be able to calculate the result we need four group means:
+
+|                | Control Villages | Treatment Villages |
+|----------------|------------------|--------------------|
+| **Before (2022)** | $\bar{Y}_{00}$   | $\bar{Y}_{10}$     |
+| **After (2023)**  | $\bar{Y}_{01}$   | $\bar{Y}_{11}$     |
+
+Where:
+
+- $\bar{Y}_{00}$ = average prenatal visits before treatment in control group
+- $\bar{Y}_{01}$ = average prenatal visits after treatment in control group
+- $\bar{Y}_{10}$ = average prenatal visits before treatment in treatment group
+- $\bar{Y}_{11}$ = average prenatal visits after treatment in treatment group
+
+The DiD estimator is:
+
+$$\text{DiD} = (\bar{Y}_{11} - \bar{Y}_{10}) - (\bar{Y}_{01} - \bar{Y}_{00})$$
+
+In words: take the change in the treatment group, subtract the change in the control group.
+
+## The Regression Equation
+
+We can express this in regression form:
+
+$$Y_{it} = \alpha + \beta \cdot Treatment_i + \gamma \cdot After_t + \tau \cdot (Treatment_i \times After_t) + \epsilon_{it}$$
+
+Where:
+
+- $\alpha$: baseline mean for control group in the pre-period
+- $\beta$: time-invariant difference between treatment and control (selection effect)
+- $\gamma$: time trend common to both groups (what would have happened anyway)
+- $\tau$ (**the DiD estimate**) : the causal effect of mobile clinics on prenatal visits
+
+The coefficient $\tau$ is what we care about. It captures the additional change in the treatment group beyond what the control group experienced.
+
+# Stata Implementation
+
+Let me show how this would look in practice with simulated data.
+
+```{r}
+#| code-fold: false
+#| echo: true
+library(Statamarkdown)
+knitr::opts_chunk$set(
+  warning=FALSE,
+  message=FALSE,
+  engine.path = list(stata = "/Applications/StataNow/StataBE.app/Contents/MacOS/StataBE")
+  )
+```
+
+## Simulating the Data
+
+For illustration, I'll create a dataset that mimics what researchers might have collected.
+
+```{stata simulate-data}
+clear
+
+* Set seed for reproducibility
+set seed 12345
+
+* Create village-level data
+set obs 100
+generate village_id = _n
+generate treatment = (village_id <= 50)
+
+* Expand to woman-level (10 women per village)
+expand 10
+bysort village_id: generate woman_id = _n
+
+* Expand to panel (before and after)
+expand 2
+bysort village_id woman_id: generate period = _n - 1
+label define period_lbl 0 "Before (2022)" 1 "After (2023)"
+label values period period_lbl
+
+* Generate outcome with DiD structure
+* Base: 2 visits on average
+* Treatment villages slightly lower at baseline: -0.2
+* Time trend for everyone: +0.3
+* Treatment effect: +0.8 visits
+
+generate prenatal_visits = 2 + ///
+    (-0.2) * treatment + ///
+    (0.3) * period + ///
+    (0.8) * treatment * period + ///
+    rnormal(0, 0.8)
+
+* Round to integers (can't have fractional visits)
+replace prenatal_visits = round(prenatal_visits, 1)
+replace prenatal_visits = 0 if prenatal_visits < 0
+
+save "did_simulation.dta", replace
+
+describe
+```
+
+## Computing Group Means
+
+```{stata group-means}
+use "did_simulation.dta", clear
+
+* Create the 2x2 table
+table treatment period, statistic(mean prenatal_visits) statistic(sd prenatal_visits)
+```
+
+## Running the DiD Regression
+
+```{stata did-regression}
+use "did_simulation.dta", clear
+
+* Generate interaction term
+generate treat_post = treatment * period
+
+* DiD regression
+regress prenatal_visits treatment period treat_post
+
+* Store coefficients for interpretation
+scalar tau_hat = _b[treat_post]
+display "DiD Estimate (tau): " tau_hat
+```
+
+The coefficient on `treat_post` is our DiD estimate. In this simulated data, mobile clinics increased prenatal visits by approximately 0.8 visits—close to the true effect we built into the simulation.
+
+## Clustering Standard Errors
+
+Since treatment is assigned at the village level, we should cluster our standard errors accordingly:
+
+```{stata clustered-se}
+use "did_simulation.dta", clear
+
+generate treat_post = treatment * period
+
+* DiD regression with clustered standard errors
+regress prenatal_visits treatment period treat_post, cluster(village_id)
+```
+
+Notice how the standard errors change when we account for clustering. This is important—ignoring clustering can lead to overconfidence in our estimates.
+
+# Assumption
+## Parallel Trends
+
+::: {.callout-warning}
+## The Key Assumption
+DiD requires that without treatment, both groups would have followed the same trend. This is called the **parallel trends assumption**. It's untestable in the treatment period, but we can check whether trends were parallel before treatment.
+:::
+
+In our example, suppose treatment villages had 2.1 prenatal visits in 2022 while control villages had 2.3. This baseline difference doesn't invalidate DiD—the method accounts for level differences by looking at *changes* rather than absolute levels.
+
+What would be concerning is if the groups were on different trajectories before treatment. If we had data from 2020 and 2021, we could test this by:
+
+1. **Visual inspection**: Plot average prenatal visits over time for both groups. The lines should be roughly parallel before 2023.
+
+2. **Placebo test**: Run DiD on the pre-treatment periods. If we find a "treatment effect" before treatment actually happened, something is wrong.
+
+## Additional Assumption 
+Specifically with this case study,  we also need to make some additional assumption :
+
+1. **No Spillovers** : No spillovers between villages (which we address by cluster randomization in
+village levels) 
+2. **No anticipation effects** : Which assume that women didn’t change behavior before mobile
+clinic arrived
+
+# Conclusion
+
+Difference-in-Differences is a method where we compare changes over time between groups that did and didn't receive treatment. With DiD we also able to remove both time-invariant differences between groups(existing sifference between control and treatment before the intervention started).
+
+The method requires careful attention to **Parallel trends** assumptionwhich can't be tested directly but can be signalled by analysing pre-treatment data.
+
+Additionally, consider the cost and logistics, we also need to consider the **Unit of randomization** to cluster at the village level to avoid SUTVA violations
+
+On a practical note, implementing DiD in Stata is straightforward because in essence it's just a regression with an interaction term. The harder part is thinking through the assumptions and whether they're plausible for the case at hand.

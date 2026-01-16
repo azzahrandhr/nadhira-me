@@ -19,5 +19,8 @@
   },
   "blog.qmd": {
     "blog.html": "b4473f53"
+  },
+  "posts/202601_did-mobile-health-clinics/index.qmd": {
+    "index.html": "d041b0f3"
   }
 }
