@@ -1,7 +1,6 @@
 ---
 title: "Understanding Difference-in-Differences: Mobile Health Clinics in Rural India"
 description: "A practical guide to DiD estimation with Stata, exploring causal inference in health policy evaluation"
-draft: true
 author: "Nadhira A. Hendra"
 categories: [stata, difference-in-difference, development-economics]
 date: "January 15, 2026"
@@ -52,7 +51,7 @@ By randomizing at the village level, we cleanly separate treatment and control g
 
 ## The 2x2 Grid
 
-What I like about DiD is the simplicity. To be able to calculate the result we need four group means:
+What I like about DiD is the simplicity. To give a better visualization, to be able to calculate the result we need four group means:
 
 |                | Control Villages | Treatment Villages |
 |----------------|------------------|--------------------|
@@ -173,7 +172,7 @@ scalar tau_hat = _b[treat_post]
 display "DiD Estimate (tau): " tau_hat
 ```
 
-The coefficient on `treat_post` is our DiD estimate. In this simulated data, mobile clinics increased prenatal visits by approximately 0.8 visits—close to the true effect we built into the simulation.
+The coefficient on `treat_post` is our DiD estimate. In this simulated data, mobile clinics increased prenatal visits by approximately 0.8 visits. This is close to the true effect we built into the simulation.
 
 ## Clustering Standard Errors
 
