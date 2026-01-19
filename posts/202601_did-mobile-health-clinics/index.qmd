@@ -202,7 +202,7 @@ clinic arrived
 
 Difference-in-Differences is a method where we compare changes over time between groups that did and didn't receive treatment. With DiD we also able to remove both time-invariant differences between groups(existing sifference between control and treatment before the intervention started).
 
-The method requires careful attention to **Parallel trends** assumptionwhich can't be tested directly but can be signalled by analysing pre-treatment data.
+The method requires careful attention to **Parallel trends** assumption which can't be tested directly but can be signalled by analyzing pre-treatment data.
 
 Additionally, consider the cost and logistics, we also need to consider the **Unit of randomization** to cluster at the village level to avoid SUTVA violations
 
