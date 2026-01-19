@@ -8,9 +8,9 @@
 
 <meta name="author" content="Nadhira A. Hendra">
 <meta name="dcterms.date" content="2026-01-15">
-<meta name="description" content="A practical guide to DiD estimation with Stata, exploring causal inference in health policy evaluation">
+<meta name="description" content="Exploring quasi-experimental methods through a health policy case study">
 
-<title>Understanding Difference-in-Differences: Mobile Health Clinics in Rural India</title>
+<title>Understanding Difference-in-Differences: A Practical Guide Using Stata</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -327,7 +327,7 @@ window.Quarto = {
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
     <a class="nav-link" href="../../#about"> 
-<span class="menu-text">About</span></a>
+<span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../blog.html"> 
@@ -347,16 +347,16 @@ window.Quarto = {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Understanding Difference-in-Differences: Mobile Health Clinics in Rural India</h1>
+      <h1 class="title">Understanding Difference-in-Differences: A Practical Guide Using Stata</h1>
                   <div>
         <div class="description">
-          A practical guide to DiD estimation with Stata, exploring causal inference in health policy evaluation
+          Exploring quasi-experimental methods through a health policy case study
         </div>
       </div>
                           <div class="quarto-categories">
                 <div class="quarto-category">stata</div>
+                <div class="quarto-category">regression</div>
                 <div class="quarto-category">difference-in-difference</div>
-                <div class="quarto-category">development-economics</div>
               </div>
                   </div>
   </div>
@@ -378,6 +378,12 @@ window.Quarto = {
       </div>
     </div>
     
+      <div>
+      <div class="quarto-title-meta-heading">Modified</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date-modified">January 19, 2026</p>
+      </div>
+    </div>
       
     </div>
     
@@ -398,8 +404,9 @@ window.Quarto = {
   <li><a href="#the-2x2-grid" id="toc-the-2x2-grid" class="nav-link" data-scroll-target="#the-2x2-grid">The 2x2 Grid</a></li>
   <li><a href="#the-regression-equation" id="toc-the-regression-equation" class="nav-link" data-scroll-target="#the-regression-equation">The Regression Equation</a></li>
   </ul></li>
-  <li><a href="#stata-implementation" id="toc-stata-implementation" class="nav-link" data-scroll-target="#stata-implementation">Stata Implementation</a>
+  <li><a href="#exploratory-analysis" id="toc-exploratory-analysis" class="nav-link" data-scroll-target="#exploratory-analysis">Exploratory Analysis</a>
   <ul class="collapse">
+  <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup">Setup</a></li>
   <li><a href="#simulating-the-data" id="toc-simulating-the-data" class="nav-link" data-scroll-target="#simulating-the-data">Simulating the Data</a></li>
   <li><a href="#computing-group-means" id="toc-computing-group-means" class="nav-link" data-scroll-target="#computing-group-means">Computing Group Means</a></li>
   <li><a href="#running-the-did-regression" id="toc-running-the-did-regression" class="nav-link" data-scroll-target="#running-the-did-regression">Running the DiD Regression</a></li>
@@ -424,7 +431,7 @@ window.Quarto = {
 
 <section id="introduction" class="level1">
 <h1>Introduction</h1>
-<p>This analysis started as one of my class assignments in Economic Development at Columbia. The task was to think through the design and estimation of a Difference-in-Differences (DiD) study evaluating mobile health clinics on prenatal care utilization in rural Rajasthan, India.</p>
+<p>This analysis started as one of my class assignments in Economic Development at Columbia. The task was to think through experiment designs of a study evaluating mobile health clinics on prenatal care utilization in rural Rajasthan, India.</p>
 <p>Unlike my previous post on World Bank indicators (which was purely correlational), this one dives into causal inference. <strong>DiD lets us estimate treatment effects when we have observational data before and during the period of intervention</strong>.</p>
 <p>DiD is one of the most widely used quasi-experimental method in empirical economics. It is particularly valuable in context where randomized controlled trial may be infeasible. However, this method also often use in combination with randomization because the <strong>key insight of DiD is that we can observe the change over time in untreated units</strong>, adjusting any baseline difference between control and treatment groups.</p>
 <p>In this post I’ll walk through the design, the assumptions to make, and show how to implement it in Stata. This post serves as both a personal reference and hopefully can be a useful resource for others learning causal inference methods.</p>
@@ -500,68 +507,57 @@ window.Quarto = {
 <p>The coefficient <span class="math inline">\(\tau\)</span> is what we care about. It captures the additional change in the treatment group beyond what the control group experienced.</p>
 </section>
 </section>
-<section id="stata-implementation" class="level1">
-<h1>Stata Implementation</h1>
-<p>Let me show how this would look in practice with simulated data.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Statamarkdown)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Stata found at /Applications/StataNow/StataBE.app/Contents/MacOS/StataBE</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>The 'stata' engine is ready to use.</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">warning=</span><span class="cn">FALSE</span>,</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">message=</span><span class="cn">FALSE</span>,</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">engine.path =</span> <span class="fu">list</span>(<span class="at">stata =</span> <span class="st">"/Applications/StataNow/StataBE.app/Contents/MacOS/StataBE"</span>)</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
+<section id="exploratory-analysis" class="level1">
+<h1>Exploratory Analysis</h1>
+<section id="setup" class="level2">
+<h2 class="anchored" data-anchor-id="setup">Setup</h2>
+<p>For reference on setting up Stata in R, you can refer <a href="../../posts/202501_global-development-indicators/index.html">here</a>.</p>
+</section>
 <section id="simulating-the-data" class="level2">
 <h2 class="anchored" data-anchor-id="simulating-the-data">Simulating the Data</h2>
 <p>For illustration, I’ll create a dataset that mimics what researchers might have collected.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">clear</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>* Set <span class="dv">seed</span> <span class="kw">for</span> reproducibility</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="kw">set</span> <span class="dv">seed</span> 12345</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>* Create village-<span class="dv">level</span> <span class="kw">data</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="kw">set</span> <span class="kw">obs</span> 100</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="kw">generate</span> village_id = <span class="dt">_n</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="kw">generate</span> treatment = (village_id &lt;= 50)</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>* Expand to woman-<span class="dv">level</span> (10 women per village)</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>expand 10</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="kw">bysort</span> village_id: <span class="kw">generate</span> woman_id = <span class="dt">_n</span></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>* Expand to panel (before and after)</span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>expand 2</span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="kw">bysort</span> village_id woman_id: <span class="kw">generate</span> period = <span class="dt">_n</span> - 1</span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="kw">label</span> <span class="kw">define</span> period_lbl 0 <span class="st">"Before (2022)"</span> 1 <span class="st">"After (2023)"</span></span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="kw">label</span> <span class="kw">values</span> period period_lbl</span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>* Generate outcome with DiD structure</span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>* Base: 2 visits <span class="kw">on</span> average</span>
-<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>* Treatment villages slightly <span class="fu">lower</span> <span class="fu">at</span> baseline: -0.2</span>
-<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>* Time trend <span class="kw">for</span> everyone: +0.3</span>
-<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>* Treatment effect: +0.8 visits</span>
-<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a><span class="kw">generate</span> prenatal_visits = 2 + <span class="co">///</span></span>
-<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>    (-0.2) * treatment + <span class="co">///</span></span>
-<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>    (0.3) * period + <span class="co">///</span></span>
-<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>    (0.8) * treatment * period + <span class="co">///</span></span>
-<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>    rnormal(0, 0.8)</span>
-<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>* Round to integers (can't have fractional visits)</span>
-<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a><span class="kw">replace</span> prenatal_visits = <span class="fu">round</span>(prenatal_visits, 1)</span>
-<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a><span class="kw">replace</span> prenatal_visits = 0 <span class="kw">if</span> prenatal_visits &lt; 0</span>
-<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a><span class="kw">save</span> <span class="st">"did_simulation.dta"</span>, <span class="kw">replace</span></span>
-<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a><span class="kw">describe</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">clear</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>* Set <span class="dv">seed</span> <span class="kw">for</span> reproducibility</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">set</span> <span class="dv">seed</span> 12345</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>* Create village-<span class="dv">level</span> <span class="kw">data</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="kw">set</span> <span class="kw">obs</span> 100</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="kw">generate</span> village_id = <span class="dt">_n</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="kw">generate</span> treatment = (village_id &lt;= 50)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>* Expand to woman-<span class="dv">level</span> (10 women per village)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>expand 10</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="kw">bysort</span> village_id: <span class="kw">generate</span> woman_id = <span class="dt">_n</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>* Expand to panel (before and after)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>expand 2</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="kw">bysort</span> village_id woman_id: <span class="kw">generate</span> period = <span class="dt">_n</span> - 1</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="kw">label</span> <span class="kw">define</span> period_lbl 0 <span class="st">"Before (2022)"</span> 1 <span class="st">"After (2023)"</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="kw">label</span> <span class="kw">values</span> period period_lbl</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>* Generate outcome with DiD structure</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>* Base: 2 visits <span class="kw">on</span> average</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>* Treatment villages slightly <span class="fu">lower</span> <span class="fu">at</span> baseline: -0.2</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>* Time trend <span class="kw">for</span> everyone: +0.3</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>* Treatment effect: +0.8 visits</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="kw">generate</span> prenatal_visits = 2 + <span class="co">///</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>    (-0.2) * treatment + <span class="co">///</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>    (0.3) * period + <span class="co">///</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    (0.8) * treatment * period + <span class="co">///</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>    rnormal(0, 0.8)</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>* Round to integers (can't have fractional visits)</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="kw">replace</span> prenatal_visits = <span class="fu">round</span>(prenatal_visits, 1)</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="kw">replace</span> prenatal_visits = 0 <span class="kw">if</span> prenatal_visits &lt; 0</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="kw">save</span> <span class="st">"did_simulation.dta"</span>, <span class="kw">replace</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="kw">describe</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Number of observations (_N) was 0, now 100.
@@ -586,7 +582,7 @@ file did_simulation.dta saved
 
 Contains data from did_simulation.dta
  Observations:         2,000                  
-    Variables:             5                  17 Jan 2026 16:28
+    Variables:             5                  19 Jan 2026 07:20
 -------------------------------------------------------------------------------------------
 Variable      Storage   Display    Value
     name         type    format    label      Variable label
@@ -607,10 +603,10 @@ Sorted by: village_id  woman_id</code></pre>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="st">"did_simulation.dta"</span>, <span class="kw">clear</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>* Create the 2x2 <span class="kw">table</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="kw">table</span> treatment period, statistic(<span class="kw">mean</span> prenatal_visits) statistic(<span class="fu">sd</span> prenatal_visits)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="st">"did_simulation.dta"</span>, <span class="kw">clear</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>* Create the 2x2 <span class="kw">table</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="kw">table</span> treatment period, statistic(<span class="kw">mean</span> prenatal_visits) statistic(<span class="fu">sd</span> prenatal_visits)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>                       |                   period                
@@ -635,17 +631,17 @@ treatment              |
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="st">"did_simulation.dta"</span>, <span class="kw">clear</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>* Generate interaction term</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="kw">generate</span> treat_post = treatment * period</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>* DiD regression</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="kw">regress</span> prenatal_visits treatment period treat_post</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>* Store coefficients <span class="kw">for</span> interpretation</span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="fu">scalar</span> tau_hat = _b[treat_post]</span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="kw">display</span> <span class="st">"DiD Estimate (tau): "</span> tau_hat</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="st">"did_simulation.dta"</span>, <span class="kw">clear</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>* Generate interaction term</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="kw">generate</span> treat_post = treatment * period</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>* DiD regression</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="kw">regress</span> prenatal_visits treatment period treat_post</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>* Store coefficients <span class="kw">for</span> interpretation</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="fu">scalar</span> tau_hat = _b[treat_post]</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="kw">display</span> <span class="st">"DiD Estimate (tau): "</span> tau_hat</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>      Source |       SS           df       MS      Number of obs   =     2,000
@@ -676,12 +672,12 @@ DiD Estimate (tau): .864</code></pre>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="st">"did_simulation.dta"</span>, <span class="kw">clear</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="kw">generate</span> treat_post = treatment * period</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>* DiD regression with clustered standard errors</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="kw">regress</span> prenatal_visits treatment period treat_post, <span class="kw">cluster</span>(village_id)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="st">"did_simulation.dta"</span>, <span class="kw">clear</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="kw">generate</span> treat_post = treatment * period</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>* DiD regression with clustered standard errors</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="kw">regress</span> prenatal_visits treatment period treat_post, <span class="kw">cluster</span>(village_id)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Linear regression                               Number of obs     =      2,000

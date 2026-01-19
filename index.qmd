@@ -2,7 +2,7 @@
 title: ""
 format:
   html:
-    page-layout: article
+    page-layout: full
 ---
 
 <style>
@@ -12,7 +12,7 @@ format:
 
 /* Hero - aligned the text to middle, through specification*/
 .hero {
-  max-width: 700px;
+  max-width: 850px;
   margin: 0rem auto 3rem;
   text-align: center;
   padding: 0 1rem;
@@ -51,9 +51,9 @@ footer {
 
 <div class="hero">
   <img src="profile.jpg" alt="Nadhira" class="avatar" />
-  <h1>Hi, I'm Nadhira A. Hendra! 👋</h1>
+  <h1>Nadhira Azzahra Hendra</h1>
   <p>
-    I'm a first year graduate student in **Quantitative Methods in the Social Sciences** at Columbia University, previously I work as a data analyst in [Traveloka](https://www.traveloka.com/en-en) and [OCBC](https://www.ocbc.com/business-banking). My interest focuses in the field of data analysis, causal inference, and field experimentation, particularly as tools to create meaningful societal impact. You can get in touch with me via email [nah2181@columbia.edu](mailto:nah2181@columbia.edu) or at [LinkedIn](https://linkedin.com/in/azzahrandhr)
+    I'm a first year graduate student in **Quantitative Methods in the Social Sciences** at Columbia University. Previously, I worked as a data analyst at [Traveloka](https://www.traveloka.com/en-en) and [OCBC](https://www.ocbc.com/business-banking). My interest focus on the field of data analysis, causal inference, and field experimentation, particularly as tools to create meaningful societal impact. You can get in touch with me via email at [nah2181@columbia.edu](mailto:nah2181@columbia.edu) or on [LinkedIn](https://linkedin.com/in/azzahrandhr)
   </p>
 </div>
 

@@ -1,9 +1,10 @@
 ---
-title: "Understanding Difference-in-Differences: Mobile Health Clinics in Rural India"
-description: "A practical guide to DiD estimation with Stata, exploring causal inference in health policy evaluation"
+title: "Understanding Difference-in-Differences: A Practical Guide Using Stata"
+description: "Exploring quasi-experimental methods through a health policy case study"
 author: "Nadhira A. Hendra"
-categories: [stata, difference-in-difference, development-economics]
+categories: [stata, regression, difference-in-difference]
 date: "January 15, 2026"
+date-modified: "January 19, 2026"
 format:
   html:
     code-fold: true
@@ -11,12 +12,13 @@ format:
     toc-depth: 3
 execute:
   eval: true
-  echo: true
+  echo: true 
+  message: false
 ---
 
 # Introduction
 
-This analysis started as one of my class assignments in Economic Development at Columbia. The task was to think through the design and estimation of a Difference-in-Differences (DiD) study evaluating mobile health clinics on prenatal care utilization in rural Rajasthan, India.
+This analysis started as one of my class assignments in Economic Development at Columbia. The task was to think through experiment designs of a study evaluating mobile health clinics on prenatal care utilization in rural Rajasthan, India.
 
 Unlike my previous post on World Bank indicators (which was purely correlational), this one dives into causal inference. **DiD lets us estimate treatment effects when we have observational data before and during the period of intervention**.
 
@@ -86,13 +88,15 @@ Where:
 
 The coefficient $\tau$ is what we care about. It captures the additional change in the treatment group beyond what the control group experienced.
 
-# Stata Implementation
+# Exploratory Analysis
+## Setup
 
-Let me show how this would look in practice with simulated data.
+For reference on setting up Stata in R, you can refer [here](/posts/202501_global-development-indicators/index.qmd).
 
 ```{r}
-#| code-fold: false
-#| echo: true
+#| code-fold: true
+#| echo: false
+#| message: false
 library(Statamarkdown)
 knitr::opts_chunk$set(
   warning=FALSE,
@@ -101,7 +105,7 @@ knitr::opts_chunk$set(
   )
 ```
 
-## Simulating the Data
+## Simulating the Data 
 
 For illustration, I'll create a dataset that mimics what researchers might have collected.
 
