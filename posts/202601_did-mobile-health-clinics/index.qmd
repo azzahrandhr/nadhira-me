@@ -182,7 +182,7 @@ The coefficient on `treat_post` is our DiD estimate. In this simulated data, mob
 DiD requires that without treatment, both groups would have followed the same trend. This is called the **parallel trends assumption**. It's untestable in the treatment period, but we can check whether trends were parallel before treatment.
 :::
 
-In our example, suppose treatment villages had 2.1 prenatal visits in 2022 while control villages had 2.3. This baseline difference doesn't invalidate DiD—the method accounts for level differences by looking at *changes* rather than absolute levels.
+In our example, suppose treatment villages had 2.1 prenatal visits in 2022 while control villages had 2.3. This baseline difference doesn't invalidate DiD. The method accounts for level differences by looking at *changes* rather than absolute levels.
 
 What would be concerning is if the groups were on different trajectories before treatment. If we had data from 2020 and 2021, we could test this by:
 
