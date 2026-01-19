@@ -410,7 +410,6 @@ window.Quarto = {
   <li><a href="#simulating-the-data" id="toc-simulating-the-data" class="nav-link" data-scroll-target="#simulating-the-data">Simulating the Data</a></li>
   <li><a href="#computing-group-means" id="toc-computing-group-means" class="nav-link" data-scroll-target="#computing-group-means">Computing Group Means</a></li>
   <li><a href="#running-the-did-regression" id="toc-running-the-did-regression" class="nav-link" data-scroll-target="#running-the-did-regression">Running the DiD Regression</a></li>
-  <li><a href="#clustering-standard-errors" id="toc-clustering-standard-errors" class="nav-link" data-scroll-target="#clustering-standard-errors">Clustering Standard Errors</a></li>
   </ul></li>
   <li><a href="#assumption" id="toc-assumption" class="nav-link" data-scroll-target="#assumption">Assumption</a>
   <ul class="collapse">
@@ -582,7 +581,7 @@ file did_simulation.dta saved
 
 Contains data from did_simulation.dta
  Observations:         2,000                  
-    Variables:             5                  19 Jan 2026 07:20
+    Variables:             5                  19 Jan 2026 07:37
 -------------------------------------------------------------------------------------------
 Variable      Storage   Display    Value
     name         type    format    label      Variable label
@@ -636,48 +635,8 @@ treatment              |
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>* Generate interaction term</span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="kw">generate</span> treat_post = treatment * period</span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>* DiD regression</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="kw">regress</span> prenatal_visits treatment period treat_post</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>* Store coefficients <span class="kw">for</span> interpretation</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="fu">scalar</span> tau_hat = _b[treat_post]</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="kw">display</span> <span class="st">"DiD Estimate (tau): "</span> tau_hat</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>      Source |       SS           df       MS      Number of obs   =     2,000
--------------+----------------------------------   F(3, 1996)      =    162.82
-       Model |     357.682         3  119.227333   Prob &gt; F        =    0.0000
-    Residual |     1461.58     1,996  .732254509   R-squared       =    0.1966
--------------+----------------------------------   Adj R-squared   =    0.1954
-       Total |    1819.262     1,999  .910086043   Root MSE        =    .85572
-
-------------------------------------------------------------------------------
-prenatal_v~s | Coefficient  Std. err.      t    P&gt;|t|     [95% conf. interval]
--------------+----------------------------------------------------------------
-   treatment |       -.25   .0541204    -4.62   0.000    -.3561384   -.1438616
-      period |       .272   .0541204     5.03   0.000     .1658616    .3781384
-  treat_post |       .864   .0765378    11.29   0.000     .7138976    1.014102
-       _cons |       2.06   .0382689    53.83   0.000     1.984949    2.135051
-------------------------------------------------------------------------------
-
-
-DiD Estimate (tau): .864</code></pre>
-</div>
-</div>
-<p>The coefficient on <code>treat_post</code> is our DiD estimate. In this simulated data, mobile clinics increased prenatal visits by approximately 0.8 visits. This is close to the true effect we built into the simulation.</p>
-</section>
-<section id="clustering-standard-errors" class="level2">
-<h2 class="anchored" data-anchor-id="clustering-standard-errors">Clustering Standard Errors</h2>
-<p>Since treatment is assigned at the village level, we should cluster our standard errors accordingly:</p>
-<div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="st">"did_simulation.dta"</span>, <span class="kw">clear</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="kw">generate</span> treat_post = treatment * period</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>* DiD regression with clustered standard errors</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="kw">regress</span> prenatal_visits treatment period treat_post, <span class="kw">cluster</span>(village_id)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>* DiD regression with clustered standard errors</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="kw">regress</span> prenatal_visits treatment period treat_post, <span class="kw">cluster</span>(village_id)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Linear regression                               Number of obs     =      2,000
@@ -698,7 +657,7 @@ prenatal_v~s | Coefficient  std. err.      t    P&gt;|t|     [95% conf. interval
 ------------------------------------------------------------------------------</code></pre>
 </div>
 </div>
-<p>Notice how the standard errors change when we account for clustering. This is important—ignoring clustering can lead to overconfidence in our estimates.</p>
+<p>The coefficient on <code>treat_post</code> is our DiD estimate. In this simulated data, mobile clinics increased prenatal visits by approximately 0.8 visits. This is close to the true effect we built into the simulation.</p>
 </section>
 </section>
 <section id="assumption" class="level1">

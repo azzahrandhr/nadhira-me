@@ -162,36 +162,17 @@ table treatment period, statistic(mean prenatal_visits) statistic(sd prenatal_vi
 
 ## Running the DiD Regression
 
-```{stata did-regression}
-use "did_simulation.dta", clear
-
-* Generate interaction term
-generate treat_post = treatment * period
-
-* DiD regression
-regress prenatal_visits treatment period treat_post
-
-* Store coefficients for interpretation
-scalar tau_hat = _b[treat_post]
-display "DiD Estimate (tau): " tau_hat
-```
-
-The coefficient on `treat_post` is our DiD estimate. In this simulated data, mobile clinics increased prenatal visits by approximately 0.8 visits. This is close to the true effect we built into the simulation.
-
-## Clustering Standard Errors
-
-Since treatment is assigned at the village level, we should cluster our standard errors accordingly:
-
 ```{stata clustered-se}
 use "did_simulation.dta", clear
 
+* Generate interaction term
 generate treat_post = treatment * period
 
 * DiD regression with clustered standard errors
 regress prenatal_visits treatment period treat_post, cluster(village_id)
 ```
 
-Notice how the standard errors change when we account for clustering. This is important—ignoring clustering can lead to overconfidence in our estimates.
+The coefficient on `treat_post` is our DiD estimate. In this simulated data, mobile clinics increased prenatal visits by approximately 0.8 visits. This is close to the true effect we built into the simulation.
 
 # Assumption
 ## Parallel Trends
