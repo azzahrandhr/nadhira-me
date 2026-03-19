@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://nadhira.me/posts/202603_climate-gdp-replication/index.html</loc>
+    <lastmod>2026-03-19T02:59:14.525Z</lastmod>
+  </url>
+  <url>
+    <loc>https://nadhira.me/posts/202601_did-mobile-health-clinics/index.html</loc>
+    <lastmod>2026-01-19T00:42:53.600Z</lastmod>
+  </url>
+  <url>
     <loc>https://nadhira.me/blog.html</loc>
     <lastmod>2026-01-18T23:52:01.042Z</lastmod>
   </url>
@@ -9,23 +17,11 @@
     <lastmod>2026-01-18T23:59:49.967Z</lastmod>
   </url>
   <url>
-    <loc>https://nadhira.me/posts/202601_did-mobile-health-clinics/index.html</loc>
-    <lastmod>2026-01-19T00:42:53.600Z</lastmod>
-  </url>
-  <url>
-    <loc>https://nadhira.me/posts/202601_replication-rct-authorian/index.html</loc>
-    <lastmod>2026-01-16T17:13:13.471Z</lastmod>
-  </url>
-  <url>
     <loc>https://nadhira.me/posts/202501_global-development-indicators/index.html</loc>
     <lastmod>2026-01-13T16:26:38.863Z</lastmod>
   </url>
   <url>
-    <loc>https://nadhira.me/posts/202603_climate-gdp-replication/index.html</loc>
-    <lastmod>2026-03-19T02:59:14.525Z</lastmod>
-  </url>
-  <url>
-    <loc>https://nadhira.me/CLAUDE.html</loc>
-    <lastmod>2026-03-19T02:59:24.924Z</lastmod>
+    <loc>https://nadhira.me/posts/202601_replication-rct-authorian/index.html</loc>
+    <lastmod>2026-01-16T17:13:13.471Z</lastmod>
   </url>
 </urlset>
