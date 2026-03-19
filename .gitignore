@@ -3,5 +3,5 @@
 .Rproj.user
 .DS_Store
 CLAUDE.md
-docs
-_freeze
+/docs/
+/_freeze/
