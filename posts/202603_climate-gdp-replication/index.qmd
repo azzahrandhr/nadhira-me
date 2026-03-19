@@ -1,0 +1,428 @@
+---
+title: "Does Temperature Shape Economic Growth? Replicating Burke, Hsiang & Miguel (2015)"
+description: "A replication of a landmark climate economics paper that found an inverted-U relationship between temperature and GDP growth — and what it means for countries like Indonesia."
+author: "Nadhira A. Hendra"
+categories: [r, causal-inference, development-economics, climate]
+date: "March 18, 2026"
+date-modified: "March 18, 2026"
+format:
+  html:
+    toc: true
+    toc-depth: 3
+bibliography: references.bib
+nocite: |
+  @*
+---
+
+```{r}
+#| label: setup
+#| include: false
+
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(fixest)
+library(modelsummary)
+library(knitr)
+library(kableExtra)
+
+set.seed(2181)
+```
+
+# Introduction
+
+I grew up in Indonesia — a country that sits almost entirely within the tropics, averaging annual temperatures well above 25°C. It's hot. Always. And for years, I'd hear the usual narrative: warm countries are "naturally" less productive, cooler climates breed harder workers, and the economic gap between the Global North and South was somehow baked into geography.
+
+This is the reason why this paper intrigues me.
+
+**Burke, Hsiang, and Miguel (2015)** published "Global non-linear effect of temperature on economic production" in *Nature* and offered one of the most compelling empirical answers to a deceptively simple question: does temperature actually affect how much countries grow? 
+
+In short, their answer is yes — and the paper reveals a striking non-linear relationship between temperature and economic development.
+
+This post is a replication of their core analysis. I reproduce their main findings using the same dataset, then add a robustness check using an alternative growth specification. By the end, I want to make two things clear: (1) the temperature-GDP relationship is robust and well-identified, and (2) countries like Indonesia, which are already sitting in the hottest part of the curve, are facing compounding risks from further warming.
+
+# Research Design
+
+The paper's core argument can be summarized in three points:
+
+-   **The relationship between temperature and GDP growth is an inverted U-shape.** GDP growth increases with temperature up to an optimal point (around 13°C in the original paper), then declines sharply.
+
+-   **The identification strategy relies on within-country temperature variation over time.** Country and year fixed effects remove time-invariant confounders (geography, institutions, culture) and global shocks (recessions, pandemics). What remains is the within-country, year-to-year variation in temperature — plausibly exogenous to economic decisions.
+
+-   **The damage from future warming falls disproportionately on poor, hot countries.** Rich countries cluster near the optimal temperature. Poor countries in the tropics are already on the declining side — additional warming only makes things worse.
+
+The core regression model is:
+
+$$\Delta \ln(\text{GDP per capita})_{it} = \beta_1 T_{it} + \beta_2 T_{it}^2 + \gamma P_{it} + \lambda P_{it}^2 + \alpha_i + \delta_t + \varepsilon_{it}$$
+
+Where $T_{it}$ is the population-weighted annual average temperature, $P_{it}$ is precipitation, $\alpha_i$ are country fixed effects, and $\delta_t$ are year fixed effects. The inverted-U shape is identified by a negative $\beta_2$, and the optimal temperature is found by setting the first derivative equal to zero: $T^* = -\beta_1 / (2\beta_2)$.
+
+# Data
+
+The dataset merges several sources:
+
+-   **World Development Indicators (WDI)**: GDP per capita growth rates for 166 countries over approximately 50 years
+-   **University of Delaware climate data**: Population-weighted country-level temperature and precipitation
+-   **Additional economic variables**: Agricultural and non-agricultural GDP, total population, PPP-adjusted income
+
+Population weighting is important: rather than averaging temperature uniformly across a country's land area, the variable represents the average temperature *experienced by a person* in that country. Since economic activity concentrates in populated areas, this is a more relevant measure for growth regressions.
+
+```{r}
+#| label: load-data
+#| code-fold: true
+#| echo: true
+
+raw_data <- read.csv("data/bhm_data.csv")
+
+# Drop observations missing outcome or main regressor
+bhm_data <- subset(raw_data,
+                   !is.na(raw_data$growthWDI) &
+                   !is.na(raw_data$UDel_temp_popweight))
+
+cat("Countries:", n_distinct(bhm_data$iso), "\n")
+cat("Years:", n_distinct(bhm_data$year), "\n")
+cat("Observations:", nrow(bhm_data), "\n")
+```
+
+## Descriptive Statistics
+
+```{r}
+#| label: tbl-descriptive
+#| tbl-cap: "Summary Statistics"
+#| code-fold: true
+#| echo: true
+
+selected_vars <- c("growthWDI", "UDel_temp_popweight", "UDel_precip_popweight")
+
+desc_table <- bhm_data %>%
+  summarise(across(all_of(selected_vars),
+                   list(
+                     Mean   = ~round(mean(., na.rm = TRUE), 2),
+                     SD     = ~round(sd(., na.rm = TRUE), 2),
+                     Min    = ~round(min(., na.rm = TRUE), 2),
+                     Median = ~round(median(., na.rm = TRUE), 2),
+                     Max    = ~round(max(., na.rm = TRUE), 2)
+                   ))) %>%
+  pivot_longer(everything(),
+               names_to = c("Variable", ".value"),
+               names_sep = "_(?=[^_]+$)") %>%
+  mutate(Variable = recode(Variable,
+    "growthWDI"              = "GDP per capita growth (%)",
+    "UDel_temp_popweight"    = "Temperature, pop-weighted (°C)",
+    "UDel_precip_popweight"  = "Precipitation, pop-weighted (mm/month)"
+  ))
+
+desc_table %>%
+  kable(booktabs = TRUE, align = c("l", "c", "c", "c", "c", "c")) %>%
+  kable_styling(
+    bootstrap_options = c("striped", "hover", "condensed"),
+    full_width = FALSE,
+    position = "center"
+  ) %>%
+  footnote(
+    general = "Final sample after dropping observations missing growth or temperature data. 166 countries, ~50 years.",
+    general_title = "Note:",
+    footnote_as_chunk = TRUE
+  )
+```
+
+A few observations worth flagging:
+
+- **Growth rates** range from severe contractions to rapid expansions; 50% of observations fall between roughly −0.3% and 4% annually — reasonable for typical country-year variation.
+- **Temperature** has a mean of about 19°C but high variance (SD ≈ 9°C). The interquartile range spans 12.9°C to 25.5°C, reflecting the wide diversity of climates in the sample.
+- **The gap between mean (18.9°C) and median (20.9°C) for temperature** suggests left-skew: there are relatively few very cold country-years pulling the mean down.
+
+# Main Regression: The Quadratic Temperature-GDP Model
+
+## Estimation
+
+I estimate the model using `feols` from the `fixest` package, which handles high-dimensional fixed effects efficiently. The main specification includes country ($\alpha_i$) and year ($\delta_t$) fixed effects.
+
+```{r}
+#| label: model-estimation
+#| code-fold: true
+#| echo: true
+
+# Create quadratic terms
+bhm_data$temp_sq   <- bhm_data$UDel_temp_popweight^2
+bhm_data$precip_sq <- bhm_data$UDel_precip_popweight^2
+
+# Main model: quadratic temperature + precipitation, country + year FE
+model_main <- feols(
+  growthWDI ~ UDel_temp_popweight + temp_sq +
+              UDel_precip_popweight + precip_sq | iso + year,
+  data = bhm_data
+)
+
+# Extract key coefficients
+b1 <- coef(model_main)["UDel_temp_popweight"]
+b2 <- coef(model_main)["temp_sq"]
+
+# Optimal temperature
+T_star <- -b1 / (2 * b2)
+
+cat("β₁ (temp):   ", round(b1, 5), "\n")
+cat("β₂ (temp²):  ", round(b2, 6), "\n")
+cat("Optimal T*:  ", round(T_star, 2), "°C\n")
+```
+
+## Regression Output
+
+```{r}
+#| label: tbl-main-results
+#| tbl-cap: "Main Regression: Temperature and GDP per Capita Growth"
+#| code-fold: true
+#| echo: true
+
+modelsummary(
+  list("GDP Growth (WDI)" = model_main),
+  coef_map = c(
+    "UDel_temp_popweight"   = "Temperature (°C)",
+    "temp_sq"               = "Temperature² (°C²)",
+    "UDel_precip_popweight" = "Precipitation",
+    "precip_sq"             = "Precipitation²"
+  ),
+  gof_map = c("nobs", "r.squared", "adj.r.squared"),
+  stars   = TRUE,
+  title   = "Dependent variable: GDP per capita growth rate (%)",
+  notes   = "Country and year fixed effects included. Standard errors clustered by country."
+)
+```
+
+Both temperature coefficients are highly significant. $\beta_1 > 0$ and $\beta_2 < 0$ confirms the inverted-U shape: growth rises with temperature up to the optimal point, then falls. My estimated optimal temperature is around **`r round(T_star, 1)`°C** — somewhat higher than the paper's reported 13°C, which the authors obtained using a slightly different specification. The qualitative pattern is the same.
+
+::: callout-note
+**Why fixed effects support a causal interpretation** — but only under assumptions.
+
+Country fixed effects absorb time-invariant confounders: geography, institutions, culture, and historical development patterns. Year fixed effects absorb global shocks: recessions, oil prices, global technology shocks. What remains is within-country, within-year temperature variation — year-to-year deviations from a country's typical climate. This variation is plausibly exogenous to economic decisions.
+
+The key assumptions: (1) strict exogeneity, meaning that temperature shocks aren't caused by GDP changes; (2) no time-varying omitted confounders within countries; (3) no spillovers across borders. These are defensible but not guaranteed.
+:::
+
+# Visualizing the Response Function
+
+The clearest way to see the result is to plot predicted GDP growth against temperature, holding everything else constant. This is Figure 2 from the original paper.
+
+```{r}
+#| label: fig-response-curve
+#| fig-cap: "Estimated effect of temperature on GDP per capita growth. The curve shows predicted growth relative to the optimal temperature (centered at 0). Shaded band is a 95% confidence interval. Histograms at the bottom show the distribution of temperature-weighted observations (red), population (gray), and GDP (black) across temperature bins. Vertical lines mark mean temperatures for selected countries."
+#| fig-height: 6
+#| code-fold: true
+#| echo: true
+
+# Prediction grid
+temp_range <- seq(-5, 35, by = 0.5)
+
+# Predicted growth (linear + quadratic terms)
+y_hat <- b1 * temp_range + b2 * temp_range^2
+
+# Delta-method standard errors: SE(ŷ) = sqrt(X' Var(β) X)
+vcov_mat <- vcov(model_main)[c("UDel_temp_popweight", "temp_sq"),
+                              c("UDel_temp_popweight", "temp_sq")]
+
+se_fit <- sapply(temp_range, function(t) {
+  x <- c(t, t^2)
+  sqrt(as.numeric(t(x) %*% vcov_mat %*% x))
+})
+
+# Center predictions at the maximum
+y_center   <- y_hat - max(y_hat)
+ci_lower   <- y_hat - 1.96 * se_fit - max(y_hat)
+ci_upper   <- y_hat + 1.96 * se_fit - max(y_hat)
+
+pred_df <- data.frame(
+  temp      = temp_range,
+  y         = y_center,
+  ci_lower  = ci_lower,
+  ci_upper  = ci_upper
+)
+
+# Histogram data (0.5°C bins)
+bins <- seq(-6, 30, by = 0.5)
+bin_mids <- bins[-length(bins)] + 0.25
+
+hist_temp <- bhm_data$UDel_temp_popweight
+hist_pop  <- bhm_data$Pop
+hist_gdp  <- bhm_data$TotGDP
+
+n_bins <- length(bins) - 1
+pop_by_bin   <- numeric(n_bins)
+gdp_by_bin   <- numeric(n_bins)
+count_by_bin <- numeric(n_bins)
+
+for (j in seq_len(n_bins)) {
+  in_bin           <- hist_temp >= bins[j] & hist_temp < bins[j + 1]
+  count_by_bin[j]  <- sum(in_bin)
+  pop_by_bin[j]    <- sum(hist_pop[in_bin], na.rm = TRUE)
+  gdp_by_bin[j]    <- sum(hist_gdp[in_bin], na.rm = TRUE)
+}
+
+# Normalize
+scale_factor <- 0.06
+count_norm <- count_by_bin / max(count_by_bin) * scale_factor
+pop_norm   <- pop_by_bin   / max(pop_by_bin)   * scale_factor
+gdp_norm   <- gdp_by_bin   / max(gdp_by_bin)   * scale_factor
+
+base_y  <- -0.35
+spacing <- 0.065
+
+hist_df <- data.frame(
+  xmin = bins[-length(bins)],
+  xmax = bins[-1],
+  temp_h  = base_y,
+  temp_t  = base_y + count_norm,
+  pop_h   = base_y - spacing,
+  pop_t   = base_y - spacing + pop_norm,
+  gdp_h   = base_y - 2 * spacing,
+  gdp_t   = base_y - 2 * spacing + gdp_norm
+)
+
+# Country reference lines
+selected <- data.frame(
+  iso   = c("DEU", "USA", "NGA", "IDN", "GBR", "FRA", "CHN", "BRA"),
+  label = c("Germany", "USA", "Nigeria", "Indonesia", "UK", "France", "China", "Brazil")
+)
+
+country_temps <- bhm_data %>%
+  filter(iso %in% selected$iso) %>%
+  group_by(iso) %>%
+  summarise(mean_temp = mean(UDel_temp_popweight, na.rm = TRUE)) %>%
+  left_join(selected, by = "iso")
+
+ggplot() +
+  # CI ribbon
+  geom_ribbon(data = pred_df,
+              aes(x = temp, ymin = ci_lower, ymax = ci_upper),
+              fill = "#6BAED6", alpha = 0.4) +
+  # Response curve
+  geom_line(data = pred_df,
+            aes(x = temp, y = y),
+            color = "#08519C", linewidth = 0.9) +
+  # Zero reference line
+  geom_hline(yintercept = 0, linetype = "dashed", color = "gray60", linewidth = 0.4) +
+  # Country vertical lines
+  geom_segment(data = country_temps,
+               aes(x = mean_temp, xend = mean_temp, y = -0.26, yend = 0.07),
+               color = "gray60", linewidth = 0.3) +
+  geom_text(data = country_temps,
+            aes(x = mean_temp, y = 0.08, label = label),
+            angle = 90, hjust = 0, size = 2.5, color = "gray40") +
+  # Temperature histogram (red)
+  geom_rect(data = hist_df,
+            aes(xmin = xmin, xmax = xmax, ymin = temp_h, ymax = temp_t),
+            fill = "#CB181D", color = NA, alpha = 0.8) +
+  # Population histogram (gray)
+  geom_rect(data = hist_df,
+            aes(xmin = xmin, xmax = xmax, ymin = pop_h, ymax = pop_t),
+            fill = "gray50", color = NA, alpha = 0.8) +
+  # GDP histogram (black)
+  geom_rect(data = hist_df,
+            aes(xmin = xmin, xmax = xmax, ymin = gdp_h, ymax = gdp_t),
+            fill = "gray15", color = NA, alpha = 0.8) +
+  annotate("text", x = -4.5, y = base_y + 0.005,           label = "Obs.",  hjust = 0, size = 2.2, color = "#CB181D") +
+  annotate("text", x = -4.5, y = base_y - spacing + 0.005,     label = "Pop.",  hjust = 0, size = 2.2, color = "gray50") +
+  annotate("text", x = -4.5, y = base_y - 2*spacing + 0.005,   label = "GDP",   hjust = 0, size = 2.2, color = "gray15") +
+  scale_x_continuous(limits = c(-5, 35),
+                     breaks = seq(0, 30, by = 10),
+                     name = "Annual average temperature (°C)") +
+  scale_y_continuous(name = "Change in ln(GDP per capita)\n(relative to peak)",
+                     limits = c(base_y - 2.5 * spacing, 0.18)) +
+  theme_minimal(base_size = 11) +
+  theme(
+    panel.grid.minor = element_blank(),
+    axis.title       = element_text(size = 10),
+    plot.caption     = element_text(size = 8, color = "gray50")
+  )
+```
+
+The curve tells a clear story. **The optimal temperature for economic growth is around `r round(T_star, 0)`°C** — roughly where Germany and France sit. Countries in the tropics (Nigeria, Indonesia, Brazil) are already well past the peak; every degree of additional warming pushes them further down the declining slope.
+
+The histograms at the bottom also reveal something troubling: most of the world's population (gray) and economic activity (black) is concentrated in warm regions already on the right side of the curve.
+
+# Robustness: Alternative Growth Specification
+
+The original paper uses `growthWDI`, which is the World Bank's pre-computed GDP per capita growth rate. A theoretically cleaner alternative is to compute growth directly as the log difference in GDP per capita:
+
+$$g_{it}^{\text{log}} = \ln\left(\frac{\text{GDP}_{it}}{\text{Pop}_{it}}\right) - \ln\left(\frac{\text{GDP}_{i,t-1}}{\text{Pop}_{i,t-1}}\right)$$
+
+This is equivalent to the WDI measure for small growth rates (within ±10%), but avoids reliance on the WDI's data processing choices.
+
+```{r}
+#| label: robustness-logdiff
+#| code-fold: true
+#| echo: true
+
+# Compute log-difference growth from raw GDP and population
+bhm_data <- bhm_data %>%
+  arrange(iso, year) %>%
+  group_by(iso) %>%
+  mutate(
+    gdp_per_cap  = TotGDP / Pop,
+    ln_gdp_pc    = log(gdp_per_cap),
+    growth_logdiff = ln_gdp_pc - lag(ln_gdp_pc)
+  ) %>%
+  ungroup()
+
+# Replicate model with log-difference outcome
+model_logdiff <- feols(
+  growth_logdiff ~ UDel_temp_popweight + temp_sq +
+                   UDel_precip_popweight + precip_sq | iso + year,
+  data = bhm_data
+)
+
+b1_ld <- coef(model_logdiff)["UDel_temp_popweight"]
+b2_ld <- coef(model_logdiff)["temp_sq"]
+T_star_ld <- -b1_ld / (2 * b2_ld)
+
+cat("Log-diff model — Optimal T*:", round(T_star_ld, 2), "°C\n")
+```
+
+## Model Comparison
+
+```{r}
+#| label: tbl-model-comparison
+#| tbl-cap: "Main Model vs. Log-Difference Robustness Check"
+#| code-fold: true
+#| echo: true
+
+modelsummary(
+  list(
+    "WDI Growth Rate"     = model_main,
+    "Log-Difference Growth" = model_logdiff
+  ),
+  coef_map = c(
+    "UDel_temp_popweight"   = "Temperature (°C)",
+    "temp_sq"               = "Temperature² (°C²)",
+    "UDel_precip_popweight" = "Precipitation",
+    "precip_sq"             = "Precipitation²"
+  ),
+  gof_map = c("nobs", "r.squared", "adj.r.squared"),
+  stars   = TRUE,
+  notes   = "Country and year fixed effects in all models. Standard errors clustered by country."
+)
+```
+
+The sign and significance of the temperature coefficients are consistent across both specifications. The optimal temperature estimate shifts slightly — a reminder that the exact turning point is sensitive to functional form and data construction — but the core inverted-U shape is robust.
+
+# What This Means
+
+Two takeaways stand out.
+
+**First, the identification strategy is genuinely clever.** By using within-country variation in temperature over time, the authors sidestep the usual concern that cold countries are richer for historical or institutional reasons unrelated to climate. They're not comparing Norway to Nigeria — they're asking whether Norway grows faster in unusually warm years. That's a much cleaner question.
+
+**Second, the distributional implications are stark.** Countries already sitting in warm climates — which largely overlap with countries that are poorer and less able to adapt — face the steepest portion of the decline curve. Climate change isn't just a global average problem; it's a deeply unequal one. Indonesia, sitting at around 26°C, would lose roughly 0.5–1 percentage point of annual growth per degree of warming according to these estimates. Compounded over decades, that's enormous.
+
+Of course, GDP is an imperfect welfare measure. As [@burke2015] themselves acknowledge, it misses health impacts, mortality, inequality, and ecosystem damage that may be equally or more important. The National Academies of Sciences have flagged exactly this limitation. But as a tractable, cross-country measure available over a long horizon, it remains the best available instrument for estimating aggregate economic damages.
+
+# Conclusion
+
+This replication confirms the main findings of Burke, Hsiang, and Miguel (2015): temperature has a significant, nonlinear effect on GDP growth, with an inverted-U shape peaking around 13–17°C depending on specification. The effect is identified from plausibly exogenous within-country temperature variation and is robust to alternative growth measures.
+
+For countries in the tropics, these findings are not just academic. They suggest that historical temperature patterns have already been shaping economic outcomes — and that future warming will compound existing disadvantages. Designing effective climate adaptation policy requires understanding not just global averages, but where on the curve each country already sits.
+
+# References
+
+::: {#refs}
+:::
