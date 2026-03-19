@@ -1,5 +1,5 @@
 ---
-title: "Does Temperature Shape Economic Growth? Replicating Burke, Hsiang & Miguel (2015)"
+title: "Does Temperature Shape Economic Growth? Replicating Burke, Hsiang & Miguel"
 description: "A replication of a landmark climate economics paper that found an inverted-U relationship between temperature and GDP growth — and what it means for countries like Indonesia."
 author: "Nadhira A. Hendra"
 categories: [r, causal-inference, development-economics, climate]
@@ -33,25 +33,25 @@ set.seed(2181)
 
 # Introduction
 
-I grew up in Indonesia — a country that sits almost entirely within the tropics, averaging annual temperatures well above 25°C. It's hot. Always. And for years, I'd hear the usual narrative: warm countries are "naturally" less productive, cooler climates breed harder workers, and the economic gap between the Global North and South was somehow baked into geography.
+I grew up in Indonesia, a country that sits almost entirely within the tropics, averaging annual temperatures well above 25°C. It's hot. Always. And for years, I'd hear the usual narrative: warm countries are "naturally" less productive, cooler climates breed harder workers, and the economic gap between the Global North and South was somehow baked into geography.
 
 This is the reason why this paper intrigues me.
 
-**Burke, Hsiang, and Miguel (2015)** published "Global non-linear effect of temperature on economic production" in *Nature* and offered one of the most compelling empirical answers to a deceptively simple question: does temperature actually affect how much countries grow? 
+**Burke, Hsiang, and Miguel** published "Global non-linear effect of temperature on economic production" in *Nature* in 2015 and offered one of the most compelling empirical answers to a deceptively simple question: does temperature actually affect how much countries grow?
 
-In short, their answer is yes — and the paper reveals a striking non-linear relationship between temperature and economic development.
+In short, their answer is yes, and the paper reveals a striking non-linear relationship between temperature and economic development.
 
-This post is a replication of their core analysis. I reproduce their main findings using the same dataset, then add a robustness check using an alternative growth specification. By the end, I want to make two things clear: (1) the temperature-GDP relationship is robust and well-identified, and (2) countries like Indonesia, which are already sitting in the hottest part of the curve, are facing compounding risks from further warming.
+This post is a replication of their core analysis. I reproduce their main findings using the same dataset, then add a robustness check using an alternative growth specification. By the end, I want to make two things clear: first, the temperature-GDP relationship is robust and well-identified; and second, countries like Indonesia, which are already sitting in the hottest part of the curve, are facing compounding risks from further warming.
 
 # Research Design
 
 The paper's core argument can be summarized in three points:
 
--   **The relationship between temperature and GDP growth is an inverted U-shape.** GDP growth increases with temperature up to an optimal point (around 13°C in the original paper), then declines sharply.
+-   **The relationship between temperature and GDP growth is an inverted U-shape.** GDP growth increases with temperature up to an optimal point, around 13°C in the original paper, then declines sharply.
 
--   **The identification strategy relies on within-country temperature variation over time.** Country and year fixed effects remove time-invariant confounders (geography, institutions, culture) and global shocks (recessions, pandemics). What remains is the within-country, year-to-year variation in temperature — plausibly exogenous to economic decisions.
+-   **The identification strategy relies on within-country temperature variation over time.** Country and year fixed effects remove time-invariant confounders such as geography, institutions, and culture, as well as global shocks like recessions and pandemics. What remains is the within-country, year-to-year variation in temperature, which is plausibly exogenous to economic decisions.
 
--   **The damage from future warming falls disproportionately on poor, hot countries.** Rich countries cluster near the optimal temperature. Poor countries in the tropics are already on the declining side — additional warming only makes things worse.
+-   **The damage from future warming falls disproportionately on poor, hot countries.** Rich countries cluster near the optimal temperature. Poor countries in the tropics are already on the declining side, and additional warming only makes things worse.
 
 The core regression model is:
 
@@ -130,7 +130,7 @@ desc_table %>%
 
 A few observations worth flagging:
 
-- **Growth rates** range from severe contractions to rapid expansions; 50% of observations fall between roughly −0.3% and 4% annually — reasonable for typical country-year variation.
+- **Growth rates** range from severe contractions to rapid expansions; 50% of observations fall between roughly −0.3% and 4% annually, which is reasonable for typical country-year variation.
 - **Temperature** has a mean of about 19°C but high variance (SD ≈ 9°C). The interquartile range spans 12.9°C to 25.5°C, reflecting the wide diversity of climates in the sample.
 - **The gap between mean (18.9°C) and median (20.9°C) for temperature** suggests left-skew: there are relatively few very cold country-years pulling the mean down.
 
@@ -138,7 +138,7 @@ A few observations worth flagging:
 
 ## Estimation
 
-I estimate the model using `feols` from the `fixest` package, which handles high-dimensional fixed effects efficiently. The main specification includes country ($\alpha_i$) and year ($\delta_t$) fixed effects.
+I estimate the model using `feols` from the `fixest` package, which handles high-dimensional fixed effects efficiently. The main specification includes country fixed effects, denoted $\alpha_i$, and year fixed effects $\delta_t$.
 
 ```{r}
 #| label: model-estimation
@@ -191,14 +191,14 @@ modelsummary(
 )
 ```
 
-Both temperature coefficients are highly significant. $\beta_1 > 0$ and $\beta_2 < 0$ confirms the inverted-U shape: growth rises with temperature up to the optimal point, then falls. My estimated optimal temperature is around **`r round(T_star, 1)`°C** — somewhat higher than the paper's reported 13°C, which the authors obtained using a slightly different specification. The qualitative pattern is the same.
+Both temperature coefficients are highly significant. $\beta_1 > 0$ and $\beta_2 < 0$ confirms the inverted-U shape: growth rises with temperature up to the optimal point, then falls. My estimated optimal temperature is around **`r round(T_star, 1)`°C**, somewhat higher than the paper's reported 13°C, which the authors obtained using a slightly different specification. The qualitative pattern is the same.
 
 ::: callout-note
-**Why fixed effects support a causal interpretation** — but only under assumptions.
+**Why fixed effects support a causal interpretation, and where the assumptions bite.**
 
-Country fixed effects absorb time-invariant confounders: geography, institutions, culture, and historical development patterns. Year fixed effects absorb global shocks: recessions, oil prices, global technology shocks. What remains is within-country, within-year temperature variation — year-to-year deviations from a country's typical climate. This variation is plausibly exogenous to economic decisions.
+Country fixed effects absorb time-invariant confounders: geography, institutions, culture, and historical development patterns. Year fixed effects absorb global shocks: recessions, oil prices, global technology shocks. What remains is within-country, within-year temperature variation, the year-to-year deviations from a country's typical climate. This variation is plausibly exogenous to economic decisions.
 
-The key assumptions: (1) strict exogeneity, meaning that temperature shocks aren't caused by GDP changes; (2) no time-varying omitted confounders within countries; (3) no spillovers across borders. These are defensible but not guaranteed.
+The key assumptions are strict exogeneity, meaning temperature shocks are not caused by GDP changes, no time-varying omitted confounders within countries, and no spillovers across borders. These are defensible but not guaranteed.
 :::
 
 # Visualizing the Response Function
@@ -337,7 +337,7 @@ ggplot() +
   )
 ```
 
-The curve tells a clear story. **The optimal temperature for economic growth is around `r round(T_star, 0)`°C** — roughly where Germany and France sit. Countries in the tropics (Nigeria, Indonesia, Brazil) are already well past the peak; every degree of additional warming pushes them further down the declining slope.
+The curve tells a clear story. **The optimal temperature for economic growth is around `r round(T_star, 0)`°C**, roughly where Germany and France sit. Countries in the tropics (Nigeria, Indonesia, Brazil) are already well past the peak; every degree of additional warming pushes them further down the declining slope.
 
 The histograms at the bottom also reveal something troubling: most of the world's population (gray) and economic activity (black) is concentrated in warm regions already on the right side of the curve.
 
@@ -347,7 +347,7 @@ The original paper uses `growthWDI`, which is the World Bank's pre-computed GDP 
 
 $$g_{it}^{\text{log}} = \ln\left(\frac{\text{GDP}_{it}}{\text{Pop}_{it}}\right) - \ln\left(\frac{\text{GDP}_{i,t-1}}{\text{Pop}_{i,t-1}}\right)$$
 
-This is equivalent to the WDI measure for small growth rates (within ±10%), but avoids reliance on the WDI's data processing choices.
+This is equivalent to the WDI measure for small growth rates, within roughly ±10%, but avoids reliance on the WDI's data processing choices.
 
 ```{r}
 #| label: robustness-logdiff
@@ -404,23 +404,23 @@ modelsummary(
 )
 ```
 
-The sign and significance of the temperature coefficients are consistent across both specifications. The optimal temperature estimate shifts slightly — a reminder that the exact turning point is sensitive to functional form and data construction — but the core inverted-U shape is robust.
+The sign and significance of the temperature coefficients are consistent across both specifications. The optimal temperature estimate shifts slightly, a reminder that the exact turning point is sensitive to functional form and data construction, but the core inverted-U shape is robust.
 
 # What This Means
 
 Two takeaways stand out.
 
-**First, the identification strategy is genuinely clever.** By using within-country variation in temperature over time, the authors sidestep the usual concern that cold countries are richer for historical or institutional reasons unrelated to climate. They're not comparing Norway to Nigeria — they're asking whether Norway grows faster in unusually warm years. That's a much cleaner question.
+**First, the identification strategy is genuinely clever.** By using within-country variation in temperature over time, the authors sidestep the usual concern that cold countries are richer for historical or institutional reasons unrelated to climate. They're not comparing Norway to Nigeria; they're asking whether Norway grows faster in unusually warm years. That's a much cleaner question.
 
-**Second, the distributional implications are stark.** Countries already sitting in warm climates — which largely overlap with countries that are poorer and less able to adapt — face the steepest portion of the decline curve. Climate change isn't just a global average problem; it's a deeply unequal one. Indonesia, sitting at around 26°C, would lose roughly 0.5–1 percentage point of annual growth per degree of warming according to these estimates. Compounded over decades, that's enormous.
+**Second, the distributional implications are stark.** Countries already sitting in warm climates, which largely overlap with countries that are poorer and less able to adapt, face the steepest portion of the decline curve. Climate change isn't just a global average problem; it's a deeply unequal one. Indonesia, sitting at around 26°C, would lose roughly 0.5–1 percentage point of annual growth per degree of warming according to these estimates. Compounded over decades, that's enormous.
 
 Of course, GDP is an imperfect welfare measure. As [@burke2015] themselves acknowledge, it misses health impacts, mortality, inequality, and ecosystem damage that may be equally or more important. The National Academies of Sciences have flagged exactly this limitation. But as a tractable, cross-country measure available over a long horizon, it remains the best available instrument for estimating aggregate economic damages.
 
 # Conclusion
 
-This replication confirms the main findings of Burke, Hsiang, and Miguel (2015): temperature has a significant, nonlinear effect on GDP growth, with an inverted-U shape peaking around 13–17°C depending on specification. The effect is identified from plausibly exogenous within-country temperature variation and is robust to alternative growth measures.
+This replication confirms the main findings of Burke, Hsiang, and Miguel: temperature has a significant, nonlinear effect on GDP growth, with an inverted-U shape peaking around 13–17°C depending on specification. The effect is identified from plausibly exogenous within-country temperature variation and is robust to alternative growth measures.
 
-For countries in the tropics, these findings are not just academic. They suggest that historical temperature patterns have already been shaping economic outcomes — and that future warming will compound existing disadvantages. Designing effective climate adaptation policy requires understanding not just global averages, but where on the curve each country already sits.
+For countries in the tropics, these findings are not just academic. They suggest that historical temperature patterns have already been shaping economic outcomes, and that future warming will compound existing disadvantages. Designing effective climate adaptation policy requires understanding not just global averages, but where on the curve each country already sits.
 
 # References
 
