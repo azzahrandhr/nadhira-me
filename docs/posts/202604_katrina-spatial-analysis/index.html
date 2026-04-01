@@ -6,8 +6,11 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Nadhira A. Hendra">
+<meta name="dcterms.date" content="2026-04-01">
+<meta name="description" content="Using GIS and 72,911 geocoded property records, I mapped how Hurricane Katrina’s destruction aligned with race, income, and elevation across New Orleans and what it reveals about environmental inequality.">
 
-<title>Blog</title>
+<title>Who Katrina Left Behind: A Spatial Analysis of Damage, Race, and Elevation in New Orleans</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,32 +23,50 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b758ccaa5987ceb1b75504551e579abf.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-e309e24b30824b370c4cb5380fc28e7a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-77c5af79d8383b998e118d60452268c1.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-e309e24b30824b370c4cb5380fc28e7a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-b758ccaa5987ceb1b75504551e579abf.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-f44857b0e6d828b93e09c3908499a240.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-fe16e231a8300d283b7d7d8d9c587741.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-f44857b0e6d828b93e09c3908499a240.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -73,65 +94,7 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-date','listing-author','listing-reading-time','listing-title','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 </head>
 
@@ -309,7 +272,7 @@ window.Quarto = {
   </script>
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
             <div id="quarto-search" class="" title="Search"></div>
@@ -319,11 +282,11 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./#about"> 
+    <a class="nav-link" href="../../#about"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./blog.html" aria-current="page"> 
+    <a class="nav-link" href="../../blog.html"> 
 <span class="menu-text">Blog</span></a>
   </li>  
 </ul>
@@ -337,190 +300,276 @@ window.Quarto = {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Who Katrina Left Behind: A Spatial Analysis of Damage, Race, and Elevation in New Orleans</h1>
+                  <div>
+        <div class="description">
+          Using GIS and 72,911 geocoded property records, I mapped how Hurricane Katrina’s destruction aligned with race, income, and elevation across New Orleans and what it reveals about environmental inequality.
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">gis</div>
+                <div class="quarto-category">spatial-analysis</div>
+                <div class="quarto-category">environmental-justice</div>
+                <div class="quarto-category">python</div>
+                <div class="quarto-category">qgis</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Nadhira A. Hendra </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">April 1, 2026</p>
+      </div>
+    </div>
+    
+      <div>
+      <div class="quarto-title-meta-heading">Modified</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date-modified">April 1, 2026</p>
+      </div>
+    </div>
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
-<!-- main -->
-<main class="content column-page" id="quarto-document-content">
-
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Blog</h1>
-</div>
-
-
-
-<div class="quarto-title-meta column-page">
-
-    
-  
-    
-  </div>
-  
-
-
-</header>
-
-
-
-
-
-
-<div class="quarto-listing quarto-listing-container-table" id="listing-listing">
-<div class="listing-actions-group">
-   <div class="input-group input-group-sm quarto-listing-sort">
-    <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
-    <select id="listing-listing-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-listing'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
-      <option value="" disabled="" selected="" hidden="">Order By</option>
-      <option value="index" data-direction="asc">Default</option>
-      <option value="listing-date-sort" data-direction="asc">
-        Date - Oldest
-      </option>
-      <option value="listing-date-sort" data-direction="desc">
-        Date - Newest
-      </option>
-      <option value="listing-title-sort" data-direction="asc">
-        Title
-      </option>
-      <option value="listing-author" data-direction="asc">
-        Author
-      </option>
-    </select>
-  </div>
-    <div class="input-group input-group-sm quarto-listing-filter">
-      <span class="input-group-text"><i class="bi bi-search"></i></span>
-      <input type="text" class="search form-control" placeholder="Filter">
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#the-data" id="toc-the-data" class="nav-link active" data-scroll-target="#the-data">The Data</a></li>
+  <li><a href="#finding-1-the-geography-of-damage" id="toc-finding-1-the-geography-of-damage" class="nav-link" data-scroll-target="#finding-1-the-geography-of-damage">Finding 1: The Geography of Damage</a></li>
+  <li><a href="#finding-2-race-and-damage" id="toc-finding-2-race-and-damage" class="nav-link" data-scroll-target="#finding-2-race-and-damage">Finding 2: Race and Damage</a></li>
+  <li><a href="#finding-3-income-and-damage" id="toc-finding-3-income-and-damage" class="nav-link" data-scroll-target="#finding-3-income-and-damage">Finding 3: Income and Damage</a></li>
+  <li><a href="#finding-4-elevation-and-the-physics-behind-the-inequality" id="toc-finding-4-elevation-and-the-physics-behind-the-inequality" class="nav-link" data-scroll-target="#finding-4-elevation-and-the-physics-behind-the-inequality">Finding 4: Elevation and the Physics Behind the Inequality</a></li>
+  <li><a href="#finding-5-who-didnt-come-back" id="toc-finding-5-who-didnt-come-back" class="nav-link" data-scroll-target="#finding-5-who-didnt-come-back">Finding 5: Who Didn’t Come Back ?</a></li>
+  <li><a href="#what-this-tells-us" id="toc-what-this-tells-us" class="nav-link" data-scroll-target="#what-this-tells-us">What This Tells Us</a></li>
+  <li><a href="#methods" id="toc-methods" class="nav-link" data-scroll-target="#methods">Methods</a></li>
+  </ul>
+</nav>
     </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+
+<p>When Hurricane Katrina hit New Orleans on August 29, 2005, it didn’t destroy the city equally <span class="citation" data-cites="wikipedia_katrina">(<a href="#ref-wikipedia_katrina" role="doc-biblioref">Wikipedia contributors 2026</a>)</span>. Some neighborhoods were devastated, with 80%, 90%, even 95% of buildings damaged. Others, just a few miles away, emerged largely intact.</p>
+<p>Using GIS spatial analysis and publicly available data, I mapped every significantly damaged property in New Orleans and overlaid it with census demographics. The patterns I found are consistent across every dimension I tested. Katrina’s damage was concentrated in predominantly Black, lower-income neighborhoods sitting below sea level, and twenty years later, many of those neighborhoods still haven’t fully recovered.</p>
+<p>This kind of spatial analysis is something I think about beyond the American context too. In November 2025, severe flooding and landslides struck North Sumatra following a cyclone in the Malacca Strait, killing over 800 people and affecting more than 3.2 million. As Palaon writes, Indonesia’s response followed a familiar pattern of reactive crisis management rather than addressing the underlying conditions, including watershed degradation and unenforced spatial planning laws, that made communities so exposed in the first place <span class="citation" data-cites="palaon2025sumatra">(<a href="#ref-palaon2025sumatra" role="doc-biblioref">Palaon 2025</a>)</span>. Enriching disaster data with demographic and geographic layers, the kind of analysis this project attempts, is crucial both for understanding the immediate impact on communities and for anticipating where the recovery gaps will be years down the line.</p>
+<hr>
+<section id="the-data" class="level2">
+<h2 class="anchored" data-anchor-id="the-data">The Data</h2>
+<p>I analyzed <strong>72,911 properties</strong> with significant structural damage at or above 20% of assessed value, out of 165,564 total assessed properties in New Orleans, which is roughly 44% of all buildings in the city. I combined this with:</p>
+<ul>
+<li><strong>Census demographic data</strong> covering race, income, housing vacancy, and poverty from the American Community Survey 2006 to 2010 <span class="citation" data-cites="census_acs">(<a href="#ref-census_acs" role="doc-biblioref">U.S. Census Bureau 2010a</a>)</span></li>
+<li><strong>Building footprints</strong> for all structures in New Orleans</li>
+<li><strong>FEMA Base Flood Elevation data</strong> classifying areas by elevation above or below sea level <span class="citation" data-cites="fema_damage">(<a href="#ref-fema_damage" role="doc-biblioref">Federal Emergency Management Agency 2006</a>)</span></li>
+<li><strong>Census tract boundaries</strong> dividing the city into 177 small neighborhood units <span class="citation" data-cites="census_tiger">(<a href="#ref-census_tiger" role="doc-biblioref">U.S. Census Bureau 2010b</a>)</span></li>
+</ul>
+<p>All 72,911 addresses were batch geocoded using the Census Bureau Geocoder <span class="citation" data-cites="census_geocoder">(<a href="#ref-census_geocoder" role="doc-biblioref">U.S. Census Bureau 2026</a>)</span>, achieving a 99.2% match rate, then analyzed in QGIS using spatial joins, buffer analysis, and choropleth mapping.</p>
+<hr>
+</section>
+<section id="finding-1-the-geography-of-damage" class="level2">
+<h2 class="anchored" data-anchor-id="finding-1-the-geography-of-damage">Finding 1: The Geography of Damage</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="data/Map01_Damage_Distribution.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 1: Every red dot represents a property with at least 20% structural damage. Damage is concentrated in central and eastern New Orleans.</figcaption>
+</figure>
 </div>
-<table class="quarto-listing-table table">
+<p>The damage was not random. It followed a clear geographic pattern, concentrated in central and eastern New Orlean.</p>
+<p>When I calculated <strong>damage rates</strong>, measuring damaged buildings as a share of total buildings per census tract, the inequality became even sharper.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="data/Map04_Damage_Rate.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 2: Building damage rate by census tract. The darkest tracts lost the highest share of their buildings, with some exceeding 90%.</figcaption>
+</figure>
+</div>
+<p>Across all 177 census tracts, the average damage rate was <strong>38.2%</strong>. The hardest-hit tract lost <strong>95.2%</strong> of its buildings. The lowest-damage tracts, mostly in the French Quarter and Uptown, had rates near 0%.</p>
+<hr>
+</section>
+<section id="finding-2-race-and-damage" class="level2">
+<h2 class="anchored" data-anchor-id="finding-2-race-and-damage">Finding 2: Race and Damage</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="data/Map02_Race_and_Damage.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 3: Percentage Black population by census tract in purple shading, with damaged property locations as red dots. The densest damage clusters in the darkest purple tracts, which are neighborhoods that are 80 to 100% Black.</figcaption>
+</figure>
+</div>
+<p>The overlap between racial composition and damage is striking. Of the 177 census tracts, 111, or 62.7%, have a majority Black population, consistent with New Orleans citywide average of 61.2% Black. But the damage was not distributed equally across those tracts.</p>
+<p>The five most heavily damaged tracts tell the story clearly.</p>
+<table class="caption-top table">
 <thead>
-<tr>
-
-<th>
-<a class="sort" data-sort="listing-date-sort" onclick="if (this.classList.contains('sort-asc')) { this.classList.add('sort-desc'); this.classList.remove('sort-asc') } else { this.classList.add('sort-asc'); this.classList.remove('sort-desc')} return false;">Date</a>
-</th>
-
-<th>
-<a class="sort" data-sort="listing-author" onclick="if (this.classList.contains('sort-asc')) { this.classList.add('sort-desc'); this.classList.remove('sort-asc') } else { this.classList.add('sort-asc'); this.classList.remove('sort-desc')} return false;">Author</a>
-</th>
-
-<th>
-Reading Time
-</th>
-
-<th>
-<a class="sort" data-sort="listing-title-sort" onclick="if (this.classList.contains('sort-asc')) { this.classList.add('sort-desc'); this.classList.remove('sort-asc') } else { this.classList.add('sort-asc'); this.classList.remove('sort-desc')} return false;">Title</a>
-</th>
-
-<th>
-Description
-</th>
-
+<tr class="header">
+<th>Census Tract</th>
+<th>Damage Rate</th>
+<th>% Black</th>
+<th>Median Income</th>
 </tr>
 </thead>
-<tbody class="list">
-
-<tr data-index="0" data-categories="ciUyQ2NhdXNhbC1pbmZlcmVuY2UlMkNkZXZlbG9wbWVudC1lY29ub21pY3MlMkNjbGltYXRl" data-listing-date-sort="1773806400000" data-listing-file-modified-sort="1773889154525" data-listing-date-modified-sort="1773806400000" data-listing-reading-time-sort="17" data-listing-word-count-sort="3212" data-listing-title-sort="Does Temperature Shape Economic Growth? Replicating Burke, Hsiang &amp; Miguel" data-listing-filename-sort="index.qmd">
-<td>
-<span class="listing-date">Mar 18, 2026</span>
-</td>
-<td>
-<span class="listing-author">Nadhira A. Hendra</span>
-</td>
-<td>
-<span class="listing-reading-time">17 min</span>
-</td>
-<td>
-<a href="./posts/202603_climate-gdp-replication/index.html" class="title listing-title">Does Temperature Shape Economic Growth? Replicating Burke, Hsiang &amp; Miguel</a>
-</td>
-<td>
-<span class="listing-description">A replication of a landmark climate economics paper that found an inverted-U relationship between temperature and GDP growth — and what it means for countries like Indonesia.</span>
-</td>
-
+<tbody>
+<tr class="odd">
+<td>22071001701</td>
+<td>95.2%</td>
+<td>100%</td>
+<td>$25,603</td>
 </tr>
-
-<tr data-index="1" data-categories="c3RhdGElMkNkZXZlbG9wbWVudC1lY29ub21pY3MlMkNyZWdyZXNzaW9u" data-listing-date-sort="1768194000000" data-listing-file-modified-sort="1768321598863" data-listing-date-modified-sort="1768280400000" data-listing-reading-time-sort="7" data-listing-word-count-sort="1353" data-listing-title-sort="Exploring Global Development Patterns with World Bank Data" data-listing-filename-sort="index.qmd">
-<td>
-<span class="listing-date">Jan 12, 2026</span>
-</td>
-<td>
-<span class="listing-author">Nadhira A. Hendra</span>
-</td>
-<td>
-<span class="listing-reading-time">7 min</span>
-</td>
-<td>
-<a href="./posts/202501_global-development-indicators/index.html" class="title listing-title">Exploring Global Development Patterns with World Bank Data</a>
-</td>
-<td>
-<span class="listing-description">An exploratory data analysis using Stata to investigate GDP, literacy rates, and mortality indicators across countries</span>
-</td>
-
+<tr class="even">
+<td>22071003301</td>
+<td>87.8%</td>
+<td>32%</td>
+<td>$51,982</td>
 </tr>
-
-<tr data-index="2" data-categories="ciUyQ2NhdXNhbC1pbmZlcmVuY2U=" data-listing-date-sort="1766725200000" data-listing-file-modified-sort="1768583593471" data-listing-date-modified-sort="1767762000000" data-listing-reading-time-sort="35" data-listing-word-count-sort="6906" data-listing-title-sort="Sources of Authoritarian Responsiveness: A Field Experiment in China" data-listing-filename-sort="index.qmd">
-<td>
-<span class="listing-date">Dec 26, 2025</span>
-</td>
-<td>
-<span class="listing-author">Nadhira A. Hendra</span>
-</td>
-<td>
-<span class="listing-reading-time">35 min</span>
-</td>
-<td>
-<a href="./posts/202601_replication-rct-authorian/index.html" class="title listing-title">Sources of Authoritarian Responsiveness: A Field Experiment in China</a>
-</td>
-<td>
-<span class="listing-description">Replication of Chen, Pan and Xu (2016)</span>
-</td>
-
+<tr class="odd">
+<td>22071003000</td>
+<td>87.1%</td>
+<td>100%</td>
+<td>$16,130</td>
 </tr>
-
-<tr data-index="3" data-categories="c3RhdGElMkNyZWdyZXNzaW9uJTJDZGlmZmVyZW5jZS1pbi1kaWZmZXJlbmNl" data-listing-date-sort="1768453200000" data-listing-file-modified-sort="1768783373600" data-listing-date-modified-sort="1768798800000" data-listing-reading-time-sort="7" data-listing-word-count-sort="1240" data-listing-title-sort="Understanding Difference-in-Differences: A Practical Guide Using Stata" data-listing-filename-sort="index.qmd">
-<td>
-<span class="listing-date">Jan 15, 2026</span>
-</td>
-<td>
-<span class="listing-author">Nadhira A. Hendra</span>
-</td>
-<td>
-<span class="listing-reading-time">7 min</span>
-</td>
-<td>
-<a href="./posts/202601_did-mobile-health-clinics/index.html" class="title listing-title">Understanding Difference-in-Differences: A Practical Guide Using Stata</a>
-</td>
-<td>
-<span class="listing-description">Exploring quasi-experimental methods through a health policy case study</span>
-</td>
-
+<tr class="even">
+<td>22071001723</td>
+<td>86.2%</td>
+<td>90.9%</td>
+<td>$32,240</td>
 </tr>
-
-<tr data-index="4" data-categories="Z2lzJTJDc3BhdGlhbC1hbmFseXNpcyUyQ2Vudmlyb25tZW50YWwtanVzdGljZSUyQ3B5dGhvbiUyQ3FnaXM=" data-listing-date-sort="1775016000000" data-listing-file-modified-sort="1775086812696" data-listing-date-modified-sort="1775016000000" data-listing-reading-time-sort="8" data-listing-word-count-sort="1464" data-listing-title-sort="Who Katrina Left Behind: A Spatial Analysis of Damage, Race, and Elevation in New Orleans" data-listing-filename-sort="index.qmd">
-<td>
-<span class="listing-date">Apr 1, 2026</span>
-</td>
-<td>
-<span class="listing-author">Nadhira A. Hendra</span>
-</td>
-<td>
-<span class="listing-reading-time">8 min</span>
-</td>
-<td>
-<a href="./posts/202604_katrina-spatial-analysis/index.html" class="title listing-title">Who Katrina Left Behind: A Spatial Analysis of Damage, Race, and Elevation in New Orleans</a>
-</td>
-<td>
-<span class="listing-description">Using GIS and 72,911 geocoded property records, I mapped how Hurricane Katrina’s destruction aligned with race, income, and elevation across New Orleans and what it reveals about environmental inequality.</span>
-</td>
-
+<tr class="odd">
+<td>22071002502</td>
+<td>86.0%</td>
+<td>91.1%</td>
+<td>$33,427</td>
 </tr>
-
 </tbody>
 </table>
-<div class="listing-no-matching d-none">No matching items</div>
-</div></main> <!-- /main -->
+<p>Four of the five most damaged tracts were 90 to 100% Black. The one exception, a 32% Black tract with a damage rate of 87.8%, is Lakeview, which flooded catastrophically when a flood barrier along the 17th Street Canal gave way. That case shows that elevation was also physical driver of destruction.</p>
+<p>This does not mean race caused the flooding. It does show that racial composition and flood exposure were spatially correlated across New Orleans, and that the most heavily damaged neighborhoods were also among the most economically constrained before the storm hit.</p>
+<hr>
+</section>
+<section id="finding-3-income-and-damage" class="level2">
+<h2 class="anchored" data-anchor-id="finding-3-income-and-damage">Finding 3: Income and Damage</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="data/Map03_Income_and_Damage.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 4: Median household income by census tract in green shading with damage overlay. Lighter green tracts are lower income. Notice how they cluster with the highest damage density.</figcaption>
+</figure>
+</div>
+<p>The income pattern reinforces the racial one. The five most damaged tracts had median household incomes between <strong>$16,130 and $33,427</strong>, well below the citywide average of $43,168, and four of the five fell below $35,000.</p>
+<p>Lower-income residents faced a compounding burden: more damage, and fewer resources to rebuild. Many lacked flood insurance, savings, or the ability to temporarily relocate while repairs were made. The physical destruction and the financial capacity to recover from it were inversely correlated.</p>
+<hr>
+</section>
+<section id="finding-4-elevation-and-the-physics-behind-the-inequality" class="level2">
+<h2 class="anchored" data-anchor-id="finding-4-elevation-and-the-physics-behind-the-inequality">Finding 4: Elevation and the Physics Behind the Inequality</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="data/Map05_Elevation_and_Damage.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 5: Low-elevation flood zone as a blue buffer with a 0.5-mile radius around below-sea-level areas, with damaged properties overlaid. Damage is visibly concentrated inside the buffer zone.</figcaption>
+</figure>
+</div>
+<p>New Orleans is famously bowl-shaped, with large portions of the city sitting below sea level. The city relies on a network of flood barriers built along its rivers and lake shorelines to hold back water. When those barriers failed during Katrina, water rushed into the low-lying areas and could not drain. The physical geography made certain neighborhoods flood traps regardless of anything else.</p>
+<p>To quantify this, I drew a 0.5-mile buffer around all below-sea-level areas and compared how damage distributed inside versus outside that zone.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Zone</th>
+<th>Damaged Properties</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Inside low-elevation buffer</td>
+<td>33,528, or 46.4%</td>
+</tr>
+<tr class="even">
+<td>Outside low-elevation buffer</td>
+<td>38,771, or 53.6%</td>
+</tr>
+</tbody>
+</table>
+<p>Nearly half of all damaged properties fell within this buffer, despite it covering only a fraction of the city’s total land area. When combined with the earlier findings, this matters: the lowest-lying areas were also disproportionately home to Black and lower-income residents. Elevation risk and demographic concentration overlapped spatially.</p>
+<hr>
+</section>
+<section id="finding-5-who-didnt-come-back" class="level2">
+<h2 class="anchored" data-anchor-id="finding-5-who-didnt-come-back">Finding 5: Who Didn’t Come Back ?</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="data/Map07_Vacancy_Damage.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 6: Housing vacancy rate by census tract in orange shading with damage overlay. The darkest tracts have the highest vacancy, representing residents who never returned.</figcaption>
+</figure>
+</div>
+<p>Damage and abandonment track closely. Census tracts classified as high-damage had an average vacancy rate of <strong>32.4%</strong>, compared to <strong>23.6%</strong> for low or undamaged tracts, which is nearly 9 percentage points higher than a citywide average of 28.9%.</p>
+<p>These empty homes represent families who left New Orleans after Katrina and never came back, displaced by damage they could not afford to repair, in neighborhoods that had lost their grocery stores, schools, and social fabric. Post-Katrina displacement reshaped the city’s demographics for a generation.</p>
+<hr>
+</section>
+<section id="what-this-tells-us" class="level2">
+<h2 class="anchored" data-anchor-id="what-this-tells-us">What This Tells Us</h2>
+<p>Across the five dimensions I examined, damage rate, racial composition, median income, elevation, and post-storm vacancy, the spatial patterns were consistent. Tracts with higher damage rates tended to also have higher shares of Black residents, lower median incomes, and higher vacancy rates after the storm. These variables were not randomly distributed across the city. They co-occurred in the same geographic areas.</p>
+<p>Physical data alone tells us where destruction happened. Layering demographic information onto that data describes who lived in those areas and how pre-existing conditions related to the severity of outcomes. The same approach could be applied to other disaster events, including recent floods in places like North Sumatra, to move beyond aggregate impact numbers and understand variation across communities.</p>
+<ul>
+<li><strong>Disaster analysis</strong>: Combining physical damage data with demographic layers produces a more complete picture of disaster impact than either dataset alone.</li>
+<li><strong>Recovery planning</strong>: Understanding which areas had lower incomes and higher vacancy rates before a disaster helps anticipate where recovery will be slower and where support may be most needed.</li>
+<li><strong>Risk mapping</strong>: Spatial tools like buffer analysis can make the relationship between elevation risk and community characteristics visible in ways that inform infrastructure and preparedness decisions.</li>
+<li><strong>Future disasters</strong>: As climate-related events become more frequent, the methodology used here, geocoding, spatial joins, and demographic overlays, can be applied to other cities and contexts to understand exposure patterns before the next event.</li>
+</ul>
+<hr>
+</section>
+<section id="methods" class="level2">
+<h2 class="anchored" data-anchor-id="methods">Methods</h2>
+<p><strong>Tools</strong>: QGIS 3.x, Python with pandas and numpy</p>
+<p><strong>Techniques</strong>: Batch geocoding via Census Bureau Geocoder, point-in-polygon spatial joins, buffer analysis, choropleth mapping, damage rate normalization</p>
+<p><strong>Limitations</strong>:</p>
+<ul>
+<li>Geocoding match rate was 99.2%, meaning 612 addresses could not be converted to coordinates.</li>
+<li>The damage assessment reflects structural damage only, not contents, personal losses, or psychological impact.</li>
+<li>ACS data are estimates with margins of error, especially for small-population tracts.</li>
+<li>Correlation between demographics and damage does not imply causation. Elevation is the primary physical driver, and racial and income patterns reflect where different communities lived relative to flood risk.</li>
+<li>One census tract produced a calculated damage rate above 100%, specifically 167%, which indicates incomplete building footprint coverage, likely because heavily damaged or demolished structures are missing from the dataset. This value was capped at 100% in the analysis.</li>
+</ul>
+<hr>
+<p><em>Structure and grammatical editing was assisted by Claude (Anthropic).</em></p>
+
+
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-fema_damage" class="csl-entry" role="listitem">
+Federal Emergency Management Agency. 2006. <span>“Post-<span>Katrina</span> Damage Assessment Data.”</span> <a href="https://www.fema.gov">https://www.fema.gov</a>.
+</div>
+<div id="ref-palaon2025sumatra" class="csl-entry" role="listitem">
+Palaon, Hilman. 2025. <span>“Sumatra Floods: <span>Indonesia</span> Stuck in a Cycle of Crisis Management.”</span> Lowy Institute. <a href="https://www.lowyinstitute.org/the-interpreter/sumatra-floods-indonesia-stuck-cycle-crisis-management">https://www.lowyinstitute.org/the-interpreter/sumatra-floods-indonesia-stuck-cycle-crisis-management</a>.
+</div>
+<div id="ref-census_acs" class="csl-entry" role="listitem">
+U.S. Census Bureau. 2010a. <span>“American Community Survey 5-Year Estimates, 2006–2010.”</span> <a href="https://www.census.gov/programs-surveys/acs">https://www.census.gov/programs-surveys/acs</a>.
+</div>
+<div id="ref-census_tiger" class="csl-entry" role="listitem">
+———. 2010b. <span>“<span>TIGER/Line</span> Shapefiles: Census Tracts, Louisiana (2010).”</span> <a href="https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html">https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html</a>.
+</div>
+<div id="ref-census_geocoder" class="csl-entry" role="listitem">
+———. 2026. <span>“Census Geocoder.”</span> <a href="https://geocoding.geo.census.gov/geocoder/">https://geocoding.geo.census.gov/geocoder/</a>.
+</div>
+<div id="ref-wikipedia_katrina" class="csl-entry" role="listitem">
+Wikipedia contributors. 2026. <span>“Hurricane Katrina.”</span> <a href="https://en.wikipedia.org/wiki/Hurricane_Katrina">https://en.wikipedia.org/wiki/Hurricane_Katrina</a>.
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right

@@ -1,0 +1,140 @@
+---
+title: "Who Katrina Left Behind: A Spatial Analysis of Damage, Race, and Elevation in New Orleans"
+description: "Using GIS and 72,911 geocoded property records, I mapped how Hurricane Katrina's destruction aligned with race, income, and elevation across New Orleans and what it reveals about environmental inequality."
+author: "Nadhira A. Hendra"
+categories: [gis, spatial-analysis, environmental-justice, python, qgis]
+date: "April 1, 2026"
+date-modified: "April 1, 2026"
+format:
+  html:
+    toc: true
+    toc-depth: 3
+bibliography: references.bib
+nocite: |
+  @*
+---
+
+When Hurricane Katrina hit New Orleans on August 29, 2005, it didn't destroy the city equally [@wikipedia_katrina]. Some neighborhoods were devastated, with 80%, 90%, even 95% of buildings damaged. Others, just a few miles away, emerged largely intact.
+
+Using GIS spatial analysis and publicly available data, I mapped every significantly damaged property in New Orleans and overlaid it with census demographics. The patterns I found are consistent across every dimension I tested. Katrina's damage was concentrated in predominantly Black, lower-income neighborhoods sitting below sea level, and twenty years later, many of those neighborhoods still haven't fully recovered.
+
+This kind of spatial analysis is something I think about beyond the American context too. In November 2025, severe flooding and landslides struck North Sumatra following a cyclone in the Malacca Strait, killing over 800 people and affecting more than 3.2 million. As Palaon writes, Indonesia's response followed a familiar pattern of reactive crisis management rather than addressing the underlying conditions, including watershed degradation and unenforced spatial planning laws, that made communities so exposed in the first place [@palaon2025sumatra]. Enriching disaster data with demographic and geographic layers, the kind of analysis this project attempts, is crucial both for understanding the immediate impact on communities and for anticipating where the recovery gaps will be years down the line.
+
+---
+
+## The Data
+
+I analyzed **72,911 properties** with significant structural damage at or above 20% of assessed value, out of 165,564 total assessed properties in New Orleans, which is roughly 44% of all buildings in the city. I combined this with:
+
+- **Census demographic data** covering race, income, housing vacancy, and poverty from the American Community Survey 2006 to 2010 [@census_acs]
+- **Building footprints** for all structures in New Orleans
+- **FEMA Base Flood Elevation data** classifying areas by elevation above or below sea level [@fema_damage]
+- **Census tract boundaries** dividing the city into 177 small neighborhood units [@census_tiger]
+
+All 72,911 addresses were batch geocoded using the Census Bureau Geocoder [@census_geocoder], achieving a 99.2% match rate, then analyzed in QGIS using spatial joins, buffer analysis, and choropleth mapping.
+
+---
+
+## Finding 1: The Geography of Damage
+
+![Figure 1: Every red dot represents a property with at least 20% structural damage. Damage is concentrated in central and eastern New Orleans.](data/Map01_Damage_Distribution.png)
+
+The damage was not random. It followed a clear geographic pattern, concentrated in central and eastern New Orlean.
+
+When I calculated **damage rates**, measuring damaged buildings as a share of total buildings per census tract, the inequality became even sharper.
+
+![Figure 2: Building damage rate by census tract. The darkest tracts lost the highest share of their buildings, with some exceeding 90%.](data/Map04_Damage_Rate.png)
+
+Across all 177 census tracts, the average damage rate was **38.2%**. The hardest-hit tract lost **95.2%** of its buildings. The lowest-damage tracts, mostly in the French Quarter and Uptown, had rates near 0%. 
+
+---
+
+## Finding 2: Race and Damage
+
+![Figure 3: Percentage Black population by census tract in purple shading, with damaged property locations as red dots. The densest damage clusters in the darkest purple tracts, which are neighborhoods that are 80 to 100% Black.](data/Map02_Race_and_Damage.png)
+
+The overlap between racial composition and damage is striking. Of the 177 census tracts, 111, or 62.7%, have a majority Black population, consistent with New Orleans citywide average of 61.2% Black. But the damage was not distributed equally across those tracts.
+
+The five most heavily damaged tracts tell the story clearly.
+
+| Census Tract | Damage Rate | % Black | Median Income |
+|---|---|---|---|
+| 22071001701 | 95.2% | 100% | $25,603 |
+| 22071003301 | 87.8% | 32% | $51,982 |
+| 22071003000 | 87.1% | 100% | $16,130 |
+| 22071001723 | 86.2% | 90.9% | $32,240 |
+| 22071002502 | 86.0% | 91.1% | $33,427 |
+
+Four of the five most damaged tracts were 90 to 100% Black. The one exception, a 32% Black tract with a damage rate of 87.8%, is Lakeview, which flooded catastrophically when a flood barrier along the 17th Street Canal gave way. That case shows that elevation was also physical driver of destruction.
+
+This does not mean race caused the flooding. It does show that racial composition and flood exposure were spatially correlated across New Orleans, and that the most heavily damaged neighborhoods were also among the most economically constrained before the storm hit.
+
+---
+
+## Finding 3: Income and Damage
+
+![Figure 4: Median household income by census tract in green shading with damage overlay. Lighter green tracts are lower income. Notice how they cluster with the highest damage density.](data/Map03_Income_and_Damage.png)
+
+The income pattern reinforces the racial one. The five most damaged tracts had median household incomes between **$16,130 and $33,427**, well below the citywide average of $43,168, and four of the five fell below $35,000.
+
+Lower-income residents faced a compounding burden: more damage, and fewer resources to rebuild. Many lacked flood insurance, savings, or the ability to temporarily relocate while repairs were made. The physical destruction and the financial capacity to recover from it were inversely correlated.
+
+---
+
+## Finding 4: Elevation and the Physics Behind the Inequality
+
+![Figure 5: Low-elevation flood zone as a blue buffer with a 0.5-mile radius around below-sea-level areas, with damaged properties overlaid. Damage is visibly concentrated inside the buffer zone.](data/Map05_Elevation_and_Damage.png)
+
+New Orleans is famously bowl-shaped, with large portions of the city sitting below sea level. The city relies on a network of flood barriers built along its rivers and lake shorelines to hold back water. When those barriers failed during Katrina, water rushed into the low-lying areas and could not drain. The physical geography made certain neighborhoods flood traps regardless of anything else.
+
+To quantify this, I drew a 0.5-mile buffer around all below-sea-level areas and compared how damage distributed inside versus outside that zone.
+
+| Zone | Damaged Properties |
+|---|---|
+| Inside low-elevation buffer | 33,528, or 46.4% |
+| Outside low-elevation buffer | 38,771, or 53.6% |
+
+Nearly half of all damaged properties fell within this buffer, despite it covering only a fraction of the city's total land area. When combined with the earlier findings, this matters: the lowest-lying areas were also disproportionately home to Black and lower-income residents. Elevation risk and demographic concentration overlapped spatially.
+
+---
+
+## Finding 5: Who Didn't Come Back ?
+
+![Figure 6: Housing vacancy rate by census tract in orange shading with damage overlay. The darkest tracts have the highest vacancy, representing residents who never returned.](data/Map07_Vacancy_Damage.png)
+
+Damage and abandonment track closely. Census tracts classified as high-damage had an average vacancy rate of **32.4%**, compared to **23.6%** for low or undamaged tracts, which is nearly 9 percentage points higher than a citywide average of 28.9%.
+
+These empty homes represent families who left New Orleans after Katrina and never came back, displaced by damage they could not afford to repair, in neighborhoods that had lost their grocery stores, schools, and social fabric. Post-Katrina displacement reshaped the city's demographics for a generation.
+
+---
+
+## What This Tells Us
+
+Across the five dimensions I examined, damage rate, racial composition, median income, elevation, and post-storm vacancy, the spatial patterns were consistent. Tracts with higher damage rates tended to also have higher shares of Black residents, lower median incomes, and higher vacancy rates after the storm. These variables were not randomly distributed across the city. They co-occurred in the same geographic areas.
+
+Physical data alone tells us where destruction happened. Layering demographic information onto that data describes who lived in those areas and how pre-existing conditions related to the severity of outcomes. The same approach could be applied to other disaster events, including recent floods in places like North Sumatra, to move beyond aggregate impact numbers and understand variation across communities.
+
+- **Disaster analysis**: Combining physical damage data with demographic layers produces a more complete picture of disaster impact than either dataset alone.
+- **Recovery planning**: Understanding which areas had lower incomes and higher vacancy rates before a disaster helps anticipate where recovery will be slower and where support may be most needed.
+- **Risk mapping**: Spatial tools like buffer analysis can make the relationship between elevation risk and community characteristics visible in ways that inform infrastructure and preparedness decisions.
+- **Future disasters**: As climate-related events become more frequent, the methodology used here, geocoding, spatial joins, and demographic overlays, can be applied to other cities and contexts to understand exposure patterns before the next event.
+
+---
+
+## Methods
+
+**Tools**: QGIS 3.x, Python with pandas and numpy
+
+**Techniques**: Batch geocoding via Census Bureau Geocoder, point-in-polygon spatial joins, buffer analysis, choropleth mapping, damage rate normalization
+
+**Limitations**:
+
+- Geocoding match rate was 99.2%, meaning 612 addresses could not be converted to coordinates.
+- The damage assessment reflects structural damage only, not contents, personal losses, or psychological impact.
+- ACS data are estimates with margins of error, especially for small-population tracts.
+- Correlation between demographics and damage does not imply causation. Elevation is the primary physical driver, and racial and income patterns reflect where different communities lived relative to flood risk.
+- One census tract produced a calculated damage rate above 100%, specifically 167%, which indicates incomplete building footprint coverage, likely because heavily damaged or demolished structures are missing from the dataset. This value was capped at 100% in the analysis.
+
+---
+
+*Structure and grammatical editing was assisted by Claude (Anthropic).*
