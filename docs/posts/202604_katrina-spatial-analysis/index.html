@@ -360,7 +360,8 @@ div.csl-indent {
   <li><a href="#finding-3-income-and-damage" id="toc-finding-3-income-and-damage" class="nav-link" data-scroll-target="#finding-3-income-and-damage">Finding 3: Income and Damage</a></li>
   <li><a href="#finding-4-elevation-and-the-physics-behind-the-inequality" id="toc-finding-4-elevation-and-the-physics-behind-the-inequality" class="nav-link" data-scroll-target="#finding-4-elevation-and-the-physics-behind-the-inequality">Finding 4: Elevation and the Physics Behind the Inequality</a></li>
   <li><a href="#finding-5-who-didnt-come-back" id="toc-finding-5-who-didnt-come-back" class="nav-link" data-scroll-target="#finding-5-who-didnt-come-back">Finding 5: Who Didn’t Come Back ?</a></li>
-  <li><a href="#what-this-tells-us" id="toc-what-this-tells-us" class="nav-link" data-scroll-target="#what-this-tells-us">What This Tells Us</a></li>
+  <li><a href="#what-could-come-next" id="toc-what-could-come-next" class="nav-link" data-scroll-target="#what-could-come-next">What could come next</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
   <li><a href="#methods" id="toc-methods" class="nav-link" data-scroll-target="#methods">Methods</a></li>
   </ul>
 </nav>
@@ -373,9 +374,8 @@ div.csl-indent {
 
 
 
-<p>When Hurricane Katrina hit New Orleans on August 29, 2005, it didn’t destroy the city equally <span class="citation" data-cites="wikipedia_katrina">(<a href="#ref-wikipedia_katrina" role="doc-biblioref">Wikipedia contributors 2026</a>)</span>. Some neighborhoods were devastated, with 80%, 90%, even 95% of buildings damaged. Others, just a few miles away, emerged largely intact.</p>
+<p>When Hurricane Katrina hit New Orleans on August 29, 2005, it didn’t destroy the city equally <span class="citation" data-cites="nhc_katrina">(<a href="#ref-nhc_katrina" role="doc-biblioref">Knabb, Rhome, and Brown 2005</a>)</span>. Some neighborhoods were devastated, with 80%, 90%, even 95% of buildings damaged. Others, just a few miles away, emerged largely intact.</p>
 <p>Using GIS spatial analysis and publicly available data, I mapped every significantly damaged property in New Orleans and overlaid it with census demographics. The patterns I found are consistent across every dimension I tested. Katrina’s damage was concentrated in predominantly Black, lower-income neighborhoods sitting below sea level, and twenty years later, many of those neighborhoods still haven’t fully recovered.</p>
-<p>This kind of spatial analysis is something I think about beyond the American context too. In November 2025, severe flooding and landslides struck North Sumatra following a cyclone in the Malacca Strait, killing over 800 people and affecting more than 3.2 million. As Palaon writes, Indonesia’s response followed a familiar pattern of reactive crisis management rather than addressing the underlying conditions, including watershed degradation and unenforced spatial planning laws, that made communities so exposed in the first place <span class="citation" data-cites="palaon2025sumatra">(<a href="#ref-palaon2025sumatra" role="doc-biblioref">Palaon 2025</a>)</span>. Enriching disaster data with demographic and geographic layers, the kind of analysis this project attempts, is crucial both for understanding the immediate impact on communities and for anticipating where the recovery gaps will be years down the line.</p>
 <hr>
 <section id="the-data" class="level2">
 <h2 class="anchored" data-anchor-id="the-data">The Data</h2>
@@ -515,20 +515,22 @@ div.csl-indent {
 <figcaption>Figure 6: Housing vacancy rate by census tract in orange shading with damage overlay. The darkest tracts have the highest vacancy, representing residents who never returned.</figcaption>
 </figure>
 </div>
-<p>Damage and abandonment track closely. Census tracts classified as high-damage had an average vacancy rate of <strong>32.4%</strong>, compared to <strong>23.6%</strong> for low or undamaged tracts, which is nearly 9 percentage points higher than a citywide average of 28.9%.</p>
+<p>The figure show that damage and abandonment correlate closely. Census tracts classified as high-damage had an average vacancy rate of <strong>32.4%</strong>, compared to <strong>23.6%</strong> for low or undamaged tracts, which is nearly 9 percentage points higher.</p>
 <p>These empty homes represent families who left New Orleans after Katrina and never came back, displaced by damage they could not afford to repair, in neighborhoods that had lost their grocery stores, schools, and social fabric. Post-Katrina displacement reshaped the city’s demographics for a generation.</p>
 <hr>
 </section>
-<section id="what-this-tells-us" class="level2">
-<h2 class="anchored" data-anchor-id="what-this-tells-us">What This Tells Us</h2>
-<p>Across the five dimensions I examined, damage rate, racial composition, median income, elevation, and post-storm vacancy, the spatial patterns were consistent. Tracts with higher damage rates tended to also have higher shares of Black residents, lower median incomes, and higher vacancy rates after the storm. These variables were not randomly distributed across the city. They co-occurred in the same geographic areas.</p>
-<p>Physical data alone tells us where destruction happened. Layering demographic information onto that data describes who lived in those areas and how pre-existing conditions related to the severity of outcomes. The same approach could be applied to other disaster events, including recent floods in places like North Sumatra, to move beyond aggregate impact numbers and understand variation across communities.</p>
-<ul>
-<li><strong>Disaster analysis</strong>: Combining physical damage data with demographic layers produces a more complete picture of disaster impact than either dataset alone.</li>
-<li><strong>Recovery planning</strong>: Understanding which areas had lower incomes and higher vacancy rates before a disaster helps anticipate where recovery will be slower and where support may be most needed.</li>
-<li><strong>Risk mapping</strong>: Spatial tools like buffer analysis can make the relationship between elevation risk and community characteristics visible in ways that inform infrastructure and preparedness decisions.</li>
-<li><strong>Future disasters</strong>: As climate-related events become more frequent, the methodology used here, geocoding, spatial joins, and demographic overlays, can be applied to other cities and contexts to understand exposure patterns before the next event.</li>
-</ul>
+<section id="what-could-come-next" class="level2">
+<h2 class="anchored" data-anchor-id="what-could-come-next">What could come next</h2>
+<p>One direction worth exploring is whether low median income tracts also correlate with low housing values. If the areas with the least wealth also have the lowest property values, that is precisely where targeted infrastructure investment would matter most. Better public services in those communities could reduce disaster exposure without triggering displacement because of rising costs.</p>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>Across the five dimensions I examined, racial composition, median income, elevation, and post-storm vacancy, the spatial patterns all pointed toward the same tracts with the highest damage rates. Tracts with higher damage rates tended to have higher shares of Black residents, lower median incomes, and higher vacancy rates after the storm. These variables were not randomly distributed across the city. They systematically occurred in the same geographic areas.</p>
+<p>Physical data alone tells us where destruction happened. Layering demographic information onto that reveals who absorbed the damage, who had fewer resources to recover, and where the next disaster will hit hardest. The methodology here can be applied to any city where that data exists, and Indonesia could be one of those places.</p>
+<p>Growing up in Indonesia, I have watched flooding described in aggregate numbers. I even experienced some during my childhood. However, I have never known which neighborhoods absorbed most of the damage, or whether some communities struggled to recover more than others.</p>
+<p>In November 2025, severe flooding and landslides struck North Sumatra following a cyclone in the Malacca Strait, killing over 800 people and affecting more than 3.2 million. As Palaon writes, Indonesia’s response followed a familiar pattern of reactive crisis management rather than addressing the underlying conditions, including watershed degradation and unenforced spatial planning laws, that made communities so exposed in the first place <span class="citation" data-cites="palaon2025sumatra">(<a href="#ref-palaon2025sumatra" role="doc-biblioref">Palaon 2025</a>)</span>.</p>
+<p>Katrina reveals that disaster outcomes are rarely just about the storm. It also shows how damage maps onto existing community structures, and whether neighborhoods had the political and economic weight to demand recovery. The analysis I did here was possible because New Orleans had the data infrastructure to support it. On the other hand, Indonesia, which experiences disasters of this scale regularly, don’t yet have that same infrastructure of geocoded addresses, granular demographic data, and standardized damage assessments, the kind of spatial analysis I did here remains difficult to replicate.</p>
+<p>That gap matters. Spatial analysis offers a way to move from reactive crisis response to anticipatory planning, geocoding addresses, joining demographic layers, mapping who lives in flood-prone areas before the next event. Countries like Indonesia, where disaster exposure is high and recovery capacity is often limited, stand to gain the most from this kind of work. Not because GIS tools are new, but because the questions they let us ask are exactly the ones that reactive crisis management skips over.</p>
 <hr>
 </section>
 <section id="methods" class="level2">
@@ -554,6 +556,9 @@ div.csl-indent {
 <div id="ref-fema_damage" class="csl-entry" role="listitem">
 Federal Emergency Management Agency. 2006. <span>“Post-<span>Katrina</span> Damage Assessment Data.”</span> <a href="https://www.fema.gov">https://www.fema.gov</a>.
 </div>
+<div id="ref-nhc_katrina" class="csl-entry" role="listitem">
+Knabb, Richard D., Jamie R. Rhome, and Daniel P. Brown. 2005. <span>“Tropical Cyclone Report: <span>Hurricane Katrina</span>, 23–30 <span>August</span> 2005.”</span> National Hurricane Center, National Oceanic; Atmospheric Administration. <a href="https://www.nhc.noaa.gov/data/tcr/AL122005_Katrina.pdf">https://www.nhc.noaa.gov/data/tcr/AL122005_Katrina.pdf</a>.
+</div>
 <div id="ref-palaon2025sumatra" class="csl-entry" role="listitem">
 Palaon, Hilman. 2025. <span>“Sumatra Floods: <span>Indonesia</span> Stuck in a Cycle of Crisis Management.”</span> Lowy Institute. <a href="https://www.lowyinstitute.org/the-interpreter/sumatra-floods-indonesia-stuck-cycle-crisis-management">https://www.lowyinstitute.org/the-interpreter/sumatra-floods-indonesia-stuck-cycle-crisis-management</a>.
 </div>
@@ -565,9 +570,6 @@ U.S. Census Bureau. 2010a. <span>“American Community Survey 5-Year Estimates, 
 </div>
 <div id="ref-census_geocoder" class="csl-entry" role="listitem">
 ———. 2026. <span>“Census Geocoder.”</span> <a href="https://geocoding.geo.census.gov/geocoder/">https://geocoding.geo.census.gov/geocoder/</a>.
-</div>
-<div id="ref-wikipedia_katrina" class="csl-entry" role="listitem">
-Wikipedia contributors. 2026. <span>“Hurricane Katrina.”</span> <a href="https://en.wikipedia.org/wiki/Hurricane_Katrina">https://en.wikipedia.org/wiki/Hurricane_Katrina</a>.
 </div>
 </div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
