@@ -5,6 +5,7 @@ format:
     page-layout: full
 listing:
   contents: posts
+  sort: "date desc"
   sort-ui: true
   filter-ui: true
   type: table

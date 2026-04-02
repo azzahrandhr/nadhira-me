@@ -1,0 +1,124 @@
+---
+title: "From the Texas Triangle to the Desert: Mapping America's EV Freight Charging Gaps"
+description: "A spatial analysis of whether an electric truck can cross 510 miles of remote desert highway today, and how different the answer is from the Texas Triangle."
+author: "Nadhira A. Hendra"
+categories: [gis, spatial-analysis, python, qgis, transportation]
+date: "April 2, 2026"
+date-modified: "April 2, 2026"
+format:
+  html:
+    toc: true
+    toc-depth: 3
+---
+
+During my time at Traveloka, I worked on an [analysis of what Indonesians were saying about electric vehicles on Twitter in mid-2022](https://amaretha.medium.com/the-zapping-insights-indonesias-electric-vehicle-cde2552384cb). Electric vehicle discussion was heated at the time because the Indonesian government had just announced plans to subsidize EV purchases, meaning people could buy an electric car or motorcycle at a reduced price. In December 2022, the government announced subsidies of around Rp 8 million for electric motorcycles and Rp 80 million for electric cars, with the [formal program launching in March 2023](https://www.thejakartapost.com/business/2023/03/07/govt-earmarks-rp-1-75t-for-electric-two-wheelers-assistance.html).
+
+One of the findings from that analysis was that even with growing enthusiasm, the most common concern was about infrastructure. Specifically, whether PLN, Indonesia's state electricity company, could actually build out the charging network needed to make EVs viable at scale.
+
+Now that I am in the US, I find that the infrastructure question looks very different here. EV stations exist not just for passenger cars but for freight trucks moving goods across the country. I was curious what that infrastructure actually looks like on the ground, which is what led me to this project, starting with the Texas Triangle and extending to the El Paso to Tucson corridor.
+
+---
+
+## The Data
+
+I pulled **EV charging station data** from the [NREL Alternative Fuels Station Locator](https://afdc.energy.gov/stations) via the [AFDC API](https://developer.nrel.gov/api/alt-fuel-stations/v1), filtering to public DC Fast chargers in Texas, Arizona, and New Mexico. I combined this with:
+
+- **Highway geometry** from the [US Census TIGER/Line primary roads dataset](https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html) via the `pygris` library
+- **Truck stops** from [OpenStreetMap via the Overpass API](https://overpass-api.de), tagged as fuel stops with heavy vehicle access or highway rest areas
+- **A 25-mile corridor buffer** around I-10, representing the detour distance a truck driver could reasonably take to reach a charger and return
+
+Chargers were split into two groups: **truck-compatible** (CCS/J1772COMBO connector present) and **car-only** (everything else). Commercial electric trucks like the Tesla Semi and Freightliner eCascadia use CCS connectors and cannot charge at Tesla Superchargers or CHAdeMO-only stations. Sample points were placed every 10 miles along the highway centerline. Any point more than 40 miles from the nearest charger is flagged as a critical gap.
+
+---
+
+## Finding 1: The Texas Triangle is Surprisingly Well-Covered
+
+The Texas Triangle is the freight corridor formed by I-10, I-35, and I-45, connecting Houston, San Antonio, and Dallas. It was my starting point before moving to **El Paso to Tucson freight corridor**.
+
+![Figure 1: The Texas Triangle corridor. Almost every sample point is green or dark blue, indicating well-covered stretches with chargers within a few miles.](data/Texas_Map01_Overview.png)
+
+![Figure 2: Distance heatmap for the Texas Triangle. The corridor is dense with chargers, and even the worst gap barely reaches 47.5 miles on the Houston to San Antonio leg.](data/Texas_Map03_Distance_Heatmap.png)
+
+The corridor has **629 DC Fast chargers**, a median distance of **1.8 miles** to the nearest charger, and **zero critical gaps** anywhere across the three interstates. For urban freight on that route, the infrastructure is there today.
+
+But the Texas Triangle connects three of the largest cities in the country. It concentrates capital, truck traffic, and infrastructure investment in a dense corridor. I wanted to test what happens in corridors where there's no major cities in between.
+
+---
+
+## Finding 2: El Paso to Tucson Tells a Different Story
+
+The I-10 corridor from El Paso, Texas to Tucson, Arizona runs about 510 miles through the southwestern US. There are no major cities between the two endpoints. The route crosses remote, flat desert with summer temperatures well above 40°C.
+
+El Paso sits directly on the US-Mexico border, and I-10 is the primary east-west highway connecting that crossing to the rest of the US. NAFTA, the North American Free Trade Agreement that came into effect in 1994, dramatically increased cross-border truck traffic on this route as manufacturing in northern Mexico expanded to serve US markets. Billions of dollars in goods move through this corridor every year.
+
+![Figure 3: I-10 from El Paso (east) to Tucson (west). Green and blue diamonds are well-covered sample points. Red markers are charger locations. The corridor is thinner in coverage than the Texas Triangle in every direction.](data/Map01_Overview.png)
+
+The corridor is nominally covered, meaning there is no stretch where a truck would have no charger within 25 miles of the road for most of the route. But the density is thin. Many of the 60 truck-compatible chargers are concentrated in or near El Paso and Tucson, with relatively sparse coverage across the middle desert section.
+
+---
+
+## Finding 3: The Worst Gap is Just East of El Paso
+
+![Figure 4: The 47.4-mile gap near mile 50 of the corridor, in the stretch east of El Paso. The nearest truck-compatible chargers are roughly 47 miles apart on either side.](data/Map02_Worst_Gap.png)
+
+The single worst gap is **47.4 miles**, located around mile 50 of the corridor, in the stretch east of El Paso before reaching the next cluster of chargers. This is just under the 50-mile federal threshold but above the 40-mile critical threshold I used. Two sample points in the analysis exceed that threshold.
+
+Comparing truck-compatible chargers only versus all DC Fast chargers produces nearly identical results for this gap, meaning car chargers in this area do not meaningfully improve the picture for trucks. The Van Horn gap, just east of El Paso, is where a truck coming off a long haul from Houston could be in trouble if it misjudged its remaining range.
+
+---
+
+## Finding 4: Coverage is Consistently Thinner Across the Whole Route
+
+![Figure 5: Each sample point colored by distance to nearest truck-compatible DC Fast charger. Compare this to the Texas Triangle heatmap above — the Triangle is mostly green, this corridor is mostly yellow and orange.](data/Map03_Distance_Heatmap.png)
+
+In the Triangle, almost every sample point was green or dark blue, with a median of 1.8 miles to the nearest charger. Here, the corridor is mostly yellow and orange. The median distance to the nearest truck-compatible charger is **10.8 miles**. That is covered in the sense that a truck with a full battery can reach a charger, but it leaves little margin for a detour, a breakdown, or a station being out of service.
+
+| Metric | I-10 El Paso to Tucson | Texas Triangle |
+|---|---|---|
+| Corridor miles | 510 | 750 across 3 interstates |
+| Truck-compatible chargers | 60 | 629 (all treated as compatible) |
+| Car-only chargers | 14 | not separated |
+| Average distance (truck) | 13.3 mi | 5.3 mi |
+| Median distance (truck) | 10.8 mi | 1.8 mi |
+| Critical gaps above 40 mi | 2 | 0 |
+| Truck stops in corridor | 31 | 140 |
+
+The truck stops number is also telling. There are 140 truck stops in the Texas Triangle corridor and only 31 here. Truck stops are the most logical places to install new chargers because the infrastructure is already there, the parking space exists, and drivers already stop there. Having fewer of them means there are fewer easy installation targets.
+
+---
+
+## The Interactive Dashboard
+
+I built an interactive dashboard so you can explore the corridor at different zoom levels and see individual charger details.
+
+[View the dashboard here](https://azzahrandhr.github.io/i10-charging-gap-dashboard/)
+
+The dashboard has two modes: Truck (CCS only) and All DC Fast. Switching between them updates the gap colors, the summary statistics, and the worst gap points list in the right panel. You can click any sample point to see its exact distance to the nearest charger, and click any charger to see the station name, network, and number of DC Fast ports.
+
+The charger network breakdown shows ChargePoint as the dominant operator with 29 stations, followed by Electrify America with 7. The Texas Triangle was Tesla-dominated with 146 stations. On this corridor, there is essentially no Tesla presence, which also means there is no current NACS coverage for trucks that use that standard.
+
+---
+
+## Conclusion
+
+A truck with a full 500-mile range, could technically run this corridor without stopping if conditions are perfect. But freight does not work that way. Trucks are loaded, temperatures are high in the desert, and range is degraded by both. A 47.4-mile gap with the nearest backup being another 20 miles beyond that leaves very little room for anything going wrong.
+
+What would help is installing chargers at truck stops within the critical gap zones. One truck stop in the analysis falls within a critical gap area, which is a candidate for a new installation that would directly eliminate the worst-case scenario. The federal NEVI program targets exactly this kind of rural corridor for funding, so there is at least a policy pathway, even if the infrastructure is not there yet.
+
+---
+
+## Methods
+
+**Tools**: Python with GeoPandas, Shapely, pygris; QGIS; Leaflet and Chart.js for the interactive dashboard
+
+**Techniques**: Nearest-neighbor spatial join via `gpd.sjoin_nearest()`, 25-mile corridor buffer, 10-mile sample point interpolation along a merged LineString, CRS EPSG:6350 (NAD83 CONUS Albers) for accurate distance measurement across multiple UTM zones
+
+**Limitations**:
+
+- CCS connector presence is necessary but not sufficient for truck accessibility. Physical requirements like pull-through parking space and 150 kW or more of charging power also matter, but are not reliably available in the AFDC data. "Truck-compatible" in this analysis means electrically compatible, not guaranteed to be physically usable.
+- The 10-mile sample interval means a gap between two points could theoretically be worse than either point suggests if charger density dips between them. Finer sampling at 5 miles would add confidence.
+
+
+---
+
+*Structure and grammatical editing was assisted by Claude (Anthropic).*
