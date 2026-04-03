@@ -1,0 +1,113 @@
+---
+title: "The Texas Triangle Has Zero Charging Deserts — For Now"
+description: "A spatial analysis of DC Fast charging coverage along the Texas Triangle freight corridor shows zero charging deserts — but I-10 sits just 2.5 miles and two station outages away from becoming one."
+author: "Nadhira A. Hendra"
+categories: [gis, spatial-analysis, python, transportation]
+date: "April 2, 2026"
+date-modified: "April 2, 2026"
+format:
+  html:
+    toc: true
+    toc-depth: 3
+---
+
+During my time at Traveloka, I worked on a sentiment [analysis of what Indonesians were saying about electric vehicles on Twitter in mid-2022](https://amaretha.medium.com/the-zapping-insights-indonesias-electric-vehicle-cde2552384cb). Electric vehicle discussion was heated at the time because the Indonesian government had just announced plans to subsidize EV purchases, meaning people could buy an electric car or motorcycle at a reduced price. In December 2022, the government announced subsidies of around Rp 8 million for electric motorcycles and Rp 80 million for electric cars, with the [formal program launching in March 2023](https://www.thejakartapost.com/business/2023/03/07/govt-earmarks-rp-1-75t-for-electric-two-wheelers-assistance.html).
+
+One of the findings from that analysis was that even with growing enthusiasm, the most common concern was about infrastructure. Specifically, whether PLN, Indonesia's state electricity company, could actually build out the charging network needed to make EVs viable at scale.
+
+Now that I am in the US, I find that the infrastructure question looks very different here. EV stations exist not just for passenger cars but for freight trucks moving goods across the country. I was curious what that infrastructure actually looks like on the ground. That question led me to the Texas Triangle.
+
+---
+
+## The Data
+
+I pulled **EV charging station data** from the [NREL Alternative Fuels Station Locator](https://afdc.energy.gov/stations) via the [AFDC API](https://developer.nrel.gov/api/alt-fuel-stations/v1), filtering to public DC Fast chargers in Texas. I combined this with:
+
+- **Highway geometry** from the [US Census TIGER/Line primary roads dataset](https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html) via the `pygris` library
+- **Truck stops** from [OpenStreetMap via the Overpass API](https://overpass-api.de), tagged as fuel stops with heavy vehicle access or highway rest areas
+- **A 25-mile corridor buffer** around I-10, I-35, and I-45, representing the detour distance a truck driver could reasonably take to reach a charger and return
+
+Sample points were placed every 10 miles along each highway centerline, 750 points in total. Any point more than **50 miles** from the nearest DC Fast charger is flagged as a charging desert — a gap wide enough to strand a loaded electric semi running below peak range.
+
+---
+
+## Finding 1: The Texas Triangle is Well-Covered
+
+The Texas Triangle is the freight corridor formed by I-10, I-35, and I-45, connecting Houston, San Antonio, and Dallas. Three of the largest cities in the country, connected by three of the most trafficked freight interstates.
+
+![Figure 1: The Texas Triangle corridor. Green dots are sample points colored by distance to the nearest DC Fast charger. Gray triangles are truck stops. Blue dots are DC Fast chargers.](data/Map01_Overview.png)
+
+The corridor has **629 DC Fast chargers**, a median distance of **1.8 miles** to the nearest charger, and **zero charging deserts** anywhere across the three interstates. For urban freight on that route, the infrastructure is there today.
+
+But that aggregate number masks real variation between the three highways. The overall coverage looks good. The distribution within the Triangle is not even.
+
+---
+
+## Finding 2: I-10 is the Weak Link
+
+When you break coverage down by highway, the asymmetry becomes clear:
+
+| Highway | Sample Points | Charging Deserts | Max Gap | Safety Margin |
+|---------|:---:|:---:|:---:|:---:|
+| I-10 | 253 | 0 | **47.5 mi** | **2.5 mi** |
+| I-35 | 255 | 0 | 27.5 mi | 22.5 mi |
+| I-45 | 294 | 0 | 13.2 mi | 36.8 mi |
+
+I-45 runs from Houston to Dallas through the urban spine of Texas — dense, well-served, with a maximum gap of just 13.2 miles. I-35 threads through Waco, Austin, and San Antonio, giving it natural charging density from city infrastructure. I-10, by contrast, crosses long rural stretches between Houston and San Antonio with fewer population centers.
+
+The result is a maximum gap of **47.5 miles** on I-10, sitting just 2.5 miles under the desert threshold.
+
+![Figure 2: The worst gap on I-10, near Fort Stockton. The nearest DC Fast charger — the Flying J Travel Center Tesla Supercharger — is 47.5 miles away.](data/Map02_Worst_Gap.png)
+
+That gap sits in the stretch west of San Antonio, near Fort Stockton — a town of around 8,000 people in the Permian Basin. There are truck stops in the area, but the nearest DC Fast charger is 47.5 miles away, which is not yet a desert.
+
+---
+
+## Finding 3: Two Stations Away from a Crisis
+
+Here is where the "for now" in the title earns its weight.
+
+That 2.5-mile margin means the I-10 corridor has almost no redundancy. The gap near Fort Stockton is served by essentially one station cluster: the **Flying J Travel Center (Tesla Supercharger)** and a **Walmart Electrify America station** a mile further away, both in Fort Stockton. If the Flying J goes offline for maintenance, the gap grows to **48.8 miles** — still technically covered, but with only 1.2 miles to spare. Remove both Fort Stockton stations — say, during a grid outage or a major storm — and the gap jumps to **73.5 miles**. That is a charging desert, by a wide margin.
+
+![Figure 3: Distance heatmap along the Triangle. Green = well-covered, orange/red = farther from the nearest charger. I-10 shows the most orange, particularly in the rural stretch west of San Antonio.](data/Map03_Distance_Heatmap.png)
+
+Texas has demonstrated grid vulnerability before. Winter Storm Uri in February 2021 knocked out power for millions of Texans for days. If something similar happened during peak freight season, drivers on the I-10 corridor could end up stranded in the Permian Basin with no viable charging option for dozens of miles in either direction.
+
+Compare that to I-45: its maximum gap is 13.2 miles. Removing the nearest charger to any I-45 sample point barely changes the picture — there are always several nearby alternatives. I-45 has redundancy. I-10 does not.
+
+---
+
+## The Interactive Dashboard
+
+I built an interactive dashboard so you can explore the corridor at different zoom levels and see individual charger and truck stop details.
+
+[**View the Texas Triangle EV Charging Gap Dashboard**](https://azzahrandhr.github.io/ev-charging-gap-dashboard/)
+
+You can toggle individual highways on or off, use the distance filter to isolate sample points above a certain gap threshold, and click any point or charger for details. Filtering to points more than 25 miles from a charger and showing only I-10 makes the fragility of the Fort Stockton stretch immediately visible.
+
+---
+
+## Conclusion
+
+The Texas Triangle passes the EV freight readiness test, but I-10 passes it with almost no margin. The corridor's zero-desert result depends on a small cluster of stations near Fort Stockton remaining operational. Remove two of them and you have a 73.5-mile gap in the Permian Basin.
+
+The policy implication is specific EV infrastructure investment should prioritize **redundancy on I-10's rural stretches**, not additional density in already well-served urban corridors. Adding a tenth charger to a Dallas suburb does nothing for a truck driver 50 miles west of San Antonio. Filling the gap with a second independent station cluster, ideally on a different grid connection, would meaningfully reduce the risk of that stretch.
+
+I-45 has 36.8 miles of safety margin. I-10 has 2.5. That difference is what the aggregate "zero deserts" number hides.
+
+---
+
+## Methods
+
+**Tools**: Python with GeoPandas, Shapely, pygris; QGIS; Leaflet and Chart.js for the interactive dashboard
+
+**Techniques**: Nearest-neighbor spatial join via `gpd.sjoin_nearest()`, 25-mile corridor buffer, 10-mile sample point interpolation along a merged LineString, CRS EPSG:32614 (UTM Zone 14N) for accurate distance measurement within Texas
+
+**Limitations**:
+
+- The 50-mile desert threshold reflects a rule of thumb for loaded electric semis with real-world range degradation, not a universal standard. Different threshold assumptions would change the specific numbers but not the relative fragility of I-10 compared to I-35 and I-45.
+- Physical truck accessibility at charger sites (pull-through bays, minimum charging power) was not assessed — some stations in the dataset may not be physically usable by large commercial vehicles even if they appear in proximity.
+
+---
+
+*Structure and grammatical editing was assisted by Claude (Anthropic).*
