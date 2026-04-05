@@ -15,7 +15,7 @@ During my time at Traveloka, I worked with a group of friends on a [sentiment an
 
 One of the findings from that analysis was that even with growing enthusiasm, one of the most common concerns was about infrastructure. Specifically, whether PLN, Indonesia's state electricity company, could actually support the charging network needed to make EVs viable at scale.
 
-Now that I am in the US, I find that the infrastructure question looks very different here. EV stations exist not just for passenger cars but for freight trucks moving goods across the country. I was curious what that infrastructure actually looks like on the ground. That question led me to the Texas Triangle, and to two specific questions:
+Now that I am in the US, I find that the infrastructure question looks very different here. EV stations exist not just for passenger cars but for freight trucks moving goods across the country. I was curious what that infrastructure actually looks like on the ground. That question led me to the Texas Triangle and two specific questions:
 
 1. Can an electric truck run the Texas Triangle freight corridor, I-10, I-35, and I-45, today? Is the charging infrastructure already there to support it?
 2. How vulnerable is the corridor to disasters that could cause charging outages?
@@ -90,7 +90,7 @@ You can toggle individual highways on or off, use the distance filter to isolate
 
 The Texas Triangle passes the EV freight readiness test, but I-10 passes it with almost no margin. The corridor's zero-desert result depends on a small cluster of stations near Fort Stockton remaining operational. Remove two of them and you have a 73.5-mile gap in a remote stretch with no nearby alternatives.
 
-The policy implication is specific EV infrastructure investment should prioritize **redundancy on I-10's rural stretches**, not additional density in already well-served urban corridors. Adding more chargers to an already-dense urban section does nothing for a truck driver on the rural stretch of I-10. Filling the gap with a second independent station cluster, ideally on a different grid connection, would meaningfully reduce the risk of that stretch.
+The policy implication is that specific EV infrastructure investment should prioritize **redundancy on I-10's rural stretches**, not additional density in already well-served urban corridors. Adding more chargers to an already-dense urban section does nothing for a truck driver on the rural stretch of I-10. Filling the gap with a second independent station cluster, ideally on a different grid connection, would meaningfully reduce the risk of that stretch.
 
 I-45 has 36.8 miles of safety margin while I-10 has just 2.5, and that is what the aggregate "zero deserts" number hides.
 
@@ -102,7 +102,8 @@ This analysis came together quickly because the data was ready for it. Charger l
 
 Indonesia's EV ecosystem is moving fast, and there's real energy behind it. Community efforts like [Pom Listrik](https://pomlistrik.id) have done impressive work mapping SPKLU locations across the country, and PLN's mobile app gives drivers real-time station info. These are genuine assets, built by people who care. But running the same corridor analysis on, say, the Trans-Java route from Merak to Banyuwangi would be a very different project today. Neither source exposes a bulk API, which means getting a corridor-wide charger list involves scraping or manual export, with no guarantee the data is complete or current. For road geometry, [OpenStreetMap via the Overpass API](https://overpass-api.de) is workable but slow, and toll road accuracy depends on how recently contributors have updated the tags.
 
-This is where the gap shows up. Indonesia is still in the phase where the data lives in community maps and private apps, each valuable on its own, but would maybe required multi-week scraping project before it's ready to be analyzed. For a country where the EV conversation is accelerating and infrastructure decisions are being made right now, that's a real constraint on evidence-based planning. However, once those data infrastructure is ready, corridor-level questions become answerable for any route in the country. The question is whether they'll be designed to support the kind of analysis that actually helps planners make better decisions.
+This is where the gap shows up. Indonesia is still in the phase where the data lives in community maps and private apps, each valuable on its own, but a full corridor dataset would likely require weeks of scraping before it's ready to analyze. For a country where the EV conversation is accelerating and infrastructure decisions are being made right now, that's a real constraint on evidence-based planning. But once that data infrastructure is ready, corridor-level questions become answerable for any route in the country. 
+
 ---
 
 ## Methods
