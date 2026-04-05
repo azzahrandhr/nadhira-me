@@ -4,3 +4,4 @@
 .DS_Store
 CLAUDE.md
 posts/*/data/
+.claude/

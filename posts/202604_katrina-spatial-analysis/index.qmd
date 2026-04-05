@@ -1,6 +1,6 @@
 ---
 title: "Who Katrina Left Behind: A Spatial Analysis of Damage, Race, and Elevation in New Orleans"
-description: "Using GIS and 72,911 geocoded property records, I mapped how Hurricane Katrina's destruction aligned with race, income, and elevation across New Orleans and what it reveals about environmental inequality."
+description: "How Hurricane Katrina's destruction aligned with race, income, and elevation across New Orleans and what it reveals about inequality."
 author: "Nadhira A. Hendra"
 categories: [gis, spatial-analysis, environmental-justice, python, qgis]
 date: "April 1, 2026"

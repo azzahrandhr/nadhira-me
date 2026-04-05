@@ -8,7 +8,7 @@
 
 <meta name="author" content="Nadhira A. Hendra">
 <meta name="dcterms.date" content="2026-04-02">
-<meta name="description" content="A spatial analysis of DC Fast charging coverage along the Texas Triangle freight corridor shows zero charging deserts — but I-10 sits just 2.5 miles and two station outages away from becoming one.">
+<meta name="description" content="A spatial analysis of DC Fast charging coverage along the Texas Triangle freight corridor">
 
 <title>The Texas Triangle Has Zero Charging Deserts — For Now</title>
 <style>
@@ -286,7 +286,7 @@ ul.task-list li input[type="checkbox"] {
       <h1 class="title">The Texas Triangle Has Zero Charging Deserts — For Now</h1>
                   <div>
         <div class="description">
-          A spatial analysis of DC Fast charging coverage along the Texas Triangle freight corridor shows zero charging deserts — but I-10 sits just 2.5 miles and two station outages away from becoming one.
+          A spatial analysis of DC Fast charging coverage along the Texas Triangle freight corridor
         </div>
       </div>
                           <div class="quarto-categories">
@@ -339,6 +339,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#finding-3-two-stations-away-from-a-crisis" id="toc-finding-3-two-stations-away-from-a-crisis" class="nav-link" data-scroll-target="#finding-3-two-stations-away-from-a-crisis">Finding 3: Two Stations Away from a Crisis</a></li>
   <li><a href="#the-interactive-dashboard" id="toc-the-interactive-dashboard" class="nav-link" data-scroll-target="#the-interactive-dashboard">The Interactive Dashboard</a></li>
   <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  <li><a href="#could-we-do-this-in-indonesia" id="toc-could-we-do-this-in-indonesia" class="nav-link" data-scroll-target="#could-we-do-this-in-indonesia">Could We Do This in Indonesia?</a></li>
   <li><a href="#methods" id="toc-methods" class="nav-link" data-scroll-target="#methods">Methods</a></li>
   </ul>
 </nav>
@@ -351,9 +352,13 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<p>During my time at Traveloka, I worked on a sentiment <a href="https://amaretha.medium.com/the-zapping-insights-indonesias-electric-vehicle-cde2552384cb">analysis of what Indonesians were saying about electric vehicles on Twitter in mid-2022</a>. Electric vehicle discussion was heated at the time because the Indonesian government had just announced plans to subsidize EV purchases, meaning people could buy an electric car or motorcycle at a reduced price. In December 2022, the government announced subsidies of around Rp 8 million for electric motorcycles and Rp 80 million for electric cars, with the <a href="https://www.thejakartapost.com/business/2023/03/07/govt-earmarks-rp-1-75t-for-electric-two-wheelers-assistance.html">formal program launching in March 2023</a>.</p>
-<p>One of the findings from that analysis was that even with growing enthusiasm, the most common concern was about infrastructure. Specifically, whether PLN, Indonesia’s state electricity company, could actually build out the charging network needed to make EVs viable at scale.</p>
-<p>Now that I am in the US, I find that the infrastructure question looks very different here. EV stations exist not just for passenger cars but for freight trucks moving goods across the country. I was curious what that infrastructure actually looks like on the ground. That question led me to the Texas Triangle.</p>
+<p>During my time at Traveloka, I worked with a group of friends on a <a href="https://amaretha.medium.com/the-zapping-insights-indonesias-electric-vehicle-cde2552384cb">sentiment analysis of what Indonesians were saying about electric vehicles on Twitter in mid-2022</a>. Electric vehicle discussion was heated at the time because the Indonesian government had just announced plans to subsidize EV purchases, meaning people could buy an electric car or motorcycle at a reduced price. In December 2022, the government announced subsidies of around Rp 8 million for electric motorcycles and Rp 80 million for electric cars, with the <a href="https://www.thejakartapost.com/business/2023/03/07/govt-earmarks-rp-1-75t-for-electric-two-wheelers-assistance.html">formal program launching in March 2023</a>.</p>
+<p>One of the findings from that analysis was that even with growing enthusiasm, one of the most common concerns was about infrastructure. Specifically, whether PLN, Indonesia’s state electricity company, could actually support the charging network needed to make EVs viable at scale.</p>
+<p>Now that I am in the US, I find that the infrastructure question looks very different here. EV stations exist not just for passenger cars but for freight trucks moving goods across the country. I was curious what that infrastructure actually looks like on the ground. That question led me to the Texas Triangle, and to two specific questions:</p>
+<ol type="1">
+<li>Can an electric truck run the Texas Triangle freight corridor, I-10, I-35, and I-45, today? Is the charging infrastructure already there to support it?</li>
+<li>How vulnerable is the corridor to disasters that could cause charging outages?</li>
+</ol>
 <hr>
 <section id="the-data" class="level2">
 <h2 class="anchored" data-anchor-id="the-data">The Data</h2>
@@ -363,12 +368,12 @@ ul.task-list li input[type="checkbox"] {
 <li><strong>Truck stops</strong> from <a href="https://overpass-api.de">OpenStreetMap via the Overpass API</a>, tagged as fuel stops with heavy vehicle access or highway rest areas</li>
 <li><strong>A 25-mile corridor buffer</strong> around I-10, I-35, and I-45, representing the detour distance a truck driver could reasonably take to reach a charger and return</li>
 </ul>
-<p>Sample points were placed every 10 miles along each highway centerline, 750 points in total. Any point more than <strong>50 miles</strong> from the nearest DC Fast charger is flagged as a charging desert — a gap wide enough to strand a loaded electric semi running below peak range.</p>
+<p>Sample points were placed every 10 miles along each highway centerline, 750 points in total. Any point more than <strong>50 miles</strong> from the nearest DC Fast charger is flagged as a charging desert, wide enough to strand a loaded electric semi running below peak range.</p>
 <hr>
 </section>
 <section id="finding-1-the-texas-triangle-is-well-covered" class="level2">
 <h2 class="anchored" data-anchor-id="finding-1-the-texas-triangle-is-well-covered">Finding 1: The Texas Triangle is Well-Covered</h2>
-<p>The Texas Triangle is the freight corridor formed by I-10, I-35, and I-45, connecting Houston, San Antonio, and Dallas. Three of the largest cities in the country, connected by three of the most trafficked freight interstates.</p>
+<p>The Texas Triangle is the freight corridor formed by I-10, I-35, and I-45, connecting three of the largest cities in Texas, Houston, San Antonio, and Dallas, along some of the most trafficked freight interstates in the country.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="data/Map01_Overview.png" class="img-fluid figure-img"></p>
@@ -376,7 +381,7 @@ ul.task-list li input[type="checkbox"] {
 </figure>
 </div>
 <p>The corridor has <strong>629 DC Fast chargers</strong>, a median distance of <strong>1.8 miles</strong> to the nearest charger, and <strong>zero charging deserts</strong> anywhere across the three interstates. For urban freight on that route, the infrastructure is there today.</p>
-<p>But that aggregate number masks real variation between the three highways. The overall coverage looks good. The distribution within the Triangle is not even.</p>
+<p>But that aggregate number masks real variation between the three highways. The overall coverage looks good, but the distribution within the Triangle is not even.</p>
 <hr>
 </section>
 <section id="finding-2-i-10-is-the-weak-link" class="level2">
@@ -416,29 +421,27 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
-<p>I-45 runs from Houston to Dallas through the urban spine of Texas — dense, well-served, with a maximum gap of just 13.2 miles. I-35 threads through Waco, Austin, and San Antonio, giving it natural charging density from city infrastructure. I-10, by contrast, crosses long rural stretches between Houston and San Antonio with fewer population centers.</p>
-<p>The result is a maximum gap of <strong>47.5 miles</strong> on I-10, sitting just 2.5 miles under the desert threshold.</p>
+<p>I-45 and I-35 run through the more urbanized parts of Texas, which means chargers cluster naturally around city infrastructure. I-10 crosses long rural stretches with fewer population centers. The result is a maximum gap of <strong>47.5 miles</strong> on I-10, sitting just 2.5 miles under the desert threshold.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="data/Map02_Worst_Gap.png" class="img-fluid figure-img"></p>
-<figcaption>Figure 2: The worst gap on I-10, near Fort Stockton. The nearest DC Fast charger — the Flying J Travel Center Tesla Supercharger — is 47.5 miles away.</figcaption>
+<figcaption>Figure 2: The worst gap on I-10, near Fort Stockton. The nearest DC Fast charger, the Flying J Travel Center Tesla Supercharger, is 47.5 miles away.</figcaption>
 </figure>
 </div>
-<p>That gap sits in the stretch west of San Antonio, near Fort Stockton — a town of around 8,000 people in the Permian Basin. There are truck stops in the area, but the nearest DC Fast charger is 47.5 miles away, which is not yet a desert.</p>
+<p>That gap sits in a remote stretch of west Texas, near Fort Stockton, a town of around 8,000 people in a sparsely populated oil-producing region. There are truck stops in the area, but the nearest DC Fast charger is 47.5 miles away, which is not yet a desert.</p>
 <hr>
 </section>
 <section id="finding-3-two-stations-away-from-a-crisis" class="level2">
 <h2 class="anchored" data-anchor-id="finding-3-two-stations-away-from-a-crisis">Finding 3: Two Stations Away from a Crisis</h2>
-<p>Here is where the “for now” in the title earns its weight.</p>
-<p>That 2.5-mile margin means the I-10 corridor has almost no redundancy. The gap near Fort Stockton is served by essentially one station cluster: the <strong>Flying J Travel Center (Tesla Supercharger)</strong> and a <strong>Walmart Electrify America station</strong> a mile further away, both in Fort Stockton. If the Flying J goes offline for maintenance, the gap grows to <strong>48.8 miles</strong> — still technically covered, but with only 1.2 miles to spare. Remove both Fort Stockton stations — say, during a grid outage or a major storm — and the gap jumps to <strong>73.5 miles</strong>. That is a charging desert, by a wide margin.</p>
+<p>The I-10 corridor passes the desert threshold, but the 2.5-mile margin means it has almost no redundancy. The gap near Fort Stockton is served by essentially one station cluster: the <strong>Flying J Travel Center</strong>, a Tesla Supercharger, and a <strong>Walmart Electrify America station</strong> a mile further away, both in Fort Stockton. If the Flying J goes offline for maintenance, the gap grows to <strong>48.8 miles</strong>, still technically covered but with only 1.2 miles to spare. Remove both Fort Stockton stations during a grid outage or a major storm, and the gap jumps to <strong>73.5 miles</strong>. That is a charging desert, by a wide margin.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="data/Map03_Distance_Heatmap.png" class="img-fluid figure-img"></p>
 <figcaption>Figure 3: Distance heatmap along the Triangle. Green = well-covered, orange/red = farther from the nearest charger. I-10 shows the most orange, particularly in the rural stretch west of San Antonio.</figcaption>
 </figure>
 </div>
-<p>Texas has demonstrated grid vulnerability before. Winter Storm Uri in February 2021 knocked out power for millions of Texans for days. If something similar happened during peak freight season, drivers on the I-10 corridor could end up stranded in the Permian Basin with no viable charging option for dozens of miles in either direction.</p>
-<p>Compare that to I-45: its maximum gap is 13.2 miles. Removing the nearest charger to any I-45 sample point barely changes the picture — there are always several nearby alternatives. I-45 has redundancy. I-10 does not.</p>
+<p>Texas has demonstrated grid vulnerability before. Winter Storm Uri in February 2021 knocked out power for millions of Texans for days. If something similar happened during peak freight season, drivers on the I-10 corridor could end up stranded in that remote stretch of west Texas with no viable charging option for dozens of miles in either direction.</p>
+<p>Compare that to I-45: its maximum gap is 13.2 miles. Removing the nearest charger to any I-45 sample point barely changes the picture, since there are always several nearby alternatives. I-45 has the redundancy that I-10 lacks.</p>
 <hr>
 </section>
 <section id="the-interactive-dashboard" class="level2">
@@ -450,9 +453,17 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="conclusion" class="level2">
 <h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
-<p>The Texas Triangle passes the EV freight readiness test, but I-10 passes it with almost no margin. The corridor’s zero-desert result depends on a small cluster of stations near Fort Stockton remaining operational. Remove two of them and you have a 73.5-mile gap in the Permian Basin.</p>
-<p>The policy implication is specific EV infrastructure investment should prioritize <strong>redundancy on I-10’s rural stretches</strong>, not additional density in already well-served urban corridors. Adding a tenth charger to a Dallas suburb does nothing for a truck driver 50 miles west of San Antonio. Filling the gap with a second independent station cluster, ideally on a different grid connection, would meaningfully reduce the risk of that stretch.</p>
-<p>I-45 has 36.8 miles of safety margin. I-10 has 2.5. That difference is what the aggregate “zero deserts” number hides.</p>
+<p>The Texas Triangle passes the EV freight readiness test, but I-10 passes it with almost no margin. The corridor’s zero-desert result depends on a small cluster of stations near Fort Stockton remaining operational. Remove two of them and you have a 73.5-mile gap in a remote stretch with no nearby alternatives.</p>
+<p>The policy implication is specific EV infrastructure investment should prioritize <strong>redundancy on I-10’s rural stretches</strong>, not additional density in already well-served urban corridors. Adding more chargers to an already-dense urban section does nothing for a truck driver on the rural stretch of I-10. Filling the gap with a second independent station cluster, ideally on a different grid connection, would meaningfully reduce the risk of that stretch.</p>
+<p>I-45 has 36.8 miles of safety margin while I-10 has just 2.5, and that is what the aggregate “zero deserts” number hides.</p>
+<hr>
+</section>
+<section id="could-we-do-this-in-indonesia" class="level2">
+<h2 class="anchored" data-anchor-id="could-we-do-this-in-indonesia">Could We Do This in Indonesia?</h2>
+<p>This analysis was fast because the data was ready-made. It took less than an hour to gather the data. Charger locations came from the NREL AFDC, a federally maintained registry with a clean API. Highway geometry came from the US Census TIGER/Line dataset via a single <code>pygris</code> function call. Both are structured and built for exactly this kind of spatial query.</p>
+<p>Running the same analysis on, say, the Trans-Java corridor, the toll road from Merak to Banyuwangi, would not be as straightforward. Indonesia has no equivalent to the NREL AFDC. The most complete source for SPKLU locations is <a href="https://pomlistrik.id">Pom Listrik</a>, a community-built map, alongside PLN’s mobile app. Neither exposes a bulk API. Getting a corridor-wide charger list would mean scraping or manual export, with no guarantee the data is complete or current. For road geometry, the highway network would come from <a href="https://overpass-api.de">OpenStreetMap via the Overpass API</a>, which works but is slow and the accuracy and recency depend on how recently contributors have updated the toll road tags.</p>
+<p>The result is that the same question requires a few API calls in the US and a multi-step scraping process in Indonesia. The evidence base for infrastructure planning is harder to build and slower to update when the underlying data lives in community maps and private apps rather than government databases.</p>
+<p>Indonesia’s EV challenge is partly about whether PLN can build enough chargers, and partly about whether anyone can systematically measure where the gaps are in the first place.</p>
 <hr>
 </section>
 <section id="methods" class="level2">
@@ -462,7 +473,7 @@ ul.task-list li input[type="checkbox"] {
 <p><strong>Limitations</strong>:</p>
 <ul>
 <li>The 50-mile desert threshold reflects a rule of thumb for loaded electric semis with real-world range degradation, not a universal standard. Different threshold assumptions would change the specific numbers but not the relative fragility of I-10 compared to I-35 and I-45.</li>
-<li>Physical truck accessibility at charger sites (pull-through bays, minimum charging power) was not assessed — some stations in the dataset may not be physically usable by large commercial vehicles even if they appear in proximity.</li>
+<li>Physical truck accessibility at charger sites, including pull-through bays and minimum charging power requirements, was not assessed. Some stations in the dataset may not be physically usable by large commercial vehicles even if they appear nearby.</li>
 </ul>
 <hr>
 <p><em>Structure and grammatical editing was assisted by Claude (Anthropic).</em></p>
