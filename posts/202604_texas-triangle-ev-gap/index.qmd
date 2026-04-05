@@ -80,7 +80,7 @@ Compare that to I-45: its maximum gap is 13.2 miles. Removing the nearest charge
 
 I built an interactive dashboard so you can explore the corridor at different zoom levels and see individual charger and truck stop details.
 
-[**View the Texas Triangle EV Charging Gap Dashboard**](https://azzahrandhr.github.io/ev-charging-gap-dashboard/)
+[**View the Texas Triangle EV Charging Gap Dashboard**](https://azzahrandhr.github.io/ev-charging-gap-texas-triangle/)
 
 You can toggle individual highways on or off, use the distance filter to isolate sample points above a certain gap threshold, and click any point or charger for details. Filtering to points more than 25 miles from a charger and showing only I-10 makes the fragility of the Fort Stockton stretch immediately visible.
 
