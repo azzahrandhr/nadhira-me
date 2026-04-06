@@ -1,7 +1,9 @@
 ---
 title: "Projects"
 listing:
-  contents: posts
+  contents:
+    - "posts/*/index.qmd"
+    - "!posts/0_sample-post/"
   sort: "date desc"
   sort-ui: true
   filter-ui: true

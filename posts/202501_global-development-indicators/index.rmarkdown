@@ -11,7 +11,7 @@ format:
     toc: true
     toc-depth: 3
 execute:
-  eval: false
+  eval: true
   echo: true
 ---
 
@@ -247,3 +247,4 @@ The persistent gap between male and female literacy rates reflects socio-cultura
 The exploratory analysis reveals pattern that gap between the richest and poorest countries isn't just about income but also manifest in infant survival rates, literacy and gender disparities in education. The correlations here can't tell us whether raising GDP would improve health outcomes or whether causal relationships exist between these indicators. Still, exploratory analysis like this can generate hypotheses worth testing with quasi-experimental or experimental methods in future work.
 On a practical note, I found Stata's syntax efficient for this kind of work. Reshaping and regression tale just a view line of code. 
 I hope this serve as a useful reference for data exploration using Stata
+
