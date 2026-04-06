@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Blog</title>
+<title>Posts – Nadhira A. Hendra</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -43,9 +43,9 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-e309e24b30824b370c4cb5380fc28e7a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-77c5af79d8383b998e118d60452268c1.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-e309e24b30824b370c4cb5380fc28e7a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-6edebea95e7cdcec3478bc5175a0292d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-ded9c9d238e9b119f318ef81b65116e3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-6edebea95e7cdcec3478bc5175a0292d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -83,9 +83,9 @@ ul.task-list li input[type="checkbox"] {
     }
 
     const options = {
-      valueNames: ['listing-date','listing-author','listing-reading-time','listing-title','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
+      valueNames: ['listing-date','listing-title','listing-description','listing-categories','listing-reading-time',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
       
-      searchColumns: ["listing-date","listing-title","listing-author"],
+      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
@@ -135,7 +135,7 @@ window.Quarto = {
 
 </head>
 
-<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+<body class="nav-fixed fullcontent quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
       const bodyEl = window.document.querySelector("body");
@@ -312,19 +312,24 @@ window.Quarto = {
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Nadhira A. Hendra</span>
+    </a>
+  </div>
             <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav navbar-nav-scroll me-auto">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./#about"> 
-<span class="menu-text">Home</span></a>
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">About Me</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link active" href="./blog.html" aria-current="page"> 
-<span class="menu-text">Blog</span></a>
+<span class="menu-text">Posts</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -337,22 +342,22 @@ window.Quarto = {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content column-page" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
 
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Blog</h1>
+<h1 class="title">Posts</h1>
 </div>
 
 
 
-<div class="quarto-title-meta column-page">
+<div class="quarto-title-meta">
 
     
   
@@ -368,24 +373,21 @@ window.Quarto = {
 
 
 
-<div class="quarto-listing quarto-listing-container-table" id="listing-listing">
+<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
 <div class="listing-actions-group">
    <div class="input-group input-group-sm quarto-listing-sort">
     <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
     <select id="listing-listing-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-listing'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
       <option value="" disabled="" selected="" hidden="">Order By</option>
       <option value="index" data-direction="asc">Default</option>
+      <option value="listing-title" data-direction="asc">
+        Title
+      </option>
       <option value="listing-date-sort" data-direction="asc">
         Date - Oldest
       </option>
       <option value="listing-date-sort" data-direction="desc">
         Date - Newest
-      </option>
-      <option value="listing-title-sort" data-direction="asc">
-        Title
-      </option>
-      <option value="listing-author" data-direction="asc">
-        Author
       </option>
     </select>
   </div>
@@ -394,150 +396,176 @@ window.Quarto = {
       <input type="text" class="search form-control" placeholder="Filter">
     </div>
 </div>
-<table class="quarto-listing-table table">
-<thead>
-<tr>
+<div class="list quarto-listing-default">
+<div class="quarto-post image-right" data-index="0" data-categories="Z2lzJTJDc3BhdGlhbC1hbmFseXNpcyUyQ3B5dGhvbiUyQ3RyYW5zcG9ydGF0aW9u" data-listing-date-sort="1775102400000" data-listing-file-modified-sort="1775358336845" data-listing-date-modified-sort="1775102400000" data-listing-reading-time-sort="8" data-listing-word-count-sort="1517">
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/202604_texas-triangle-ev-gap/index.html" class="no-external">The Texas Triangle Has Zero Charging Deserts — For Now</a>
+</h3>
+<div class="listing-categories">
 
-<th>
-<a class="sort" data-sort="listing-date-sort" onclick="if (this.classList.contains('sort-asc')) { this.classList.add('sort-desc'); this.classList.remove('sort-asc') } else { this.classList.add('sort-asc'); this.classList.remove('sort-desc')} return false;">Date</a>
-</th>
+<div class="listing-category" onclick="window.quartoListingCategory('Z2lz'); return false;">gis</div>
 
-<th>
-<a class="sort" data-sort="listing-author" onclick="if (this.classList.contains('sort-asc')) { this.classList.add('sort-desc'); this.classList.remove('sort-asc') } else { this.classList.add('sort-asc'); this.classList.remove('sort-desc')} return false;">Author</a>
-</th>
+<div class="listing-category" onclick="window.quartoListingCategory('c3BhdGlhbC1hbmFseXNpcw=='); return false;">spatial-analysis</div>
 
-<th>
-Reading Time
-</th>
+<div class="listing-category" onclick="window.quartoListingCategory('cHl0aG9u'); return false;">python</div>
 
-<th>
-<a class="sort" data-sort="listing-title-sort" onclick="if (this.classList.contains('sort-asc')) { this.classList.add('sort-desc'); this.classList.remove('sort-asc') } else { this.classList.add('sort-asc'); this.classList.remove('sort-desc')} return false;">Title</a>
-</th>
+<div class="listing-category" onclick="window.quartoListingCategory('dHJhbnNwb3J0YXRpb24='); return false;">transportation</div>
 
-<th>
-Description
-</th>
+</div>
+<div class="delink listing-description"><a href="./posts/202604_texas-triangle-ev-gap/index.html" class="no-external">
+<p>A spatial analysis of DC Fast charging coverage along the Texas Triangle freight corridor</p>
+</a></div>
+</div>
+<div class="metadata">
+<a href="./posts/202604_texas-triangle-ev-gap/index.html" class="no-external">
+<div class="listing-date">
+Apr 2, 2026
+</div>
+<div class="listing-reading-time">8 min</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="1" data-categories="Z2lzJTJDc3BhdGlhbC1hbmFseXNpcyUyQ2Vudmlyb25tZW50YWwtanVzdGljZSUyQ3B5dGhvbiUyQ3FnaXM=" data-listing-date-sort="1775016000000" data-listing-file-modified-sort="1775349114717" data-listing-date-modified-sort="1775016000000" data-listing-reading-time-sort="8" data-listing-word-count-sort="1565">
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/202604_katrina-spatial-analysis/index.html" class="no-external">Who Katrina Left Behind: A Spatial Analysis of Damage, Race, and Elevation in New Orleans</a>
+</h3>
+<div class="listing-categories">
 
-</tr>
-</thead>
-<tbody class="list">
+<div class="listing-category" onclick="window.quartoListingCategory('Z2lz'); return false;">gis</div>
 
-<tr data-index="0" data-categories="Z2lzJTJDc3BhdGlhbC1hbmFseXNpcyUyQ3B5dGhvbiUyQ3RyYW5zcG9ydGF0aW9u" data-listing-date-sort="1775102400000" data-listing-file-modified-sort="1775358336845" data-listing-date-modified-sort="1775102400000" data-listing-reading-time-sort="8" data-listing-word-count-sort="1517" data-listing-title-sort="The Texas Triangle Has Zero Charging Deserts — For Now" data-listing-filename-sort="index.qmd">
-<td>
-<span class="listing-date">Apr 2, 2026</span>
-</td>
-<td>
-<span class="listing-author">Nadhira A. Hendra</span>
-</td>
-<td>
-<span class="listing-reading-time">8 min</span>
-</td>
-<td>
-<a href="./posts/202604_texas-triangle-ev-gap/index.html" class="title listing-title">The Texas Triangle Has Zero Charging Deserts — For Now</a>
-</td>
-<td>
-<span class="listing-description">A spatial analysis of DC Fast charging coverage along the Texas Triangle freight corridor</span>
-</td>
+<div class="listing-category" onclick="window.quartoListingCategory('c3BhdGlhbC1hbmFseXNpcw=='); return false;">spatial-analysis</div>
 
-</tr>
+<div class="listing-category" onclick="window.quartoListingCategory('ZW52aXJvbm1lbnRhbC1qdXN0aWNl'); return false;">environmental-justice</div>
 
-<tr data-index="1" data-categories="Z2lzJTJDc3BhdGlhbC1hbmFseXNpcyUyQ2Vudmlyb25tZW50YWwtanVzdGljZSUyQ3B5dGhvbiUyQ3FnaXM=" data-listing-date-sort="1775016000000" data-listing-file-modified-sort="1775349114717" data-listing-date-modified-sort="1775016000000" data-listing-reading-time-sort="8" data-listing-word-count-sort="1565" data-listing-title-sort="Who Katrina Left Behind: A Spatial Analysis of Damage, Race, and Elevation in New Orleans" data-listing-filename-sort="index.qmd">
-<td>
-<span class="listing-date">Apr 1, 2026</span>
-</td>
-<td>
-<span class="listing-author">Nadhira A. Hendra</span>
-</td>
-<td>
-<span class="listing-reading-time">8 min</span>
-</td>
-<td>
-<a href="./posts/202604_katrina-spatial-analysis/index.html" class="title listing-title">Who Katrina Left Behind: A Spatial Analysis of Damage, Race, and Elevation in New Orleans</a>
-</td>
-<td>
-<span class="listing-description">How Hurricane Katrina’s destruction aligned with race, income, and elevation across New Orleans and what it reveals about inequality.</span>
-</td>
+<div class="listing-category" onclick="window.quartoListingCategory('cHl0aG9u'); return false;">python</div>
 
-</tr>
+<div class="listing-category" onclick="window.quartoListingCategory('cWdpcw=='); return false;">qgis</div>
 
-<tr data-index="2" data-categories="ciUyQ2NhdXNhbC1pbmZlcmVuY2UlMkNkZXZlbG9wbWVudC1lY29ub21pY3MlMkNjbGltYXRl" data-listing-date-sort="1773806400000" data-listing-file-modified-sort="1773889154525" data-listing-date-modified-sort="1773806400000" data-listing-reading-time-sort="17" data-listing-word-count-sort="3212" data-listing-title-sort="Does Temperature Shape Economic Growth? Replicating Burke, Hsiang &amp; Miguel" data-listing-filename-sort="index.qmd">
-<td>
-<span class="listing-date">Mar 18, 2026</span>
-</td>
-<td>
-<span class="listing-author">Nadhira A. Hendra</span>
-</td>
-<td>
-<span class="listing-reading-time">17 min</span>
-</td>
-<td>
-<a href="./posts/202603_climate-gdp-replication/index.html" class="title listing-title">Does Temperature Shape Economic Growth? Replicating Burke, Hsiang &amp; Miguel</a>
-</td>
-<td>
-<span class="listing-description">A replication of a landmark climate economics paper that found an inverted-U relationship between temperature and GDP growth — and what it means for countries like Indonesia.</span>
-</td>
+</div>
+<div class="delink listing-description"><a href="./posts/202604_katrina-spatial-analysis/index.html" class="no-external">
+<p>How Hurricane Katrina’s destruction aligned with race, income, and elevation across New Orleans and what it reveals about inequality.</p>
+</a></div>
+</div>
+<div class="metadata">
+<a href="./posts/202604_katrina-spatial-analysis/index.html" class="no-external">
+<div class="listing-date">
+Apr 1, 2026
+</div>
+<div class="listing-reading-time">8 min</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="2" data-categories="ciUyQ2NhdXNhbC1pbmZlcmVuY2UlMkNkZXZlbG9wbWVudC1lY29ub21pY3MlMkNjbGltYXRl" data-listing-date-sort="1773806400000" data-listing-file-modified-sort="1773889154525" data-listing-date-modified-sort="1773806400000" data-listing-reading-time-sort="17" data-listing-word-count-sort="3212">
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/202603_climate-gdp-replication/index.html" class="no-external">Does Temperature Shape Economic Growth? Replicating Burke, Hsiang &amp; Miguel</a>
+</h3>
+<div class="listing-categories">
 
-</tr>
+<div class="listing-category" onclick="window.quartoListingCategory('cg=='); return false;">r</div>
 
-<tr data-index="3" data-categories="c3RhdGElMkNyZWdyZXNzaW9uJTJDZGlmZmVyZW5jZS1pbi1kaWZmZXJlbmNl" data-listing-date-sort="1768453200000" data-listing-file-modified-sort="1768783373600" data-listing-date-modified-sort="1768798800000" data-listing-reading-time-sort="7" data-listing-word-count-sort="1240" data-listing-title-sort="Understanding Difference-in-Differences: A Practical Guide Using Stata" data-listing-filename-sort="index.qmd">
-<td>
-<span class="listing-date">Jan 15, 2026</span>
-</td>
-<td>
-<span class="listing-author">Nadhira A. Hendra</span>
-</td>
-<td>
-<span class="listing-reading-time">7 min</span>
-</td>
-<td>
-<a href="./posts/202601_did-mobile-health-clinics/index.html" class="title listing-title">Understanding Difference-in-Differences: A Practical Guide Using Stata</a>
-</td>
-<td>
-<span class="listing-description">Exploring quasi-experimental methods through a health policy case study</span>
-</td>
+<div class="listing-category" onclick="window.quartoListingCategory('Y2F1c2FsLWluZmVyZW5jZQ=='); return false;">causal-inference</div>
 
-</tr>
+<div class="listing-category" onclick="window.quartoListingCategory('ZGV2ZWxvcG1lbnQtZWNvbm9taWNz'); return false;">development-economics</div>
 
-<tr data-index="4" data-categories="c3RhdGElMkNkZXZlbG9wbWVudC1lY29ub21pY3MlMkNyZWdyZXNzaW9u" data-listing-date-sort="1768194000000" data-listing-file-modified-sort="1768321598863" data-listing-date-modified-sort="1768280400000" data-listing-reading-time-sort="7" data-listing-word-count-sort="1353" data-listing-title-sort="Exploring Global Development Patterns with World Bank Data" data-listing-filename-sort="index.qmd">
-<td>
-<span class="listing-date">Jan 12, 2026</span>
-</td>
-<td>
-<span class="listing-author">Nadhira A. Hendra</span>
-</td>
-<td>
-<span class="listing-reading-time">7 min</span>
-</td>
-<td>
-<a href="./posts/202501_global-development-indicators/index.html" class="title listing-title">Exploring Global Development Patterns with World Bank Data</a>
-</td>
-<td>
-<span class="listing-description">An exploratory data analysis using Stata to investigate GDP, literacy rates, and mortality indicators across countries</span>
-</td>
+<div class="listing-category" onclick="window.quartoListingCategory('Y2xpbWF0ZQ=='); return false;">climate</div>
 
-</tr>
+</div>
+<div class="delink listing-description"><a href="./posts/202603_climate-gdp-replication/index.html" class="no-external">
+<p>A replication of a landmark climate economics paper that found an inverted-U relationship between temperature and GDP growth — and what it means for countries like Indonesia.</p>
+</a></div>
+</div>
+<div class="metadata">
+<a href="./posts/202603_climate-gdp-replication/index.html" class="no-external">
+<div class="listing-date">
+Mar 18, 2026
+</div>
+<div class="listing-reading-time">17 min</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="3" data-categories="c3RhdGElMkNyZWdyZXNzaW9uJTJDZGlmZmVyZW5jZS1pbi1kaWZmZXJlbmNl" data-listing-date-sort="1768453200000" data-listing-file-modified-sort="1768783373600" data-listing-date-modified-sort="1768798800000" data-listing-reading-time-sort="7" data-listing-word-count-sort="1240">
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/202601_did-mobile-health-clinics/index.html" class="no-external">Understanding Difference-in-Differences: A Practical Guide Using Stata</a>
+</h3>
+<div class="listing-categories">
 
-<tr data-index="5" data-categories="ciUyQ2NhdXNhbC1pbmZlcmVuY2U=" data-listing-date-sort="1766725200000" data-listing-file-modified-sort="1768583593471" data-listing-date-modified-sort="1767762000000" data-listing-reading-time-sort="35" data-listing-word-count-sort="6906" data-listing-title-sort="Sources of Authoritarian Responsiveness: A Field Experiment in China" data-listing-filename-sort="index.qmd">
-<td>
-<span class="listing-date">Dec 26, 2025</span>
-</td>
-<td>
-<span class="listing-author">Nadhira A. Hendra</span>
-</td>
-<td>
-<span class="listing-reading-time">35 min</span>
-</td>
-<td>
-<a href="./posts/202601_replication-rct-authorian/index.html" class="title listing-title">Sources of Authoritarian Responsiveness: A Field Experiment in China</a>
-</td>
-<td>
-<span class="listing-description">Replication of Chen, Pan and Xu (2016)</span>
-</td>
+<div class="listing-category" onclick="window.quartoListingCategory('c3RhdGE='); return false;">stata</div>
 
-</tr>
+<div class="listing-category" onclick="window.quartoListingCategory('cmVncmVzc2lvbg=='); return false;">regression</div>
 
-</tbody>
-</table>
+<div class="listing-category" onclick="window.quartoListingCategory('ZGlmZmVyZW5jZS1pbi1kaWZmZXJlbmNl'); return false;">difference-in-difference</div>
+
+</div>
+<div class="delink listing-description"><a href="./posts/202601_did-mobile-health-clinics/index.html" class="no-external">
+<p>Exploring quasi-experimental methods through a health policy case study</p>
+</a></div>
+</div>
+<div class="metadata">
+<a href="./posts/202601_did-mobile-health-clinics/index.html" class="no-external">
+<div class="listing-date">
+Jan 15, 2026
+</div>
+<div class="listing-reading-time">7 min</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="4" data-categories="c3RhdGElMkNkZXZlbG9wbWVudC1lY29ub21pY3MlMkNyZWdyZXNzaW9u" data-listing-date-sort="1768194000000" data-listing-file-modified-sort="1768321598863" data-listing-date-modified-sort="1768280400000" data-listing-reading-time-sort="7" data-listing-word-count-sort="1353">
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/202501_global-development-indicators/index.html" class="no-external">Exploring Global Development Patterns with World Bank Data</a>
+</h3>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('c3RhdGE='); return false;">stata</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('ZGV2ZWxvcG1lbnQtZWNvbm9taWNz'); return false;">development-economics</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('cmVncmVzc2lvbg=='); return false;">regression</div>
+
+</div>
+<div class="delink listing-description"><a href="./posts/202501_global-development-indicators/index.html" class="no-external">
+<p>An exploratory data analysis using Stata to investigate GDP, literacy rates, and mortality indicators across countries</p>
+</a></div>
+</div>
+<div class="metadata">
+<a href="./posts/202501_global-development-indicators/index.html" class="no-external">
+<div class="listing-date">
+Jan 12, 2026
+</div>
+<div class="listing-reading-time">7 min</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="5" data-categories="ciUyQ2NhdXNhbC1pbmZlcmVuY2U=" data-listing-date-sort="1766725200000" data-listing-file-modified-sort="1768583593471" data-listing-date-modified-sort="1767762000000" data-listing-reading-time-sort="35" data-listing-word-count-sort="6906">
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/202601_replication-rct-authorian/index.html" class="no-external">Sources of Authoritarian Responsiveness: A Field Experiment in China</a>
+</h3>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('cg=='); return false;">r</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('Y2F1c2FsLWluZmVyZW5jZQ=='); return false;">causal-inference</div>
+
+</div>
+<div class="delink listing-description"><a href="./posts/202601_replication-rct-authorian/index.html" class="no-external">
+<p>Replication of Chen, Pan and Xu (2016)</p>
+</a></div>
+</div>
+<div class="metadata">
+<a href="./posts/202601_replication-rct-authorian/index.html" class="no-external">
+<div class="listing-date">
+Dec 26, 2025
+</div>
+<div class="listing-reading-time">35 min</div>
+</a>
+</div>
+</div>
+</div>
 <div class="listing-no-matching d-none">No matching items</div>
 </div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -954,6 +982,19 @@ Description
   });
   </script>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>© 2026 Nadhira Azzahra Hendra · Made with <a href="https://quarto.org">Quarto</a></p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
 
 
 

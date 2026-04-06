@@ -1,13 +1,10 @@
 ---
-title: "Blog"
-format:
-  html:
-    page-layout: full
+title: "Posts"
 listing:
   contents: posts
   sort: "date desc"
   sort-ui: true
   filter-ui: true
-  type: table
-  fields: [date, author, reading-time, title, description]
+  type: default
+  fields: [date, title, description, categories, reading-time]
 ---

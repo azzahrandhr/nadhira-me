@@ -6,9 +6,9 @@ project:
     - "posts/**/*.qmd"
 
 website:
-  description: "A blog built with Quarto"
-  site-url: "https://nadhira.me" # you must change this appropriately for RSS feeds to work properly
-  title: ""
+  description: "Personal website and blog of Nadhira Azzahra Hendra"
+  site-url: "https://nadhira.me"
+  title: "Nadhira A. Hendra"
   navbar:
     search: true
     pinned: true
@@ -17,11 +17,14 @@ website:
         href: https://github.com/azzahrandhr
       - icon: linkedin
         href: https://www.linkedin.com/in/azzahrandhr/
-    left:
-      - text: "Home"
-        href: "#about"
-      - text: "Blog"
+    right:
+      - text: "About Me"
+        href: index.qmd
+      - text: "Posts"
         href: blog.qmd
+  page-footer:
+    border: false
+    center: "© 2026 Nadhira Azzahra Hendra · Made with [Quarto](https://quarto.org)"
 
 format:
   html:

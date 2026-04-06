@@ -1,70 +1,21 @@
 ---
-title: ""
-format:
-  html:
-    page-layout: full
+title: "Nadhira A. Hendra"
+subtitle: Master Student at Columbia University
+about:
+  template: solana
+  image: profile.jpg
+  image-width: 24em
+  image-shape: round
+  links:
+    - icon: envelope
+      href: mailto:nah2181@columbia.edu
+    - icon: linkedin
+      href: https://www.linkedin.com/in/azzahrandhr/
+    - icon: github
+      href: https://github.com/azzahrandhr
 ---
 
-<style>
-:root {
-  --muted: #666;}
+I'm currently studying Quantitative Methods in the Social Sciences at Columbia University, previously I work as a data analyst in Traveloka and OCBC. My interest focuses in the field of data analysis and causal inference, particularly as tools for advancing research in development economics. This is where I write about my learnings and projects.
 
+[**Read My Posts** →](blog.qmd){.learn-more}
 
-/* Hero - aligned the text to middle, through specification*/
-.hero {
-  max-width: 850px;
-  margin: 0rem auto 3rem;
-  text-align: center;
-  padding: 0 1rem;
-}
-
-.hero h1 {
-  font-size: 2.2rem;
-  margin-bottom: 0.5rem;
-}
-
-.hero p {
-  color: var(--muted);
-  font-size: 1.05rem;
-}
-
-
-/* Hero - control the avatar into circle*/
-.avatar {
-  width: 220px;
-  height: 220px;
-  border-radius: 50%;
-  object-fit: cover;
-  margin-bottom: 1.5rem;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-footer {
-  text-align: center;
-  padding: 3rem 1rem;
-  color: var(--muted);
-  font-size: 0.85rem;
-}
-</style>
-
-<div class="hero">
-  <img src="profile.jpg" alt="Nadhira" class="avatar" />
-  <h1>Nadhira Azzahra Hendra</h1>
-  <p>
-    I'm a first year graduate student in **Quantitative Methods in the Social Sciences** at Columbia University. Previously, I worked as a data analyst at [Traveloka](https://www.traveloka.com/en-en) and [OCBC](https://www.ocbc.com/business-banking). My interest focus on the field of data analysis, causal inference, and field experimentation, particularly as tools to create meaningful societal impact. You can get in touch with me via email at [nah2181@columbia.edu](mailto:nah2181@columbia.edu) or on [LinkedIn](https://linkedin.com/in/azzahrandhr)
-  </p>
-</div>
-
-<section id="interests">
-  <h2>Interests</h2>
-  <ul>
-    <li><strong>Causal inference and Field experiments</strong></li>
-    <li><strong>Climate </strong> - climate impacts on vulnerable populations, adaptation policy</li>
-    <li><strong>Gender & Education</strong> - education interventions, gender equity, human capital</li>
-  </ul>
-</section>
-<footer>
-  © 2026 Nadhira Azzahra Hendra
-</footer>

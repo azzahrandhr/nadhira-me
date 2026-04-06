@@ -1,0 +1,115 @@
+/* title */
+.title {
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1.1em !important;
+}
+
+/* subtitle */
+.subtitle {
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 0.5rem;
+}
+
+/* vertically center the about block within its 1fr grid row */
+.quarto-about-solana {
+  align-self: center !important;
+}
+
+/* constrain and center the full about block */
+.about-entity {
+  max-width: 1200px;
+  width: 92%;
+  margin: 0 auto !important;
+  gap: 3em;
+}
+
+/* give the text column more space vs the image */
+.entity-contents {
+  flex: 1.5 !important;
+}
+
+/* heading, subtitle, social links — all right-aligned */
+.entity-contents {
+  text-align: right !important;
+  padding: 0 2em 0 2em;
+}
+
+/* bio text — wider margin */
+.about-contents {
+  padding: 0 !important;
+  max-width: 100% !important;
+}
+
+/* social links block */
+.about-entity .about-links {
+  justify-content: flex-end !important;
+  column-gap: 0em !important;
+  font-size: 1.2em !important;
+}
+
+/* social links individual — no border, tight padding */
+.about-entity .about-link {
+  padding: 0.25em 0.25em !important;
+  border: none !important;
+  background: transparent !important;
+}
+
+/* image — force square then circle, no shape-outside */
+.about-image {
+  border-radius: 50% !important;
+  aspect-ratio: 1 / 1 !important;
+  object-fit: cover !important;
+  margin-top: -2em;
+  margin-right: 2em;
+  padding: 0 !important;
+  float: none !important;
+  shape-outside: none !important;
+}
+
+/* Learn More CTA */
+.learn-more {
+  display: block;
+  margin-top: 1.5rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+/* mobile — stack image above, center everything */
+@media screen and (max-width: 991.98px) {
+  .entity-contents {
+    order: 2 !important;
+    margin: -4em 0 0 0 !important;
+    padding: 0 !important;
+    text-align: center !important;
+  }
+
+  .subtitle {
+    text-align: center !important;
+  }
+
+  .about-entity .about-links {
+    justify-content: center !important;
+    font-size: 1em !important;
+  }
+
+  .about-contents {
+    padding: 0 !important;
+  }
+
+  .learn-more {
+    text-align: center;
+  }
+
+  .about-image {
+    order: 1 !important;
+    padding: 0 2em !important;
+  }
+}

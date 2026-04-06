@@ -1,18 +1,95 @@
 /*-- scss:defaults --*/
-// Light mode navbar colors
+// Navbar — keeping the original pink
 $navbar-bg: #EADBDD;
 $navbar-fg: #212529;
 
-// Other light mode customizations
+// Body
 $body-bg: #ffffff;
 $body-color: #212529;
-$link-color: #0d6efd;
+$link-color: #7a4f55;
+
+// Typography
+$font-family-sans-serif: 'DM Sans', system-ui, -apple-system, sans-serif;
+$headings-font-family: 'DM Serif Display', Georgia, serif;
+$headings-font-weight: 400;
+$line-height-base: 1.75;
 
 /*-- scss:rules --*/
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap');
+
+// Navbar
 .navbar {
   background-color: $navbar-bg !important;
-  
-  .navbar-brand, .nav-link {
-    color: $navbar-fg !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.navbar-brand {
+  color: $navbar-fg !important;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.navbar-nav .nav-link {
+  color: #6b4248 !important;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.95rem;
+  border-bottom: 1px solid transparent;
+  padding: 2px 2px 4px 2px !important;
+  margin: 0 8px;
+
+  &:hover {
+    border-bottom: 1px solid #6b4248 !important;
+    padding-bottom: 0px !important;
+    opacity: 1 !important;
   }
+}
+
+// Social icon link colors (home page)
+.about-links .about-link i {
+  color: #6b4248 !important;
+
+  &:hover {
+    color: #3d1f23 !important;
+  }
+}
+
+// Learn More CTA color
+.learn-more {
+  color: #7a4f55 !important;
+  text-decoration-color: #e2cfd1;
+
+  &:hover {
+    text-decoration-color: #7a4f55;
+  }
+}
+
+// h2 section dividers (blog/post pages)
+h2 {
+  border-bottom: 1.5px solid #eedcde;
+  padding-bottom: 0.35rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+// Blog listing — grid card hover
+.quarto-grid-item {
+  border: 1px solid #f0e4e6 !important;
+  border-radius: 10px !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(122, 79, 85, 0.1) !important;
+  }
+}
+
+// Page footer
+.nav-footer {
+  border-top: 1px solid #f0e4e6;
+  color: #aaa;
+  font-size: 0.82rem;
 }

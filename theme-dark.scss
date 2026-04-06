@@ -1,20 +1,94 @@
 /*-- scss:defaults --*/
-// Dark mode navbar colors
 $navbar-bg: #252525;
 $navbar-fg: #e0e0e0;
 
-// Other dark mode customizations (your existing settings)
 $body-bg: #181818;
 $body-color: #ccc;
-$link-color: #75AADB;
+$link-color: #d4a5ab;
+
+$font-family-sans-serif: 'DM Sans', system-ui, -apple-system, sans-serif;
+$headings-font-family: 'DM Serif Display', Georgia, serif;
+$headings-font-weight: 400;
+$line-height-base: 1.75;
 
 $code-block-bg-alpha: -.9;
 
 /*-- scss:rules --*/
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap');
+
+// Navbar
 .navbar {
   background-color: $navbar-bg !important;
-  
-  .navbar-brand, .nav-link {
-    color: $navbar-fg !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.navbar-brand {
+  color: $navbar-fg !important;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.navbar-nav .nav-link {
+  color: #c9959b !important;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.95rem;
+  border-bottom: 1px solid transparent;
+  padding: 2px 2px 4px 2px !important;
+  margin: 0 8px;
+
+  &:hover {
+    border-bottom: 1px solid #c9959b !important;
+    padding-bottom: 0px !important;
+    opacity: 1 !important;
   }
+}
+
+// Social icon link colors (home page)
+.about-links .about-link i {
+  color: #c9959b !important;
+
+  &:hover {
+    color: #e8c2c6 !important;
+  }
+}
+
+// Learn More CTA color
+.learn-more {
+  color: #c9959b !important;
+  text-decoration-color: rgba(234, 219, 221, 0.3);
+
+  &:hover {
+    text-decoration-color: #c9959b;
+  }
+}
+
+// h2 section dividers (blog/post pages)
+h2 {
+  border-bottom: 1.5px solid rgba(234, 219, 221, 0.18);
+  padding-bottom: 0.35rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+// Blog listing — grid card hover
+.quarto-grid-item {
+  border: 1px solid rgba(255, 255, 255, 0.07) !important;
+  border-radius: 10px !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35) !important;
+  }
+}
+
+// Page footer
+.nav-footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  color: #555;
+  font-size: 0.82rem;
 }
