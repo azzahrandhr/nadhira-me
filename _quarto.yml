@@ -4,6 +4,7 @@ project:
   render:
     - "*.qmd"
     - "posts/**/*.qmd"
+    - "notes/**/*.qmd"
 
 website:
   description: "Personal website and blog of Nadhira Azzahra Hendra"
@@ -13,15 +14,18 @@ website:
     search: true
     pinned: true
     tools:
+      - icon: envelope
+        href: mailto:nah2181@columbia.edu
       - icon: github
         href: https://github.com/azzahrandhr
       - icon: linkedin
         href: https://www.linkedin.com/in/azzahrandhr/
-    right:
-      - text: "About Me"
-        href: index.qmd
-      - text: "Posts"
+    left:
+      - text: "|"
+      - text: "Projects"
         href: blog.qmd
+      - text: "Notes"
+        href: notes.qmd
   page-footer:
     border: false
     center: "© 2026 Nadhira Azzahra Hendra · Made with [Quarto](https://quarto.org)"

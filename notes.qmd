@@ -1,7 +1,8 @@
 ---
-title: "Projects"
+title: "Notes"
+subtitle: "Learning notes, readings, and things I picked up along the way"
 listing:
-  contents: posts
+  contents: notes
   sort: "date desc"
   sort-ui: true
   filter-ui: true

@@ -48,6 +48,13 @@ $line-height-base: 1.75;
   }
 }
 
+// Pipe separator before dark mode toggle
+.navbar .quarto-color-scheme-toggle {
+  border-left: 0px solid rgba(0, 0, 0, 0.2);
+  padding-left: 4px;
+  margin-left: 10px;
+}
+
 // Social icon link colors (home page)
 .about-links .about-link i {
   color: #6b4248 !important;

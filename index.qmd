@@ -6,16 +6,44 @@ about:
   image: profile.jpg
   image-width: 24em
   image-shape: round
-  links:
-    - icon: envelope
-      href: mailto:nah2181@columbia.edu
-    - icon: linkedin
-      href: https://www.linkedin.com/in/azzahrandhr/
-    - icon: github
-      href: https://github.com/azzahrandhr
 ---
 
+```{=html}
+<style>
+#about-block {
+  text-align: right;
+}
+.entity-contents {
+  text-align: right;
+}
+.about-links {
+  justify-content: flex-end !important;
+}
+.quarto-about-solana.column-body {
+  max-width: 100% !important;
+  width: 60% !important;
+  grid-column: 1 / -1 !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-top: 9em !important;
+  padding-left: 3em;
+  padding-right: 3em;
+}
+.about-entity {
+  max-width: 100% !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+.about-contents {
+  max-width: 100% !important;
+  flex: 1 1 0 !important;
+}
+</style>
+```
+
+::: {#about-block}
 I'm currently studying Quantitative Methods in the Social Sciences at Columbia University, previously I work as a data analyst in Traveloka and OCBC. My interest focuses in the field of data analysis and causal inference, particularly as tools for advancing research in development economics. This is where I write about my learnings and projects.
 
-[**Read My Posts** →](blog.qmd){.learn-more}
+[**See My Projects** →](blog.qmd){.learn-more}
+:::
 

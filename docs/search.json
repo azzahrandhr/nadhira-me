@@ -163,7 +163,7 @@
   {
     "objectID": "blog.html",
     "href": "blog.html",
-    "title": "Posts",
+    "title": "Projects",
     "section": "",
     "text": "Order By\n      Default\n      \n        Title\n      \n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\nThe Texas Triangle Has Zero Charging Deserts — For Now\n\n\n\ngis\n\nspatial-analysis\n\npython\n\ntransportation\n\n\n\nA spatial analysis of DC Fast charging coverage along the Texas Triangle freight corridor\n\n\n\n\n\nApr 2, 2026\n\n8 min\n\n\n\n\n\n\nWho Katrina Left Behind: A Spatial Analysis of Damage, Race, and Elevation in New Orleans\n\n\n\ngis\n\nspatial-analysis\n\nenvironmental-justice\n\npython\n\nqgis\n\n\n\nHow Hurricane Katrina’s destruction aligned with race, income, and elevation across New Orleans and what it reveals about inequality.\n\n\n\n\n\nApr 1, 2026\n\n8 min\n\n\n\n\n\n\nDoes Temperature Shape Economic Growth? Replicating Burke, Hsiang & Miguel\n\n\n\nr\n\ncausal-inference\n\ndevelopment-economics\n\nclimate\n\n\n\nA replication of a landmark climate economics paper that found an inverted-U relationship between temperature and GDP growth — and what it means for countries like Indonesia.\n\n\n\n\n\nMar 18, 2026\n\n17 min\n\n\n\n\n\n\nUnderstanding Difference-in-Differences: A Practical Guide Using Stata\n\n\n\nstata\n\nregression\n\ndifference-in-difference\n\n\n\nExploring quasi-experimental methods through a health policy case study\n\n\n\n\n\nJan 15, 2026\n\n7 min\n\n\n\n\n\n\nExploring Global Development Patterns with World Bank Data\n\n\n\nstata\n\ndevelopment-economics\n\nregression\n\n\n\nAn exploratory data analysis using Stata to investigate GDP, literacy rates, and mortality indicators across countries\n\n\n\n\n\nJan 12, 2026\n\n7 min\n\n\n\n\n\n\nSources of Authoritarian Responsiveness: A Field Experiment in China\n\n\n\nr\n\ncausal-inference\n\n\n\nReplication of Chen, Pan and Xu (2016)\n\n\n\n\n\nDec 26, 2025\n\n35 min\n\n\n\n\nNo matching items"
   },
@@ -172,7 +172,7 @@
     "href": "index.html",
     "title": "Nadhira A. Hendra",
     "section": "",
-    "text": "I’m currently studying Quantitative Methods in the Social Sciences at Columbia University, previously I work as a data analyst in Traveloka and OCBC. My interest focuses in the field of data analysis and causal inference, particularly as tools for advancing research in development economics. This is where I write about my learnings and projects.\nRead My Posts →"
+    "text": "I’m currently studying Quantitative Methods in the Social Sciences at Columbia University, previously I work as a data analyst in Traveloka and OCBC. My interest focuses in the field of data analysis and causal inference, particularly as tools for advancing research in development economics. This is where I write about my learnings and projects.\nSee My Projects →"
   },
   {
     "objectID": "posts/202501_global-development-indicators/index.html",
@@ -362,5 +362,12 @@
     "title": "Who Katrina Left Behind: A Spatial Analysis of Damage, Race, and Elevation in New Orleans",
     "section": "Methods",
     "text": "Methods\nTools: QGIS 3.x, Python with pandas and numpy\nTechniques: Batch geocoding via Census Bureau Geocoder, point-in-polygon spatial joins, buffer analysis, choropleth mapping, damage rate normalization\nLimitations:\n\nGeocoding match rate was 99.2%, meaning 612 addresses could not be converted to coordinates.\nThe damage assessment reflects structural damage only, not contents, personal losses, or psychological impact.\nACS data are estimates with margins of error, especially for small-population tracts.\nCorrelation between demographics and damage does not imply causation. Elevation is the primary physical driver, and racial and income patterns reflect where different communities lived relative to flood risk.\nOne census tract produced a calculated damage rate above 100%, specifically 167%, which indicates incomplete building footprint coverage, likely because heavily damaged or demolished structures are missing from the dataset. This value was capped at 100% in the analysis.\n\n\nStructure and grammatical editing was assisted by Claude (Anthropic)."
+  },
+  {
+    "objectID": "notes.html",
+    "href": "notes.html",
+    "title": "Notes",
+    "section": "",
+    "text": "Order By\n      Default\n      \n        Title\n      \n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\nNo matching items"
   }
 ]
