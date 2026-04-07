@@ -1,6 +1,5 @@
 ---
-title: "Nadhira A. Hendra"
-subtitle: Master Student at Columbia University
+title: "Hi, I'm Nadhira! 👋"
 about:
   template: solana
   image: profile.jpg
@@ -21,11 +20,11 @@ about:
 }
 .quarto-about-solana.column-body {
   max-width: 100% !important;
-  width: 60% !important;
+  width: 75% !important;
   grid-column: 1 / -1 !important;
   margin-left: auto !important;
   margin-right: auto !important;
-  padding-top: 9em !important;
+  padding-top: 6em !important;
   padding-left: 3em;
   padding-right: 3em;
 }
@@ -42,7 +41,7 @@ about:
 ```
 
 ::: {#about-block}
-I'm currently studying Quantitative Methods in the Social Sciences at Columbia University, previously I work as a data analyst in Traveloka and OCBC. My interest focuses in the field of data analysis and causal inference, particularly as tools for advancing research in development economics. This is where I write about my learnings and projects.
+I'm currently studying Quantitative Methods in the Social Sciences at Columbia University. Before that, I worked as a data analyst at Traveloka and OCBC. I'm drawn to causal inference and data analysis as tools for addressing questions in developing economies and emerging markets, and this is where I write about what I'm learning along the way.
 
 [**See My Projects** →](blog.qmd){.learn-more}
 :::

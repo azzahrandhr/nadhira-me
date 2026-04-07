@@ -1,5 +1,11 @@
 [
   {
+    "listing": "/notes.html",
+    "items": [
+      "/notes/202604_hello-world/index.html"
+    ]
+  },
+  {
     "listing": "/blog.html",
     "items": [
       "/posts/202604_texas-triangle-ev-gap/index.html",
@@ -9,9 +15,5 @@
       "/posts/202501_global-development-indicators/index.html",
       "/posts/202601_replication-rct-authorian/index.html"
     ]
-  },
-  {
-    "listing": "/notes.html",
-    "items": []
   }
 ]

@@ -161,11 +161,11 @@
     "text": "Additional Assumption\nSpecifically with this case study, we also need to make some additional assumption :\n\nNo Spillovers : No spillovers between villages (which we address by cluster randomization in village levels)\nNo anticipation effects : Which assume that women didn’t change behavior before mobile clinic arrived"
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Nadhira A. Hendra",
+    "objectID": "notes.html",
+    "href": "notes.html",
+    "title": "Notes",
     "section": "",
-    "text": "I’m currently studying Quantitative Methods in the Social Sciences at Columbia University, previously I work as a data analyst in Traveloka and OCBC. My interest focuses in the field of data analysis and causal inference, particularly as tools for advancing research in development economics. This is where I write about my learnings and projects.\nSee My Projects →"
+    "text": "Order By\n      Default\n      \n        Title\n      \n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\nHello, World!\n\n\n\n\n\nA first note to start this section\n\n\n\n\n\nApr 7, 2026\n\n1 min\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "blog.html",
@@ -175,11 +175,25 @@
     "text": "Order By\n      Default\n      \n        Title\n      \n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\nThe Texas Triangle Has Zero Charging Deserts — For Now\n\n\n\ngis\n\nspatial-analysis\n\npython\n\ntransportation\n\n\n\nA spatial analysis of DC Fast charging coverage along the Texas Triangle freight corridor\n\n\n\n\n\nApr 2, 2026\n\n8 min\n\n\n\n\n\n\nWho Katrina Left Behind: A Spatial Analysis of Damage, Race, and Elevation in New Orleans\n\n\n\ngis\n\nspatial-analysis\n\nenvironmental-justice\n\npython\n\nqgis\n\n\n\nHow Hurricane Katrina’s destruction aligned with race, income, and elevation across New Orleans and what it reveals about inequality.\n\n\n\n\n\nApr 1, 2026\n\n8 min\n\n\n\n\n\n\nDoes Temperature Shape Economic Growth? Replicating Burke, Hsiang & Miguel\n\n\n\nr\n\ncausal-inference\n\ndevelopment-economics\n\nclimate\n\n\n\nA replication of a landmark climate economics paper that found an inverted-U relationship between temperature and GDP growth — and what it means for countries like Indonesia.\n\n\n\n\n\nMar 18, 2026\n\n17 min\n\n\n\n\n\n\nUnderstanding Difference-in-Differences: A Practical Guide Using Stata\n\n\n\nstata\n\nregression\n\ndifference-in-difference\n\n\n\nExploring quasi-experimental methods through a health policy case study\n\n\n\n\n\nJan 15, 2026\n\n7 min\n\n\n\n\n\n\nExploring Global Development Patterns with World Bank Data\n\n\n\nstata\n\ndevelopment-economics\n\nregression\n\n\n\nAn exploratory data analysis using Stata to investigate GDP, literacy rates, and mortality indicators across countries\n\n\n\n\n\nJan 12, 2026\n\n7 min\n\n\n\n\n\n\nSources of Authoritarian Responsiveness: A Field Experiment in China\n\n\n\nr\n\ncausal-inference\n\n\n\nReplication of Chen, Pan and Xu (2016)\n\n\n\n\n\nDec 26, 2025\n\n35 min\n\n\n\n\nNo matching items"
   },
   {
-    "objectID": "notes.html",
-    "href": "notes.html",
-    "title": "Notes",
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Hi, I’m Nadhira! 👋",
     "section": "",
-    "text": "Order By\n      Default\n      \n        Title\n      \n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\nNo matching items"
+    "text": "I’m currently studying Quantitative Methods in the Social Sciences at Columbia University. Before that, I worked as a data analyst at Traveloka and OCBC. I’m drawn to causal inference and data analysis as tools for addressing questions in developing economies and emerging markets, and this is where I write about what I’m learning along the way.\nSee My Projects →"
+  },
+  {
+    "objectID": "notes/202604_hello-world/index.html",
+    "href": "notes/202604_hello-world/index.html",
+    "title": "Hello, World!",
+    "section": "",
+    "text": "This is my first note. More to come as I learn, read, and explore new ideas."
+  },
+  {
+    "objectID": "notes/202604_hello-world/index.html#welcome",
+    "href": "notes/202604_hello-world/index.html#welcome",
+    "title": "Hello, World!",
+    "section": "",
+    "text": "This is my first note. More to come as I learn, read, and explore new ideas."
   },
   {
     "objectID": "posts/202501_global-development-indicators/index.html",

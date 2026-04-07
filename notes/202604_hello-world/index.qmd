@@ -1,0 +1,11 @@
+---
+title: "Hello, World!"
+description: "A first note to start this section"
+author: "Nadhira A. Hendra"
+date: "2026-04-07"
+categories: []
+---
+
+## Welcome
+
+This is my first note. More to come as I learn, read, and explore new ideas.

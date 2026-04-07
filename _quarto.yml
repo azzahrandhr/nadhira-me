@@ -28,7 +28,7 @@ website:
         href: notes.qmd
   page-footer:
     border: false
-    center: "© 2026 Nadhira Azzahra Hendra · Made with [Quarto](https://quarto.org)"
+    center: "© 2026 Nadhira A. Hendra · Made with [Quarto](https://quarto.org)"
 
 format:
   html:

@@ -1,7 +1,9 @@
 /.quarto/
 **/*.quarto_ipynb
-.Rproj.user
-.DS_Store
-CLAUDE.md
 posts/*/data/
+.DS_Store
 .claude/
+CLAUDE.md
+.Rhistory
+.Rproj.user
+
