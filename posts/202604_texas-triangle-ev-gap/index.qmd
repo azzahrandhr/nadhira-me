@@ -38,7 +38,7 @@ Sample points were placed every 10 miles along each highway centerline, 750 poin
 
 The Texas Triangle is the freight corridor formed by I-10, I-35, and I-45, connecting three of the largest cities in Texas, Houston, San Antonio, and Dallas, along some of the most trafficked freight interstates in the country.
 
-![Figure 1: The Texas Triangle corridor. Green dots are sample points colored by distance to the nearest DC Fast charger. Gray triangles are truck stops. Blue dots are DC Fast chargers.](data/Map01_Overview.png)
+![Figure 1: The Texas Triangle corridor. Blue dots are DC Fast chargers.](data/Map01_Overview.png)
 
 The corridor has **629 DC Fast chargers**, a median distance of **1.8 miles** to the nearest charger, and **zero charging deserts** anywhere across the three interstates. For urban freight on that route, the infrastructure is there today.
 
