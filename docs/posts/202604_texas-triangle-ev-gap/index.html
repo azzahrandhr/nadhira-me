@@ -329,7 +329,7 @@ ul.task-list li input[type="checkbox"] {
       <div>
       <div class="quarto-title-meta-heading">Modified</div>
       <div class="quarto-title-meta-contents">
-        <p class="date-modified">April 7, 2026</p>
+        <p class="date-modified">April 9, 2026</p>
       </div>
     </div>
       
@@ -391,20 +391,27 @@ ul.task-list li input[type="checkbox"] {
 <figcaption>Figure 1: The Texas Triangle corridor. Blue dots are DC Fast chargers.</figcaption>
 </figure>
 </div>
-<p>The corridor has <strong>629 DC Fast chargers</strong>, a median distance of <strong>1.8 miles</strong> to the nearest charger, and <strong>zero charging deserts</strong> anywhere across the three interstates. For urban freight on that route, the infrastructure is there today.</p>
-<p>But that aggregate number masks real variation between the three highways. The overall coverage looks good, but the distribution within the Triangle is not even.</p>
+<p>The corridor has <strong>629 DC Fast chargers</strong>, a median distance of <strong>1.8 miles</strong> to the nearest charger, and an average distance of <strong>~10 miles</strong> station-to-station anywhere across the three interstates. For urban freight on that route, the infrastructure is there today.</p>
+<p>But that aggregate number masks real variation between the three highways.</p>
 <hr>
 </section>
 <section id="finding-2-i-10-is-the-weak-link" class="level2">
 <h2 class="anchored" data-anchor-id="finding-2-i-10-is-the-weak-link">Finding 2: I-10 is the Weak Link</h2>
 <p>When you break coverage down by highway, the asymmetry becomes clear:</p>
 <table class="caption-top table">
+<colgroup>
+<col style="width: 31%">
+<col style="width: 17%">
+<col style="width: 17%">
+<col style="width: 17%">
+<col style="width: 17%">
+</colgroup>
 <thead>
 <tr class="header">
 <th>Highway</th>
 <th style="text-align: center;">Sample Points</th>
 <th style="text-align: center;">Charging Deserts</th>
-<th style="text-align: center;">Max Gap</th>
+<th style="text-align: center;">Max Gap (Point to Station)</th>
 <th style="text-align: center;">Safety Margin</th>
 </tr>
 </thead>
@@ -412,7 +419,7 @@ ul.task-list li input[type="checkbox"] {
 <tr class="odd">
 <td>I-10</td>
 <td style="text-align: center;">253</td>
-<td style="text-align: center;">0</td>
+<td style="text-align: center;">25</td>
 <td style="text-align: center;"><strong>47.5 mi</strong></td>
 <td style="text-align: center;"><strong>2.5 mi</strong></td>
 </tr>
@@ -432,26 +439,26 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
-<p>I-45 and I-35 run through the more urbanized parts of Texas, which means chargers cluster naturally around city infrastructure. I-10 crosses long rural stretches with fewer population centers. The result is a maximum gap of <strong>47.5 miles</strong> on I-10, sitting just 2.5 miles under the desert threshold.</p>
+<p>I-45 and I-35 run through the more urbanized parts of Texas, so chargers cluster naturally around city infrastructure. I-10 crosses long rural stretches with fewer population centers, and the result is a maximum gap of <strong>47.5 miles</strong> on I-10, just 2.5 miles under the desert threshold.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="data/Map02_Worst_Gap.png" class="img-fluid figure-img"></p>
 <figcaption>Figure 2: The worst gap on I-10, near Fort Stockton. The nearest DC Fast charger, the Flying J Travel Center Tesla Supercharger, is 47.5 miles away.</figcaption>
 </figure>
 </div>
-<p>That gap sits in a remote stretch of west Texas, near Fort Stockton, a town of around 8,000 people in a sparsely populated oil-producing region. There are truck stops in the area, but the nearest DC Fast charger is 47.5 miles away, which is not yet a desert.</p>
+<p>That gap sits in a remote stretch of west Texas near Fort Stockton, a town of around 8,000 people in a sparsely populated oil-producing region. There are truck stops in the area, but the nearest DC Fast charger is 47.5 miles away. The 47.5 miles is measured from the worst sample point to the nearest charger, meaning it represents the midpoint between two stations. The actual station-to-station gap is roughly <strong>95 miles</strong>, nearly double the <a href="https://www.fhwa.dot.gov/environment/alternative_fuel_corridors/nominations/90d_nevi_formula_program_guidance.pdf">NEVI Formula Program’s 50-mile maximum spacing standard</a> for Alternate Fuel Corridors. By federal station-spacing standards, I-10 already has a charging desert.</p>
 <hr>
 </section>
 <section id="finding-3-two-stations-away-from-a-crisis" class="level2">
 <h2 class="anchored" data-anchor-id="finding-3-two-stations-away-from-a-crisis">Finding 3: Two Stations Away from a Crisis</h2>
-<p>The I-10 corridor passes the desert threshold, but the 2.5-mile margin means it has almost no redundancy. The gap near Fort Stockton is served by essentially one station cluster: the <strong>Flying J Travel Center</strong>, a Tesla Supercharger, and a <strong>Walmart Electrify America station</strong> a mile further away, both in Fort Stockton. If the Flying J goes offline for maintenance, the gap grows to <strong>48.8 miles</strong>, still technically covered but with only 1.2 miles to spare. Remove both Fort Stockton stations during a grid outage or a major storm, and the gap jumps to <strong>73.5 miles</strong>. That is a charging desert, by a wide margin.</p>
+<p>The I-10 corridor does not pass the desert threshold. The gap near Fort Stockton is served by essentially one station cluster: the <strong>Flying J Travel Center</strong> Tesla Supercharger and a <strong>Walmart Electrify America station</strong> a mile further away. If Fort Stockton’s stations go offline during a grid outage or maintenance, the gap between the next nearest chargers stretches to roughly <strong>150 miles</strong> with nothing in between.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="data/Map03_Distance_Heatmap.png" class="img-fluid figure-img"></p>
 <figcaption>Figure 3: Distance heatmap along the Triangle. Green = well-covered, orange/red = farther from the nearest charger. I-10 shows the most orange, particularly in the rural stretch west of San Antonio.</figcaption>
 </figure>
 </div>
-<p>Texas has demonstrated grid vulnerability before. Winter Storm Uri in February 2021 knocked out power for millions of Texans for days. If something similar happened during peak freight season, drivers on the I-10 corridor could end up stranded in that remote stretch of west Texas with no viable charging option for dozens of miles in either direction.</p>
+<p>Texas has experienced exactly this kind of scenario before. Winter Storm Uri in February 2021 knocked out power for millions of Texans for days. If something similar happened during peak freight season, drivers on the I-10 corridor could end up stranded in that remote stretch of west Texas with no viable charging option for over a hundred miles in either direction.</p>
 <p>Compare that to I-45: its maximum gap is 13.2 miles. Removing the nearest charger to any I-45 sample point barely changes the picture, since there are always several nearby alternatives. I-45 has the redundancy that I-10 lacks.</p>
 <hr>
 </section>
@@ -464,9 +471,8 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="conclusion" class="level2">
 <h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
-<p>The Texas Triangle passes the EV freight readiness test, but I-10 passes it with almost no margin. The corridor’s zero-desert result depends on a small cluster of stations near Fort Stockton remaining operational. Remove two of them and you have a 73.5-mile gap in a remote stretch with no nearby alternatives.</p>
+<p>With average gap between charging station of ~10 miles, The Texas Triangle passes the EV freight readiness test on average, but I-10 have vunerable area that exceeds federal station-spacing standards. The 47.5-mile maximum distance to the nearest charger translates to a ~95-mile station-to-station gap, nearly double NEVI’s 50-mile maximum. Remove the Fort Stockton cluster and that gap stretches to roughly 150 miles with no charger in between.</p>
 <p>The policy implication is that specific EV infrastructure investment should prioritize <strong>redundancy on I-10’s rural stretches</strong>, not additional density in already well-served urban corridors. Adding more chargers to an already-dense urban section does nothing for a truck driver on the rural stretch of I-10. Filling the gap with a second independent station cluster, ideally on a different grid connection, would meaningfully reduce the risk of that stretch.</p>
-<p>I-45 has 36.8 miles of safety margin while I-10 has just 2.5, and that is what the aggregate “zero deserts” number hides.</p>
 <hr>
 </section>
 <section id="could-we-do-this-in-indonesia" class="level2">
@@ -482,7 +488,7 @@ ul.task-list li input[type="checkbox"] {
 <p><strong>Techniques</strong>: Nearest-neighbor spatial join via <code>gpd.sjoin_nearest()</code>, 25-mile corridor buffer, 10-mile sample point interpolation along a merged LineString, CRS EPSG:32614 (UTM Zone 14N) for accurate distance measurement within Texas</p>
 <p><strong>Limitations</strong>:</p>
 <ul>
-<li>The 50-mile desert threshold reflects a rule of thumb for loaded electric semis with real-world range degradation, not a universal standard. Different threshold assumptions would change the specific numbers but not the relative fragility of I-10 compared to I-35 and I-45.</li>
+<li>The 50-mile desert threshold is based on the <a href="https://www.fhwa.dot.gov/environment/alternative_fuel_corridors/nominations/90d_nevi_formula_program_guidance.pdf">NEVI Formula Program Guidance</a>, which encourages a maximum of 50 miles between charging stations along Alternate Fuel Corridors. Different threshold assumptions would change the specific numbers but not the relative fragility of I-10 compared to I-35 and I-45.</li>
 <li>Physical truck accessibility at charger sites, including pull-through bays and minimum charging power requirements, was not assessed. Some stations in the dataset may not be physically usable by large commercial vehicles even if they appear nearby.</li>
 </ul>
 <hr>
