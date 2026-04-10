@@ -50,9 +50,9 @@ But that aggregate number masks real variation between the three highways.
 
 When you break coverage down by highway, the asymmetry becomes clear:
 
-| Highway | Sample Points | Charging Deserts | Max Gap | Safety Margin |
+| Highway | Sample Points | Charging Deserts | Max Gap (Point to Station) | Safety Margin |
 |---------|:---:|:---:|:---:|:---:|
-| I-10 | 253 | 0 | **47.5 mi** | **2.5 mi** |
+| I-10 | 253 | 25 | **47.5 mi** | **2.5 mi** |
 | I-35 | 255 | 0 | 27.5 mi | 22.5 mi |
 | I-45 | 294 | 0 | 13.2 mi | 36.8 mi |
 
