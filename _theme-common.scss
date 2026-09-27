@@ -41,6 +41,14 @@ $line-height-base: 1.75;
   }
 }
 
+// Mobile/tablet: hide the navbar email icon to reduce crowding
+// (email is still linked in the homepage intro)
+@media (max-width: 991.98px) {
+  .quarto-navbar-tools a.quarto-navigation-tool[href^="mailto:"] {
+    display: none;
+  }
+}
+
 // Divider between the site name and the menu (desktop only)
 @media (min-width: 992px) {
   .navbar-nav.me-auto {
@@ -199,13 +207,19 @@ h1.home-title {
 
   .home-hero {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
+    text-align: center;
     gap: 1.5rem;
   }
 
   .home-photo {
     width: 180px;
     aspect-ratio: 4 / 5;
+    align-self: center;
+  }
+
+  .home-links {
+    justify-content: center;
   }
 
   h1.home-title {
