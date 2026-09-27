@@ -2,7 +2,7 @@
 title: "Understanding Difference-in-Differences: A Practical Guide Using Stata"
 description: "Exploring quasi-experimental methods through a health policy case study"
 author: "Nadhira A. Hendra"
-categories: [stata, regression, difference-in-difference]
+categories: [stata, econometrics, causal-inference]
 date: "January 15, 2026"
 date-modified: "January 19, 2026"
 format:

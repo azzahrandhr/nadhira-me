@@ -1,0 +1,11 @@
+<ul class="recent-list">
+<% for (const item of items) { %>
+  <li <%= metadataAttrs(item) %>>
+    <a href="<%- item.path %>" class="recent-item no-external">
+      <span class="recent-title"><%= item.title %></span>
+      <span class="recent-date"><%= item.date %></span>
+      <% if (item.description) { %><span class="recent-desc"><%= item.description %></span><% } %>
+    </a>
+  </li>
+<% } %>
+</ul>

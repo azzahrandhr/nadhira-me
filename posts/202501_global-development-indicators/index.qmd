@@ -2,7 +2,7 @@
 title: "Exploring Global Development Patterns with World Bank Data"
 description: "An exploratory data analysis using Stata to investigate GDP, literacy rates, and mortality indicators across countries"
 author: "Nadhira A. Hendra"
-categories: [stata, development-economics, regression]
+categories: [stata, development-economics, econometrics]
 date: "January 12, 2026"
 date-modified: "January 13, 2026"
 format:

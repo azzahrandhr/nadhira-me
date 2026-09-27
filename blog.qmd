@@ -1,5 +1,6 @@
 ---
 title: "Projects"
+subtitle: "Data analysis, replications, and spatial work"
 listing:
   contents:
     - "posts/*/index.qmd"

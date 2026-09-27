@@ -1,48 +1,47 @@
 ---
-title: "Hi, I'm Nadhira! 👋"
-about:
-  template: solana
-  image: profile.jpg
-  image-width: 24em
-  image-shape: round
+pagetitle: "Nadhira A. Hendra"
+description: "Quantitative Methods student at Columbia with 5+ years in tech, banking, and logistics analytics."
+listing:
+  id: recent
+  contents:
+    - "posts/*/index.qmd"
+    - "!posts/0_sample-post/"
+  sort: "date desc"
+  max-items: 3
+  date-format: "MMM YYYY"
+  template: _recent.ejs
 ---
 
+::: {.home}
+
+::: {.home-hero}
 ```{=html}
-<style>
-#about-block {
-  text-align: right;
-}
-.entity-contents {
-  text-align: right;
-}
-.about-links {
-  justify-content: flex-end !important;
-}
-.quarto-about-solana.column-body {
-  max-width: 100% !important;
-  width: 75% !important;
-  grid-column: 1 / -1 !important;
-  margin-left: auto !important;
-  margin-right: auto !important;
-  padding-top: 6em !important;
-  padding-left: 3em;
-  padding-right: 3em;
-}
-.about-entity {
-  max-width: 100% !important;
-  justify-content: center !important;
-  align-items: center !important;
-}
-.about-contents {
-  max-width: 100% !important;
-  flex: 1 1 0 !important;
-}
-</style>
+<div class="home-photo"><img src="profile-home.jpg" alt="Portrait of Nadhira A. Hendra"></div>
 ```
 
-::: {#about-block}
-I'm currently studying Quantitative Methods in the Social Sciences at Columbia University. Before that, I worked as a data analyst at Traveloka and OCBC. I'm drawn to causal inference and data analysis as tools for addressing questions in developing economies and emerging markets, and this is where I write about what I'm learning along the way.
+::: {.home-intro}
+# Hi, I'm Nadhira! 👋 {.home-title .no-anchor}
 
-[**See My Projects** →](blog.qmd){.learn-more}
+I'm currently studying Quantitative Methods in the Social Sciences at Columbia University. I have 5+ years of experience across tech, banking, and logistics and supply chain, where I built analytics dashboards and ran experiments to help businesses grow.
+
+I'm interested in data science, spatial analytics, and causal inference. Here I share my projects and what I'm learning along the way.
+
+```{=html}
+<div class="home-links">
+  <a href="mailto:nah2181@columbia.edu" aria-label="Email"><i class="bi bi-envelope"></i></a>
+  <a href="https://github.com/azzahrandhr" aria-label="GitHub"><i class="bi bi-github"></i></a>
+  <a href="https://www.linkedin.com/in/azzahrandhr/" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+  <a href="blog.html" class="home-cta">See all projects →</a>
+</div>
+```
+:::
 :::
 
+::: {.home-recent}
+## Recent work {.no-anchor}
+
+::: {#recent}
+:::
+:::
+
+:::

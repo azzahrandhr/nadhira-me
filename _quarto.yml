@@ -10,6 +10,10 @@ website:
   description: "Personal website and blog of Nadhira Azzahra Hendra"
   site-url: "https://nadhira.me"
   title: "Nadhira A. Hendra"
+  favicon: favicon.svg
+  image: profile.jpg
+  open-graph: true
+  twitter-card: true
   navbar:
     search: true
     pinned: true
@@ -21,21 +25,21 @@ website:
       - icon: linkedin
         href: https://www.linkedin.com/in/azzahrandhr/
     left:
-      - text: "|"
       - text: "Projects"
         href: blog.qmd
       - text: "Notes"
         href: notes.qmd
   page-footer:
     border: false
-    center: "© 2026 Nadhira A. Hendra · Made with [Quarto](https://quarto.org)"
+    center: "© <span class='footer-year'>2026</span> Nadhira A. Hendra · Made with [Quarto](https://quarto.org)"
 
 format:
   html:
     respect-user-color-scheme: true
     theme:
-      light: [cosmo, theme-light.scss]
-      dark: [cosmo, theme-dark.scss]
+      light: [cosmo, _theme-common.scss, theme-light.scss]
+      dark: [cosmo, _theme-common.scss, theme-dark.scss]
+    include-after-body: _footer-year.html
 execute:
   freeze: auto
 

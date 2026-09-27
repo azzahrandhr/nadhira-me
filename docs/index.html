@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="description" content="Quantitative Methods student at Columbia with 5+ years in tech, banking, and logistics analytics.">
 
-<title>Hi, I’m Nadhira! 👋 – Nadhira A. Hendra</title>
+<title>Nadhira A. Hendra</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -29,20 +30,24 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./favicon.svg" rel="icon" type="image/svg+xml">
+<script src="site_libs/quarto-listing/list.min.js"></script>
+<script src="site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b758ccaa5987ceb1b75504551e579abf.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-46f5809e51c173ca6f9146f528ada59f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-b3c5b28c58c048b2edaa0d3faeff49a4.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-46f5809e51c173ca6f9146f528ada59f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-0a02da087e5e254d13973506611c03c9.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-5e529643218faf47dd4202112d61bf43.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-0a02da087e5e254d13973506611c03c9.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -70,8 +75,76 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script>
 
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-recent .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
 
+    const options = {
+      valueNames: ['listing-project','listing-website','listing-format','listing-execute','listing-language','listing-freeze','listing-code-copy','listing-code-fold','listing-code-overflow','listing-title-block-banner','listing-title','listing-description','listing-author','listing-categories','listing-date','listing-date-modified','listing-path','listing-outputHref','listing-filename','listing-file-modified','listing-reading-time','listing-word-count','listing-bibliography','listing-nocite',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-date-modified-sort'] },{ data: ['listing-file-modified-sort'] },{ data: ['listing-reading-time-sort'] },{ data: ['listing-word-count-sort'] }],
+      
+      searchColumns: ["listing-project","listing-website","listing-format","listing-execute","listing-language","listing-freeze","listing-code-copy","listing-code-fold","listing-code-overflow","listing-title-block-banner","listing-title","listing-description","listing-author","listing-categories","listing-date","listing-date-modified","listing-path","listing-outputHref","listing-filename","listing-file-modified","listing-reading-time","listing-word-count","listing-bibliography","listing-nocite"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-recent'] = new List('listing-recent', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  </script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<meta property="og:title" content="Nadhira A. Hendra">
+<meta property="og:description" content="Quantitative Methods student at Columbia with 5+ years in tech, banking, and logistics analytics.">
+<meta property="og:image" content="https://nadhira.me/profile-home.jpg">
+<meta property="og:site_name" content="Nadhira A. Hendra">
+<meta property="og:image:alt" content="Portrait of Nadhira A. Hendra">
+<meta name="twitter:title" content="Nadhira A. Hendra">
+<meta name="twitter:description" content="Quantitative Methods student at Columbia with 5+ years in tech, banking, and logistics analytics.">
+<meta name="twitter:image" content="https://nadhira.me/profile-home.jpg">
+<meta name="twitter:image:alt" content="Portrait of Nadhira A. Hendra">
+<meta name="twitter:card" content="summary_large_image">
 </head>
 
 <body class="nav-fixed fullcontent quarto-light"><script id="quarto-html-before-body" type="application/javascript">
@@ -263,11 +336,6 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <span class="nav-link">
-<span class="menu-text">|</span>
-    </span>
-  </li>  
-  <li class="nav-item">
     <a class="nav-link" href="./blog.html"> 
 <span class="menu-text">Projects</span></a>
   </li>  
@@ -292,61 +360,55 @@ ul.task-list li input[type="checkbox"] {
 <!-- margin-sidebar -->
     
 <!-- main -->
-<div class="quarto-about-solana column-body">
-  <div class="about-entity">
-    <div class="entity-contents">
-      <header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Hi, I’m Nadhira! 👋</h1>
-</div>
-<div class="quarto-title-meta">
-  </div>
-</header> 
-      <div class="about-contents"><main class="content" id="quarto-document-content">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
 
-<style>
-#about-block {
-  text-align: right;
-}
-.entity-contents {
-  text-align: right;
-}
-.about-links {
-  justify-content: flex-end !important;
-}
-.quarto-about-solana.column-body {
-  max-width: 100% !important;
-  width: 75% !important;
-  grid-column: 1 / -1 !important;
-  margin-left: auto !important;
-  margin-right: auto !important;
-  padding-top: 6em !important;
-  padding-left: 3em;
-  padding-right: 3em;
-}
-.about-entity {
-  max-width: 100% !important;
-  justify-content: center !important;
-  align-items: center !important;
-}
-.about-contents {
-  max-width: 100% !important;
-  flex: 1 1 0 !important;
-}
-</style>
-<div id="about-block">
-<p>I’m currently studying Quantitative Methods in the Social Sciences at Columbia University. Before that, I worked as a data analyst at Traveloka and OCBC. I’m drawn to causal inference and data analysis as tools for addressing questions in developing economies and emerging markets, and this is where I write about what I’m learning along the way.</p>
-<p><a href="./blog.html" class="learn-more"><strong>See My Projects</strong> →</a></p>
+
+
+
+
+<div class="home">
+<div class="home-hero">
+<div class="home-photo"><img src="profile-home.jpg" alt="Portrait of Nadhira A. Hendra"></div>
+<section id="hi-im-nadhira" class="level1 home-title no-anchor home-intro">
+<h1 class="home-title no-anchor">Hi, I’m Nadhira! 👋</h1>
+<p>I’m currently studying Quantitative Methods in the Social Sciences at Columbia University. I have 5+ years of experience across tech, banking, and logistics and supply chain, where I built analytics dashboards and ran experiments to help businesses grow.</p>
+<p>I’m interested in data science, spatial analytics, and causal inference. Here I share my projects and what I’m learning along the way.</p>
+<div class="home-links">
+  <a href="mailto:nah2181@columbia.edu" aria-label="Email"><i class="bi bi-envelope"></i></a>
+  <a href="https://github.com/azzahrandhr" aria-label="GitHub"><i class="bi bi-github"></i></a>
+  <a href="https://www.linkedin.com/in/azzahrandhr/" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+  <a href="blog.html" class="home-cta">See all projects →</a>
+</div>
+</section>
+</div>
+<section id="recent-work" class="level2 no-anchor home-recent">
+<h2 class="no-anchor" data-anchor-id="recent-work">Recent work</h2>
+<div id="listing-recent" class="quarto-listing quarto-listing-container-custom">
+<ul class="recent-list">
+<li data-index="0" data-categories="Z2lzJTJDc3BhdGlhbC1hbmFseXNpcyUyQ3B5dGhvbiUyQ3RyYW5zcG9ydGF0aW9u" data-listing-date-sort="1775102400000" data-listing-file-modified-sort="1775786684548" data-listing-date-modified-sort="1775707200000" data-listing-reading-time-sort="8" data-listing-word-count-sort="1501">
+<a href="./posts/202604_texas-triangle-ev-gap/index.html" class="recent-item no-external"> <span class="recent-title">The Texas Triangle Has Zero Charging Deserts, For Now</span> <span class="recent-date">Apr 2026</span> <span class="recent-desc">A spatial analysis of DC Fast charging coverage along the Texas Triangle freight corridor</span> </a>
+</li>
+<li data-index="1" data-categories="Z2lzJTJDc3BhdGlhbC1hbmFseXNpcyUyQ2Vudmlyb25tZW50YWwtanVzdGljZSUyQ3B5dGhvbg==" data-listing-date-sort="1775016000000" data-listing-file-modified-sort="1790523593459" data-listing-date-modified-sort="1775016000000" data-listing-reading-time-sort="8" data-listing-word-count-sort="1565">
+<a href="./posts/202604_katrina-spatial-analysis/index.html" class="recent-item no-external"> <span class="recent-title">Who Katrina Left Behind: A Spatial Analysis of Damage, Race, and Elevation in New Orleans</span> <span class="recent-date">Apr 2026</span> <span class="recent-desc">How Hurricane Katrina’s destruction aligned with race, income, and elevation across New Orleans and what it reveals about inequality.</span> </a>
+</li>
+<li data-index="2" data-categories="ciUyQ2NhdXNhbC1pbmZlcmVuY2UlMkNkZXZlbG9wbWVudC1lY29ub21pY3MlMkNjbGltYXRl" data-listing-date-sort="1773806400000" data-listing-file-modified-sort="1773889154525" data-listing-date-modified-sort="1773806400000" data-listing-reading-time-sort="17" data-listing-word-count-sort="3212">
+<a href="./posts/202603_climate-gdp-replication/index.html" class="recent-item no-external"> <span class="recent-title">Does Temperature Shape Economic Growth? Replicating Burke, Hsiang &amp; Miguel</span> <span class="recent-date">Mar 2026</span> <span class="recent-desc">A replication of a landmark climate economics paper that found an inverted-U relationship between temperature and GDP growth — and what it means for countries like Indonesia.</span> </a>
+</li>
+</ul>
+<div class="listing-no-matching d-none">No matching items</div>
+</div>
+</section>
 </div>
 
 
-</main></div>
-    </div>
-    <img src="profile.jpg" class="about-image
-  round " style="height: 24em; width: 24em;">
-  </div>
-</div>
- <!-- /main -->
+
+
+</main> <!-- /main -->
+<script>
+  document.querySelectorAll('.footer-year').forEach(function (el) {
+    el.textContent = new Date().getFullYear();
+  });
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
@@ -362,6 +424,13 @@ ul.task-list li input[type="checkbox"] {
       window.document.body.appendChild(a);
     }
     setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
     const isCodeAnnotation = (el) => {
       for (const clz of el.classList) {
         if (clz.startsWith('code-annotation-')) {                     
@@ -760,7 +829,7 @@ ul.task-list li input[type="checkbox"] {
       &nbsp;
     </div>   
     <div class="nav-footer-center">
-<p>© 2026 Nadhira A. Hendra · Made with <a href="https://quarto.org">Quarto</a></p>
+<p>© <span class="footer-year">2026</span> Nadhira A. Hendra · Made with <a href="https://quarto.org">Quarto</a></p>
 </div>
     <div class="nav-footer-right">
       &nbsp;
