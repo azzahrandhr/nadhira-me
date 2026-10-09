@@ -19,7 +19,7 @@ website:
     pinned: true
     tools:
       - icon: envelope
-        href: mailto:nah2181@columbia.edu
+        href: mailto:azzahra.ndhr@gmail.com
       - icon: github
         href: https://github.com/azzahrandhr
       - icon: linkedin
@@ -29,6 +29,10 @@ website:
         href: blog.qmd
       - text: "Notes"
         href: notes.qmd
+      - text: "Reading"
+        href: reading.qmd
+      - text: "About"
+        href: about.qmd
   page-footer:
     border: false
     center: "© <span class='footer-year'>2026</span> Nadhira A. Hendra · Made with [Quarto](https://quarto.org)"

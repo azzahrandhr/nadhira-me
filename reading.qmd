@@ -1,0 +1,43 @@
+---
+title: "Reading"
+---
+
+I read a lot, and books are more fun when there's someone to talk to about them. If you're reading any of these, or you run a book club that's looking for one more person, [send me a note](mailto:azzahra.ndhr@gmail.com).
+
+<!-- Goodreads grid widgets. Each updates automatically from its shelf.
+     The script fills the div whose id is gr_grid_widget_<widget_id>. -->
+
+## Currently reading
+
+```{=html}
+<div id="gr_grid_widget_current" class="reading-grid">
+  <p>Loading books from <a href="https://www.goodreads.com/review/list/119575095?shelf=currently-reading">Goodreads</a>…</p>
+</div>
+<script src="https://www.goodreads.com/review/grid_widget/119575095?cover_size=medium&hide_link=true&hide_title=true&num_books=20&order=d&shelf=currently-reading&sort=date_added&widget_id=current" type="text/javascript" charset="utf-8"></script>
+```
+
+## Read
+
+Most recently added first.
+
+```{=html}
+<div id="gr_grid_widget_read" class="reading-grid">
+  <p>Loading books from <a href="https://www.goodreads.com/review/list/119575095?shelf=read">Goodreads</a>…</p>
+</div>
+<script src="https://www.goodreads.com/review/grid_widget/119575095?cover_size=medium&hide_link=true&hide_title=true&num_books=24&order=d&shelf=read&sort=date_added&widget_id=read" type="text/javascript" charset="utf-8"></script>
+```
+
+[See all books I've read →](https://www.goodreads.com/review/list/119575095?shelf=read)
+
+## Want to read
+
+Have one I should move up the list? Tell me.
+
+```{=html}
+<div id="gr_grid_widget_toread" class="reading-grid">
+  <p>Loading books from <a href="https://www.goodreads.com/review/list/119575095?shelf=to-read">Goodreads</a>…</p>
+</div>
+<script src="https://www.goodreads.com/review/grid_widget/119575095?cover_size=medium&hide_link=true&hide_title=true&num_books=12&order=d&shelf=to-read&sort=date_added&widget_id=toread" type="text/javascript" charset="utf-8"></script>
+```
+
+[See my full want-to-read list →](https://www.goodreads.com/review/list/119575095?shelf=to-read)

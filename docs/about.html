@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Notes – Nadhira A. Hendra</title>
+<title>About – Nadhira A. Hendra</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,6 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./favicon.svg" rel="icon" type="image/svg+xml">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -74,77 +72,21 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
 
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-description','listing-categories','listing-reading-time',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
-<meta property="og:title" content="Notes – Nadhira A. Hendra">
-<meta property="og:description" content="Learning notes, readings, and things I picked up along the way">
+<meta property="og:title" content="About – Nadhira A. Hendra">
+<meta property="og:description" content="Personal website and blog of Nadhira Azzahra Hendra">
 <meta property="og:image" content="https://nadhira.me/profile.jpg">
 <meta property="og:site_name" content="Nadhira A. Hendra">
-<meta name="twitter:title" content="Notes – Nadhira A. Hendra">
-<meta name="twitter:description" content="Learning notes, readings, and things I picked up along the way">
+<meta property="og:image:alt" content="Portrait of Nadhira A. Hendra">
+<meta name="twitter:title" content="About – Nadhira A. Hendra">
+<meta name="twitter:description" content="Personal website and blog of Nadhira Azzahra Hendra">
 <meta name="twitter:image" content="https://nadhira.me/profile.jpg">
+<meta name="twitter:image:alt" content="Portrait of Nadhira A. Hendra">
 <meta name="twitter:card" content="summary_large_image">
 </head>
 
-<body class="nav-fixed fullcontent quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
       const bodyEl = window.document.querySelector("body");
@@ -337,7 +279,7 @@ window.Quarto = {
 <span class="menu-text">Projects</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./notes.html" aria-current="page"> 
+    <a class="nav-link" href="./notes.html"> 
 <span class="menu-text">Notes</span></a>
   </li>  
   <li class="nav-item">
@@ -345,7 +287,7 @@ window.Quarto = {
 <span class="menu-text">Reading</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link active" href="./about.html" aria-current="page"> 
 <span class="menu-text">About</span></a>
   </li>  
 </ul>
@@ -363,15 +305,26 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#outside-of-work" id="toc-outside-of-work" class="nav-link active" data-scroll-target="#outside-of-work">Outside of work</a></li>
+  <li><a href="#experience" id="toc-experience" class="nav-link" data-scroll-target="#experience">Experience</a></li>
+  <li><a href="#education" id="toc-education" class="nav-link" data-scroll-target="#education">Education</a></li>
+  <li><a href="#mentoring" id="toc-mentoring" class="nav-link" data-scroll-target="#mentoring">Mentoring</a></li>
+  <li><a href="#toolkit" id="toc-toolkit" class="nav-link" data-scroll-target="#toolkit">Toolkit</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Notes</h1>
-<p class="subtitle lead">Learning notes, readings, and things I picked up along the way</p>
+<h1 class="title">About</h1>
 </div>
 
 
@@ -388,58 +341,82 @@ window.Quarto = {
 </header>
 
 
+<div class="about-hero">
+<div class="about-intro">
+<p>Most of my work comes back to one theme: did this change actually <em>cause</em> that outcome? And if yes, by how much?</p>
+<p>I spent five years answering those questions in industry, running experiments and building models for a travel platform, a bank, and a logistics company. I am now finishing an M.A.&nbsp;in Quantitative Methods in the Social Sciences at Columbia, where I apply the same causal methods to economic history and development research.</p>
+<p>The thread connecting all of it is a question I picked up growing up in Indonesia: how do we improve lives in places that are often overlooked? I care about rigorous evidence because I think programs in the Global South deserve the same careful evaluation that tech companies give a new app feature.</p>
+<div class="about-links">
+  <a href="mailto:azzahra.ndhr@gmail.com"><i class="bi bi-envelope"></i> Email</a>
+  <a href="https://www.linkedin.com/in/azzahrandhr/"><i class="bi bi-linkedin"></i> LinkedIn</a>
+</div>
+</div>
+<div class="about-photo"><img src="profile.jpg" alt="Portrait of Nadhira A. Hendra"></div>
+</div>
+<section id="outside-of-work" class="level2">
+<h2 class="anchored" data-anchor-id="outside-of-work">Outside of work</h2>
+<p>I spend a lot of my free time moving: lifting at the gym, jogging, and exploring parks around the city. Park walks are better with company, so if you’re up for a long walk and a longer conversation, I’m in.</p>
+<p>Running is the one I could talk about for twenty minutes. My left leg is weaker than my right, so I’m always reading up on drills and strength work that might help me run stronger and more evenly. It has turned running into a small, ongoing experiment of its own.</p>
+<p>I also love to cook, mostly Indonesian food, because it’s what I miss most about home. Right now I’m working on mastering <em>cumi hitam</em>, squid cooked in its own black ink, which is my favorite dish. And I make a mean Dubai chocolate.</p>
+<p>I read a lot too, and I’m always looking for book clubs and people to talk about books with. You can see what I’m reading on my <a href="./reading.html">reading list</a>.</p>
+</section>
+<section id="experience" class="level2">
+<h2 class="anchored" data-anchor-id="experience">Experience</h2>
+<div class="cv-entry">
+<p><span class="cv-org">Columbia Climate School, 4Oceans Project</span> <span class="cv-date">Jan 2026 to present</span></p>
+<p><span class="cv-role">Research Assistant · New York City, USA</span></p>
+<p>Estimating how the 1709 plague disrupted Baltic shipping with Difference-in-Differences and Local Projections, using 300+ years of historical shipping records.</p>
+</div>
+<div class="cv-entry">
+<p><span class="cv-org">Penske Truck Leasing</span> <span class="cv-date">May 2026 to Aug 2026</span></p>
+<p><span class="cv-role">Data Analyst Intern, Marketing Insight · Reading, USA</span></p>
+<p>Used outlier and spatial analysis to size revenue opportunities, from vehicle dwell time at service locations to sales territory design and market expansion. Built a GIS tool that brings competitors, demographics, drive times, and zoning into one view.</p>
+</div>
+<div class="cv-entry">
+<p><span class="cv-org">Traveloka</span> <span class="cv-date">Jun 2021 to Jun 2025</span></p>
+<p><span class="cv-role">Senior Data Analyst, Platform &amp; Cross Selling · Jakarta, Indonesia</span></p>
+<p>Designed and analyzed 40+ A/B experiments across personalization and cross-selling. Wrote the company’s A/B testing guide, which led to the first experiment run fully self-service by a product team. Built propensity and ranking models for flight add-ons, and defined a retention metric that became a 2025 company north-star metric.</p>
+</div>
+<div class="cv-entry">
+<p><span class="cv-org">OCBC Bank</span> <span class="cv-date">Sep 2020 to Jun 2021</span></p>
+<p><span class="cv-role">Data Analyst, Trade and Credit Control · Jakarta, Indonesia</span></p>
+<p>Designed a transaction-level early warning system for corporate loans with the credit risk and compliance teams, which won 1st place in the OCBC Quality Project Competition.</p>
+</div>
+</section>
+<section id="education" class="level2">
+<h2 class="anchored" data-anchor-id="education">Education</h2>
+<div class="cv-entry">
+<p><span class="cv-org">Columbia University</span> <span class="cv-date">2025 to 2026</span></p>
+<p><span class="cv-role">M.A.&nbsp;Quantitative Methods in the Social Sciences, Data Science and Experimentation Track</span></p>
+<p>Funded by LPDP, the Indonesian government’s merit scholarship. Coursework in causal inference, field experiments, machine learning, NLP, and GIS.</p>
+</div>
+<div class="cv-entry">
+<p><span class="cv-org">Bandung Institute of Technology</span> <span class="cv-date">2016 to 2020</span></p>
+<p><span class="cv-role">B.S. Physics, minor in Granular and Computational Simulation</span></p>
+<p>Thesis: a neural network that predicts granular physics simulation outcomes about 380x faster than running the simulation. Co-authored a paper in <a href="https://pubs.aip.org/aip/acp/article/2169/1/040006/611069">AIP Conference Proceedings</a> (2019).</p>
+</div>
+</section>
+<section id="mentoring" class="level2">
+<h2 class="anchored" data-anchor-id="mentoring">Mentoring</h2>
+<ul>
+<li><strong>Generation Girls</strong> (2022 to 2025). Taught data science to girls aged 14 to 20.</li>
+<li><strong>Muda Bermula</strong> (2022). Helped middle school students explore career paths.</li>
+<li><strong>Lab Assistant, Computational Physics, ITB</strong> (2020). Supported 100+ students across 9 topics.</li>
+</ul>
+</section>
+<section id="toolkit" class="level2">
+<h2 class="anchored" data-anchor-id="toolkit">Toolkit</h2>
+<ul>
+<li><strong>Methods:</strong> A/B testing, Difference-in-Differences, Local Projections, panel fixed effects, causal impact, ranking and propensity models</li>
+<li><strong>Languages:</strong> Python, R, SQL, Stata</li>
+<li><strong>Tools:</strong> BigQuery, dbt, Airflow, GCP, Git, QGIS, ArcGIS, Tableau, Looker, Streamlit, Quarto</li>
+<li><strong>Spoken:</strong> Indonesian (native), English</li>
+</ul>
 
 
+</section>
 
-
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="listing-actions-group">
-   <div class="input-group input-group-sm quarto-listing-sort">
-    <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
-    <select id="listing-listing-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-listing'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
-      <option value="" disabled="" selected="" hidden="">Order By</option>
-      <option value="index" data-direction="asc">Default</option>
-      <option value="listing-title" data-direction="asc">
-        Title
-      </option>
-      <option value="listing-date-sort" data-direction="asc">
-        Date - Oldest
-      </option>
-      <option value="listing-date-sort" data-direction="desc">
-        Date - Newest
-      </option>
-    </select>
-  </div>
-    <div class="input-group input-group-sm quarto-listing-filter">
-      <span class="input-group-text"><i class="bi bi-search"></i></span>
-      <input type="text" class="search form-control" placeholder="Filter">
-    </div>
-</div>
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="" data-listing-date-sort="1775534400000" data-listing-file-modified-sort="1775582478425" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="16">
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./notes/202604_hello-world/index.html" class="no-external">Hello, World!</a>
-</h3>
-<div class="listing-categories">
-
-</div>
-<div class="delink listing-description"><a href="./notes/202604_hello-world/index.html" class="no-external">
-<p>A first note to start this section</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./notes/202604_hello-world/index.html" class="no-external">
-<div class="listing-date">
-Apr 7, 2026
-</div>
-<div class="listing-reading-time">1 min</div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">No matching items</div>
-</div></main> <!-- /main -->
+</main> <!-- /main -->
 <script>
   document.querySelectorAll('.footer-year').forEach(function (el) {
     el.textContent = new Date().getFullYear();

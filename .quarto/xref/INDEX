@@ -50,5 +50,11 @@
   },
   "notes/202604_hello-world/index.qmd": {
     "index.html": "56c73c10"
+  },
+  "about.qmd": {
+    "about.html": "40d35db8"
+  },
+  "reading.qmd": {
+    "reading.html": "3e33f1ab"
   }
 }

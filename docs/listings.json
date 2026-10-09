@@ -1,8 +1,13 @@
 [
   {
-    "listing": "/notes.html",
+    "listing": "/index.html",
     "items": [
-      "/notes/202604_hello-world/index.html"
+      "/posts/202604_texas-triangle-ev-gap/index.html",
+      "/posts/202604_katrina-spatial-analysis/index.html",
+      "/posts/202603_climate-gdp-replication/index.html",
+      "/posts/202601_did-mobile-health-clinics/index.html",
+      "/posts/202501_global-development-indicators/index.html",
+      "/posts/202601_replication-rct-authorian/index.html"
     ]
   },
   {
@@ -17,14 +22,9 @@
     ]
   },
   {
-    "listing": "/index.html",
+    "listing": "/notes.html",
     "items": [
-      "/posts/202604_texas-triangle-ev-gap/index.html",
-      "/posts/202604_katrina-spatial-analysis/index.html",
-      "/posts/202603_climate-gdp-replication/index.html",
-      "/posts/202601_did-mobile-health-clinics/index.html",
-      "/posts/202501_global-development-indicators/index.html",
-      "/posts/202601_replication-rct-authorian/index.html"
+      "/notes/202604_hello-world/index.html"
     ]
   }
 ]

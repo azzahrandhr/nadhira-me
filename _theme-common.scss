@@ -231,6 +231,166 @@ h1.home-title {
   }
 }
 
+// ---------- About page ----------
+// Intro text with a portrait beside it (stacks on phones)
+.about-hero {
+  display: flex;
+  align-items: flex-start;
+  gap: 2rem;
+  margin-top: 0.5rem;
+}
+
+.about-intro {
+  flex: 1;
+  min-width: 0;
+}
+
+// 4:5 crop of the landscape photo, centered on the person
+.about-photo {
+  width: 230px;
+  flex-shrink: 0;
+
+  img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    object-position: 52% 50%;
+    border-radius: 14px;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .about-hero {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .about-photo {
+    order: -1;
+    width: 200px;
+  }
+}
+.about-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.4rem;
+  margin: 1.5rem 0 0.5rem;
+
+  a {
+    color: $nh-accent;
+    text-decoration: none;
+
+    &:hover {
+      color: $nh-accent-strong;
+    }
+  }
+
+}
+
+.cv-entry {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  column-gap: 1.5rem;
+  padding: 0.9rem 0;
+  border-bottom: 1px solid $nh-border-soft;
+
+  > p {
+    grid-column: 1 / -1;
+    margin: 0;
+  }
+
+  // First paragraph holds the org and the date side by side
+  > p:first-child {
+    display: contents;
+  }
+
+  > p:last-child {
+    margin-top: 0.35rem;
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+}
+
+.cv-org {
+  font-family: $headings-font-family;
+  font-size: 1.2rem;
+  line-height: 1.35;
+}
+
+.cv-date {
+  color: $nh-muted;
+  font-size: 0.85rem;
+  white-space: nowrap;
+  padding-top: 0.2rem;
+}
+
+.cv-role {
+  color: $nh-muted;
+  font-size: 0.92rem;
+  font-style: italic;
+}
+
+@media (max-width: 576px) {
+  .cv-entry {
+    grid-template-columns: 1fr;
+
+    .cv-date {
+      padding-top: 0;
+    }
+  }
+}
+
+// ---------- Reading page (Goodreads widget) ----------
+.reading-grid {
+  margin: 1rem 0 1.5rem;
+
+  // The widget adds its own "<name>'s books" heading; the page has one already
+  h2 {
+    display: none;
+  }
+
+  // Show at most two rows of covers at any screen width; the
+  // "See all" links under each section lead to the full shelf.
+  $cover-h: 148px;
+  $cover-gap: 1rem;
+
+  .gr_grid_container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $cover-gap;
+    max-height: calc(2 * #{$cover-h} + #{$cover-gap} + 6px);
+    padding: 4px 4px 0; // room for the hover lift and shadow
+    overflow: hidden;
+  }
+
+  .gr_grid_book_container {
+    float: none;
+    width: 98px; // native width of Goodreads "medium" covers
+    height: auto;
+    margin: 0;
+    overflow: visible;
+
+    img {
+      width: 100%;
+      height: $cover-h; // uniform rows so the two-row cap is exact
+      object-fit: cover;
+      border-radius: 6px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+      transition: transform 0.15s ease;
+    }
+
+    a:hover img {
+      transform: translateY(-3px);
+    }
+  }
+
+  br {
+    display: none;
+  }
+}
+
 // ---------- Listing pages (Projects, Notes) ----------
 .quarto-listing-default .quarto-post {
   border-bottom: 1px solid $nh-border-soft;

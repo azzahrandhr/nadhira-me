@@ -1,43 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://nadhira.me/posts/202604_texas-triangle-ev-gap/index.html</loc>
-    <lastmod>2026-04-10T02:04:44.548Z</lastmod>
+    <loc>https://nadhira.me/reading.html</loc>
+    <lastmod>2026-10-08T23:15:15.723Z</lastmod>
   </url>
   <url>
-    <loc>https://nadhira.me/posts/202603_climate-gdp-replication/index.html</loc>
-    <lastmod>2026-03-19T02:59:14.525Z</lastmod>
-  </url>
-  <url>
-    <loc>https://nadhira.me/posts/202601_did-mobile-health-clinics/index.html</loc>
-    <lastmod>2026-09-27T15:39:53.454Z</lastmod>
-  </url>
-  <url>
-    <loc>https://nadhira.me/notes.html</loc>
-    <lastmod>2026-04-06T17:57:22.040Z</lastmod>
-  </url>
-  <url>
-    <loc>https://nadhira.me/blog.html</loc>
-    <lastmod>2026-09-27T15:39:53.450Z</lastmod>
-  </url>
-  <url>
-    <loc>https://nadhira.me/index.html</loc>
-    <lastmod>2026-09-27T16:05:16.555Z</lastmod>
-  </url>
-  <url>
-    <loc>https://nadhira.me/notes/202604_hello-world/index.html</loc>
-    <lastmod>2026-04-07T17:21:18.425Z</lastmod>
-  </url>
-  <url>
-    <loc>https://nadhira.me/posts/202501_global-development-indicators/index.html</loc>
-    <lastmod>2026-09-27T15:39:53.457Z</lastmod>
+    <loc>https://nadhira.me/posts/202604_katrina-spatial-analysis/index.html</loc>
+    <lastmod>2026-09-27T15:39:53.459Z</lastmod>
   </url>
   <url>
     <loc>https://nadhira.me/posts/202601_replication-rct-authorian/index.html</loc>
     <lastmod>2026-01-16T17:13:13.471Z</lastmod>
   </url>
   <url>
-    <loc>https://nadhira.me/posts/202604_katrina-spatial-analysis/index.html</loc>
-    <lastmod>2026-09-27T15:39:53.459Z</lastmod>
+    <loc>https://nadhira.me/posts/202501_global-development-indicators/index.html</loc>
+    <lastmod>2026-09-27T15:39:53.457Z</lastmod>
+  </url>
+  <url>
+    <loc>https://nadhira.me/notes/202604_hello-world/index.html</loc>
+    <lastmod>2026-04-07T17:21:18.425Z</lastmod>
+  </url>
+  <url>
+    <loc>https://nadhira.me/index.html</loc>
+    <lastmod>2026-10-08T23:15:30.103Z</lastmod>
+  </url>
+  <url>
+    <loc>https://nadhira.me/about.html</loc>
+    <lastmod>2026-10-09T00:49:22.404Z</lastmod>
+  </url>
+  <url>
+    <loc>https://nadhira.me/blog.html</loc>
+    <lastmod>2026-09-27T15:39:53.450Z</lastmod>
+  </url>
+  <url>
+    <loc>https://nadhira.me/notes.html</loc>
+    <lastmod>2026-04-06T17:57:22.040Z</lastmod>
+  </url>
+  <url>
+    <loc>https://nadhira.me/posts/202601_did-mobile-health-clinics/index.html</loc>
+    <lastmod>2026-09-27T15:39:53.454Z</lastmod>
+  </url>
+  <url>
+    <loc>https://nadhira.me/posts/202603_climate-gdp-replication/index.html</loc>
+    <lastmod>2026-03-19T02:59:14.525Z</lastmod>
+  </url>
+  <url>
+    <loc>https://nadhira.me/posts/202604_texas-triangle-ev-gap/index.html</loc>
+    <lastmod>2026-04-10T02:04:44.548Z</lastmod>
   </url>
 </urlset>

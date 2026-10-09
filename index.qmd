@@ -28,7 +28,7 @@ I'm interested in data science, spatial analytics, and causal inference. Here I 
 
 ```{=html}
 <div class="home-links">
-  <a href="mailto:nah2181@columbia.edu" aria-label="Email"><i class="bi bi-envelope"></i></a>
+  <a href="mailto:azzahra.ndhr@gmail.com" aria-label="Email"><i class="bi bi-envelope"></i></a>
   <a href="https://github.com/azzahrandhr" aria-label="GitHub"><i class="bi bi-github"></i></a>
   <a href="https://www.linkedin.com/in/azzahrandhr/" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
   <a href="blog.html" class="home-cta">See all projects →</a>
