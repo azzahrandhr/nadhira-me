@@ -217,20 +217,6 @@
     "text": "Gender Gap in Literacy\n\n\nCode\n* Load wide-format data\nuse \"wb_cleaned_wide.dta\", clear\n\n* Compare male vs female literacy\nsummarize male_literacy female_literacy\n\n* Calculate the gap\ngenerate literacy_gap = male_literacy - female_literacy\nsummarize literacy_gap, detail\n\n\n    Variable |        Obs        Mean    Std. dev.       Min        Max\n-------------+---------------------------------------------------------\nmale_liter~y |        145    87.76561    15.06481      35.78        100\nfemale_lit~y |        152    82.10739    21.35883      18.87        100\n\n(71 missing values generated)\n\n                        literacy_gap\n-------------------------------------------------------------\n      Percentiles      Smallest\n 1%    -2.989998         -15.82\n 5%    -.8999939      -2.989998\n10%    -.1999969      -2.979996       Obs                 145\n25%            0      -1.475319       Sum of wgt.         145\n\n50%     2.300003                      Mean           5.992751\n                        Largest       Std. dev.      8.032714\n75%     9.750153       25.40344\n90%     18.85879          26.58       Variance        64.5245\n95%           23        28.6043       Skewness       1.018603\n99%      28.6043          29.88       Kurtosis       3.519785\n\n\nThe persistent gap between male and female literacy rates reflects socio-cultural norms in many low- and middle-income countries that historically prioritized boys’ education."
   },
   {
-    "objectID": "notes/202604_hello-world/index.html",
-    "href": "notes/202604_hello-world/index.html",
-    "title": "Hello, World!",
-    "section": "",
-    "text": "This is my first note. More to come as I learn, read, and explore new ideas."
-  },
-  {
-    "objectID": "notes/202604_hello-world/index.html#welcome",
-    "href": "notes/202604_hello-world/index.html#welcome",
-    "title": "Hello, World!",
-    "section": "",
-    "text": "This is my first note. More to come as I learn, read, and explore new ideas."
-  },
-  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Hi, I’m Nadhira! 👋",
@@ -298,7 +284,7 @@
     "href": "notes.html",
     "title": "Notes",
     "section": "",
-    "text": "Order By\n      Default\n      \n        Title\n      \n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\nHello, World!\n\n\n\n\n\nA first note to start this section\n\n\n\n\n\nApr 7, 2026\n\n1 min\n\n\n\n\nNo matching items"
+    "text": "Order By\n      Default\n      \n        Title\n      \n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/202601_did-mobile-health-clinics/index.html",

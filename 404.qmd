@@ -1,0 +1,14 @@
+---
+title: "Page not found"
+---
+
+Sorry, the page you're looking for doesn't exist or has moved.
+
+Try one of these instead:
+
+- [Home](/index.html)
+- [Projects](/blog.html)
+- [About](/about.html)
+- [Reading](/reading.html)
+
+Or use the search in the navbar.

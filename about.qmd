@@ -1,5 +1,7 @@
 ---
 title: "About"
+description: "Nadhira A. Hendra is a Quantitative Methods student at Columbia with five years of experimentation and causal inference work across tech, banking, and logistics."
+body-classes: hide-description # description is for link previews and search only
 toc: true
 toc-title: "On this page"
 ---

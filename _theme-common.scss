@@ -231,6 +231,12 @@ h1.home-title {
   }
 }
 
+// Pages with `body-classes: hide-description` keep their description for
+// link previews and search but don't show it under the title
+body.hide-description #title-block-header .description {
+  display: none;
+}
+
 // ---------- About page ----------
 // Intro text with a portrait beside it (stacks on phones)
 .about-hero {

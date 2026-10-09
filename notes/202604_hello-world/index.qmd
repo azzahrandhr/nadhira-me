@@ -4,6 +4,7 @@ description: "A first note to start this section"
 author: "Nadhira A. Hendra"
 date: "2026-04-07"
 categories: []
+draft: true # placeholder; not published
 ---
 
 ## Welcome

@@ -27,8 +27,9 @@ website:
     left:
       - text: "Projects"
         href: blog.qmd
-      - text: "Notes"
-        href: notes.qmd
+      # Notes is hidden until the first real note is written; uncomment to restore
+      # - text: "Notes"
+      #   href: notes.qmd
       - text: "Reading"
         href: reading.qmd
       - text: "About"

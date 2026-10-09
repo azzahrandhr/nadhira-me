@@ -1,5 +1,7 @@
 ---
 title: "Reading"
+description: "What Nadhira A. Hendra is reading now, has read, and wants to read, pulled live from Goodreads."
+body-classes: hide-description # description is for link previews and search only
 ---
 
 I love to read, and books are more fun when there's someone to talk to about them. If you're reading any of these, or you run a book club that's looking for one more person, [send me a note](mailto:azzahra.ndhr@gmail.com).
