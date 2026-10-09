@@ -76,15 +76,15 @@ Designed a transaction-level early warning system for corporate loans with the c
 ::: {.cv-entry}
 [Columbia University]{.cv-org} [2025 to 2026]{.cv-date}
 
-[M.A. Quantitative Methods in the Social Sciences, Data Science and Experimentation Track]{.cv-role}
+[M.A. Quantitative Methods in the Social Sciences · New York City, USA]{.cv-role}
 
-Funded by LPDP, the Indonesian government's merit scholarship. Coursework in causal inference, field experiments, machine learning, NLP, and GIS.
+Data Science and Experimentation Track, funded by LPDP, the Indonesian government's merit scholarship. Coursework in causal inference, field experiments, machine learning, NLP, and GIS.
 :::
 
 ::: {.cv-entry}
 [Bandung Institute of Technology]{.cv-org} [2016 to 2020]{.cv-date}
 
-[B.S. Physics, minor in Granular and Computational Simulation]{.cv-role}
+[B.S. Physics, minor in Granular and Computational Simulation · Bandung, Indonesia]{.cv-role}
 
 Thesis: a neural network that predicts granular physics simulation outcomes about 380x faster than running the simulation. Co-authored a paper in [AIP Conference Proceedings](https://pubs.aip.org/aip/acp/article/2169/1/040006/611069) (2019).
 :::
