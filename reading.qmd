@@ -2,7 +2,7 @@
 title: "Reading"
 ---
 
-I read a lot, and books are more fun when there's someone to talk to about them. If you're reading any of these, or you run a book club that's looking for one more person, [send me a note](mailto:azzahra.ndhr@gmail.com).
+I love to read, and books are more fun when there's someone to talk to about them. If you're reading any of these, or you run a book club that's looking for one more person, [send me a note](mailto:azzahra.ndhr@gmail.com).
 
 <!-- Goodreads grid widgets. Each updates automatically from its shelf.
      The script fills the div whose id is gr_grid_widget_<widget_id>. -->
