@@ -6,8 +6,11 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Nadhira A. Hendra">
+<meta name="dcterms.date" content="2026-10-08">
+<meta name="description" content="Preprocessing choices in NLTK">
 
-<title>Notes – Nadhira A. Hendra</title>
+<title>Pipeline and Normalization in NLP – Nadhira A. Hendra</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,33 +23,66 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./favicon.svg" rel="icon" type="image/svg+xml">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b758ccaa5987ceb1b75504551e579abf.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-c22d06620dba2dd69928e67f10576d34.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-20cc46cce70a4c293ae11745f46243a2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-c22d06620dba2dd69928e67f10576d34.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../favicon.svg" rel="icon" type="image/svg+xml">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-b758ccaa5987ceb1b75504551e579abf.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-15d0b7e0cbf8388924aeb4fdb5efb411.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-ceb017c1cc03960e83720e6cb8da55b7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-15d0b7e0cbf8388924aeb4fdb5efb411.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -74,73 +110,15 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
 
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-description','listing-categories','listing-reading-time',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: [],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
-<meta property="og:title" content="Notes – Nadhira A. Hendra">
-<meta property="og:description" content="Learning notes, readings, and things I picked up along the way">
-<meta property="og:image" content="https://nadhira.me/profile.jpg">
+<meta property="og:title" content="Pipeline and Normalization in NLP – Nadhira A. Hendra">
+<meta property="og:description" content="Preprocessing choices in NLTK">
+<meta property="og:image" content="https://nadhira.me/posts/202610_text-cleaning-decisions/profile.jpg">
 <meta property="og:site_name" content="Nadhira A. Hendra">
-<meta name="twitter:title" content="Notes – Nadhira A. Hendra">
-<meta name="twitter:description" content="Learning notes, readings, and things I picked up along the way">
-<meta name="twitter:image" content="https://nadhira.me/profile.jpg">
+<meta name="twitter:title" content="Pipeline and Normalization in NLP – Nadhira A. Hendra">
+<meta name="twitter:description" content="Preprocessing choices in NLTK">
+<meta name="twitter:image" content="https://nadhira.me/posts/202610_text-cleaning-decisions/profile.jpg">
 <meta name="twitter:card" content="summary_large_image">
 </head>
 
@@ -318,11 +296,11 @@ window.Quarto = {
   </script>
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Nadhira A. Hendra</span>
     </a>
   </div>
@@ -333,15 +311,15 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./blog.html"> 
+    <a class="nav-link" href="../../blog.html"> 
 <span class="menu-text">Projects</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./reading.html"> 
+    <a class="nav-link" href="../../reading.html"> 
 <span class="menu-text">Reading</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link" href="../../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
 </ul>
@@ -356,66 +334,177 @@ window.Quarto = {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Pipeline and Normalization in NLP</h1>
+                  <div>
+        <div class="description">
+          Preprocessing choices in NLTK
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">python</div>
+                <div class="quarto-category">nlp</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Nadhira A. Hendra </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">October 8, 2026</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content quarto-banner-title-block" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Notes</h1>
-<p class="subtitle lead">Learning notes, readings, and things I picked up along the way</p>
+
+
+
+
+<p>This was the first assignment in my NLP class at Columbia. It was about preprocessing: tokenizing, stemming, removing stopwords.</p>
+<p>Each step changes what ends up in the data, and some of those changes can flip a result. Here are four I ran into.</p>
+<div id="cbd043d5" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> nltk</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> pkg <span class="kw">in</span> [<span class="st">"punkt"</span>, <span class="st">"punkt_tab"</span>, <span class="st">"stopwords"</span>, <span class="st">"wordnet"</span>]:</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    nltk.download(pkg, quiet<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> nltk.tokenize <span class="im">import</span> word_tokenize</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> nltk.stem <span class="im">import</span> PorterStemmer, WordNetLemmatizer</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> nltk.corpus <span class="im">import</span> stopwords, wordnet</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>stemmer <span class="op">=</span> PorterStemmer()</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>lemmatizer <span class="op">=</span> WordNetLemmatizer()</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>stop_words <span class="op">=</span> <span class="bu">set</span>(stopwords.words(<span class="st">"english"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-
-
-
-<div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
-
-
-</header>
-
-
-
-
-
-
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="listing-actions-group">
-   <div class="input-group input-group-sm quarto-listing-sort">
-    <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
-    <select id="listing-listing-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-listing'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
-      <option value="" disabled="" selected="" hidden="">Order By</option>
-      <option value="index" data-direction="asc">Default</option>
-      <option value="listing-title" data-direction="asc">
-        Title
-      </option>
-      <option value="listing-date-sort" data-direction="asc">
-        Date - Oldest
-      </option>
-      <option value="listing-date-sort" data-direction="desc">
-        Date - Newest
-      </option>
-    </select>
-  </div>
-    <div class="input-group input-group-sm quarto-listing-filter">
-      <span class="input-group-text"><i class="bi bi-search"></i></span>
-      <input type="text" class="search form-control" placeholder="Filter">
-    </div>
+<section id="stemming-can-merge-words-that-mean-different-things" class="level2">
+<h2 class="anchored" data-anchor-id="stemming-can-merge-words-that-mean-different-things">1. Stemming can merge words that mean different things</h2>
+<p>Stemming chops word endings off by rule, so “policies” and “policy” both become <code>polici</code>. It’s fast, but it doesn’t know what words mean. Lemmatization looks words up in a dictionary instead and returns a real base form, which takes longer.</p>
+<div id="6c03cd28" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>words <span class="op">=</span> [<span class="st">"communities"</span>, <span class="st">"communism"</span>, <span class="st">"organization"</span>, <span class="st">"organs"</span>]</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> w <span class="kw">in</span> words:</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>w<span class="sc">:&lt;14}</span><span class="ss"> stem: </span><span class="sc">{</span>stemmer<span class="sc">.</span>stem(w)<span class="sc">:&lt;8}</span><span class="ss"> lemma: </span><span class="sc">{</span>lemmatizer<span class="sc">.</span>lemmatize(w)<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>communities    stem: commun   lemma: community
+communism      stem: commun   lemma: communism
+organization   stem: organ    lemma: organization
+organs         stem: organ    lemma: organ</code></pre>
 </div>
-<div class="list quarto-listing-default">
-
 </div>
-<div class="listing-no-matching d-none">No matching items</div>
-</div></main> <!-- /main -->
+<p>The stemmer turns <em>communities</em> and <em>communism</em> into the same token, <code>commun</code>. Without further preprocessing, a count of <code>commun</code> mixes text about local neighborhoods with text about Cold War ideology. The same thing happens to <em>organization</em> and <em>organs</em>.</p>
+<p>This is a measurement problem: the variable I’m counting no longer means one thing. Lemmatization costs more computing time, and for social science text that’s usually worth it.</p>
+</section>
+<section id="the-lemmatizer-needs-to-know-the-part-of-speech" class="level2">
+<h2 class="anchored" data-anchor-id="the-lemmatizer-needs-to-know-the-part-of-speech">2. The lemmatizer needs to know the part of speech</h2>
+<p>Switching to lemmatization doesn’t fix everything automatically. By default, NLTK’s <code>WordNetLemmatizer</code> treats every word as a noun:</p>
+<div id="6f2754e4" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>tokens <span class="op">=</span> word_tokenize(<span class="st">"The participants are participating in various activities."</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"as nouns:"</span>, [lemmatizer.lemmatize(t) <span class="cf">for</span> t <span class="kw">in</span> tokens])</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"as verbs:"</span>, [lemmatizer.lemmatize(t, pos<span class="op">=</span><span class="st">"v"</span>) <span class="cf">for</span> t <span class="kw">in</span> tokens])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>as nouns: ['The', 'participant', 'are', 'participating', 'in', 'various', 'activity', '.']
+as verbs: ['The', 'participants', 'be', 'participate', 'in', 'various', 'activities', '.']</code></pre>
+</div>
+</div>
+<p>As nouns, <em>activities</em> becomes <code>activity</code>, but <em>participating</em> and <em>are</em> don’t change. As verbs, <em>participating</em> becomes <code>participate</code> and <em>are</em> becomes <code>be</code>, but now <em>activities</em> stays plural. To lemmatize properly, you need to tag each word’s part of speech first and pass it along.</p>
+</section>
+<section id="default-stopword-lists-delete-not" class="level2">
+<h2 class="anchored" data-anchor-id="default-stopword-lists-delete-not">3. Default stopword lists delete “not”</h2>
+<p>Stopwords are very common words like “the”, “is”, and “of”. They show up in almost every document, so they rarely help tell documents apart, and removing them is a standard step. NLTK’s English list also includes several negations:</p>
+<div id="5b636d6c" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">sorted</span>({<span class="st">"not"</span>, <span class="st">"no"</span>, <span class="st">"nor"</span>, <span class="st">"against"</span>, <span class="st">"never"</span>} <span class="op">&amp;</span> stop_words))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>['against', 'no', 'nor', 'not']</code></pre>
+</div>
+</div>
+<p>That’s a problem for sentiment analysis. Here’s a negative reaction to a policy, before and after removing stopwords:</p>
+<div id="d0a47864" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>post <span class="op">=</span> <span class="st">"I am not happy with this policy"</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>([t <span class="cf">for</span> t <span class="kw">in</span> word_tokenize(post.lower()) <span class="cf">if</span> t <span class="kw">not</span> <span class="kw">in</span> stop_words])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>['happy', 'policy']</code></pre>
+</div>
+</div>
+<p>What’s left is <code>happy policy</code>. A model reading thousands of posts like this would conclude people support the policy. The fix is a custom list that keeps negations:</p>
+<div id="85b738a0" class="cell" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>keep_negations <span class="op">=</span> stop_words <span class="op">-</span> {<span class="st">"not"</span>, <span class="st">"no"</span>, <span class="st">"nor"</span>, <span class="st">"against"</span>}</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>([t <span class="cf">for</span> t <span class="kw">in</span> word_tokenize(post.lower()) <span class="cf">if</span> t <span class="kw">not</span> <span class="kw">in</span> keep_negations])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>['not', 'happy', 'policy']</code></pre>
+</div>
+</div>
+<p>“Never” isn’t on NLTK’s list, so it survives either way. Other libraries use different lists, though, so it’s worth printing yours before trusting it.</p>
+</section>
+<section id="clean-can-mean-erased" class="level2">
+<h2 class="anchored" data-anchor-id="clean-can-mean-erased">4. “Clean” can mean “erased”</h2>
+<p>A common cleaning step keeps only “real” words and drops everything else as noise. Here’s what that does to a post written the way many Indonesians write online, mixing Indonesian and English with everyday abbreviations like <em>gk</em> (no), <em>bgt</em> (very), and <em>yg</em> (that):</p>
+<div id="3c16b4c6" class="cell" data-execution_count="7">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>post <span class="op">=</span> <span class="st">"kebijakan ini gk jelas bgt, the policy is so confusing yg penting viral"</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>tokens <span class="op">=</span> [t <span class="cf">for</span> t <span class="kw">in</span> word_tokenize(post) <span class="cf">if</span> t.isalpha()]</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>kept <span class="op">=</span> [t <span class="cf">for</span> t <span class="kw">in</span> tokens <span class="cf">if</span> wordnet.synsets(t)]          <span class="co"># has an English dictionary entry</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>dropped <span class="op">=</span> [t <span class="cf">for</span> t <span class="kw">in</span> tokens <span class="cf">if</span> <span class="kw">not</span> wordnet.synsets(t)]</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"kept:   "</span>, kept)</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"dropped:"</span>, dropped)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>kept:    ['policy', 'is', 'so', 'confusing', 'viral']
+dropped: ['kebijakan', 'ini', 'gk', 'jelas', 'bgt', 'the', 'yg', 'penting']</code></pre>
+</div>
+</div>
+<p>The post opens with “kebijakan ini gk jelas bgt”, which means “this policy is really unclear”. The filter keeps the English half and throws away the Indonesian half, which is the part carrying the complaint.</p>
+<p>At the scale of a whole dataset, a filter like this does more than lose words. It removes the people who write that way: code-switching and multilingual users, speakers of dialects like African American Vernacular English, younger users who write in slang, and people who spell less conventionally. Many of them are already underrepresented in traditional data, and the “clean” dataset ends up over-representing people who write standard English.</p>
+<p>Even a filter as simple as <code>.isalpha()</code> makes a choice:</p>
+<div id="3f541ca7" class="cell" data-execution_count="8">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>tokens <span class="op">=</span> word_tokenize(<span class="st">"Wow!!! The 2024 election... was it fair? I'm not sure."</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>([t <span class="cf">for</span> t <span class="kw">in</span> tokens <span class="cf">if</span> t.isalpha()])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>['Wow', 'The', 'election', 'was', 'it', 'fair', 'I', 'not', 'sure']</code></pre>
+</div>
+</div>
+<p>It drops the punctuation, as intended, and it also drops <code>2024</code>. If the research question is about elections, the year probably matters.</p>
+</section>
+<section id="what-i-take-from-this" class="level2">
+<h2 class="anchored" data-anchor-id="what-i-take-from-this">What I take from this</h2>
+<p>None of these steps is wrong. Stemming is fine for search engines, stopword removal is fine for topic models, and some projects really do need to filter languages. The problem comes when they run as defaults nobody looked at.</p>
+<p>What I try to do now:</p>
+<ul>
+<li><strong>Print the output of every step</strong> on a few real documents before running it on all of them.</li>
+<li><strong>Check the default lists</strong> (stopwords, dictionaries) against the research question.</li>
+<li><strong>Write the cleaning choices into the methods section</strong>, with the reason for each one. The preprocessing pipeline is part of the methodology, and a reviewer should be able to question it like any other modeling choice.</li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
 <script>
   document.querySelectorAll('.footer-year').forEach(function (el) {
     el.textContent = new Date().getFullYear();

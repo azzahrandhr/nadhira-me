@@ -1,0 +1,122 @@
+---
+title: "Pipeline and Normalization in NLP"
+description: "Preprocessing choices in NLTK"
+author: "Nadhira A. Hendra"
+date: "2026-10-08"
+categories: [python, nlp]
+jupyter: python3
+code-fold: false
+---
+
+This was the first assignment in my NLP class at Columbia. It was about preprocessing: tokenizing, stemming, removing stopwords.
+
+Each step changes what ends up in the data, and some of those changes can flip a result. Here are four I ran into.
+
+```{python}
+#| output: false
+import nltk
+
+for pkg in ["punkt", "punkt_tab", "stopwords", "wordnet"]:
+    nltk.download(pkg, quiet=True)
+
+from nltk.tokenize import word_tokenize
+from nltk.stem import PorterStemmer, WordNetLemmatizer
+from nltk.corpus import stopwords, wordnet
+
+stemmer = PorterStemmer()
+lemmatizer = WordNetLemmatizer()
+stop_words = set(stopwords.words("english"))
+```
+
+## 1. Stemming can merge words that mean different things
+
+Stemming chops word endings off by rule, so "policies" and "policy" both become `polici`. It's fast, but it doesn't know what words mean. Lemmatization looks words up in a dictionary instead and returns a real base form, which takes longer.
+
+```{python}
+words = ["communities", "communism", "organization", "organs"]
+
+for w in words:
+    print(f"{w:<14} stem: {stemmer.stem(w):<8} lemma: {lemmatizer.lemmatize(w)}")
+```
+
+The stemmer turns *communities* and *communism* into the same token, `commun`. Without further preprocessing, a count of `commun` mixes text about local neighborhoods with text about Cold War ideology. The same thing happens to *organization* and *organs*.
+
+This is a measurement problem: the variable I'm counting no longer means one thing. Lemmatization costs more computing time, and for social science text that's usually worth it.
+
+## 2. The lemmatizer needs to know the part of speech
+
+Switching to lemmatization doesn't fix everything automatically. By default, NLTK's `WordNetLemmatizer` treats every word as a noun:
+
+```{python}
+tokens = word_tokenize("The participants are participating in various activities.")
+
+print("as nouns:", [lemmatizer.lemmatize(t) for t in tokens])
+print("as verbs:", [lemmatizer.lemmatize(t, pos="v") for t in tokens])
+```
+
+As nouns, *activities* becomes `activity`, but *participating* and *are* don't change. As verbs, *participating* becomes `participate` and *are* becomes `be`, but now *activities* stays plural. To lemmatize properly, you need to tag each word's part of speech first and pass it along.
+
+## 3. Default stopword lists delete "not"
+
+Stopwords are very common words like "the", "is", and "of". They show up in almost every document, so they rarely help tell documents apart, and removing them is a standard step. NLTK's English list also includes several negations:
+
+```{python}
+print(sorted({"not", "no", "nor", "against", "never"} & stop_words))
+```
+
+That's a problem for sentiment analysis. Here's a negative reaction to a policy, before and after removing stopwords:
+
+```{python}
+post = "I am not happy with this policy"
+
+print([t for t in word_tokenize(post.lower()) if t not in stop_words])
+```
+
+What's left is `happy policy`. A model reading thousands of posts like this would conclude people support the policy. The fix is a custom list that keeps negations:
+
+```{python}
+keep_negations = stop_words - {"not", "no", "nor", "against"}
+
+print([t for t in word_tokenize(post.lower()) if t not in keep_negations])
+```
+
+"Never" isn't on NLTK's list, so it survives either way. Other libraries use different lists, though, so it's worth printing yours before trusting it.
+
+## 4. "Clean" can mean "erased"
+
+A common cleaning step keeps only "real" words and drops everything else as noise. Here's what that does to a post written the way many Indonesians write online, mixing Indonesian and English with everyday abbreviations like *gk* (no), *bgt* (very), and *yg* (that):
+
+```{python}
+post = "kebijakan ini gk jelas bgt, the policy is so confusing yg penting viral"
+tokens = [t for t in word_tokenize(post) if t.isalpha()]
+
+kept = [t for t in tokens if wordnet.synsets(t)]          # has an English dictionary entry
+dropped = [t for t in tokens if not wordnet.synsets(t)]
+
+print("kept:   ", kept)
+print("dropped:", dropped)
+```
+
+The post opens with "kebijakan ini gk jelas bgt", which means "this policy is really unclear". The filter keeps the English half and throws away the Indonesian half, which is the part carrying the complaint.
+
+At the scale of a whole dataset, a filter like this does more than lose words. It removes the people who write that way: code-switching and multilingual users, speakers of dialects like African American Vernacular English, younger users who write in slang, and people who spell less conventionally. Many of them are already underrepresented in traditional data, and the "clean" dataset ends up over-representing people who write standard English.
+
+Even a filter as simple as `.isalpha()` makes a choice:
+
+```{python}
+tokens = word_tokenize("Wow!!! The 2024 election... was it fair? I'm not sure.")
+
+print([t for t in tokens if t.isalpha()])
+```
+
+It drops the punctuation, as intended, and it also drops `2024`. If the research question is about elections, the year probably matters.
+
+## What I take from this
+
+None of these steps is wrong. Stemming is fine for search engines, stopword removal is fine for topic models, and some projects really do need to filter languages. The problem comes when they run as defaults nobody looked at.
+
+What I try to do now:
+
+- **Print the output of every step** on a few real documents before running it on all of them.
+- **Check the default lists** (stopwords, dictionaries) against the research question.
+- **Write the cleaning choices into the methods section**, with the reason for each one. The preprocessing pipeline is part of the methodology, and a reviewer should be able to question it like any other modeling choice.

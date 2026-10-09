@@ -4,7 +4,6 @@ project:
   render:
     - "*.qmd"
     - "posts/**/*.qmd"
-    - "notes/**/*.qmd"
 
 website:
   description: "Personal website and blog of Nadhira Azzahra Hendra"
@@ -27,9 +26,6 @@ website:
     left:
       - text: "Projects"
         href: blog.qmd
-      # Notes is hidden until the first real note is written; uncomment to restore
-      # - text: "Notes"
-      #   href: notes.qmd
       - text: "Reading"
         href: reading.qmd
       - text: "About"
