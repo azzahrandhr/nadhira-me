@@ -1,7 +1,8 @@
 [
   {
-    "listing": "/blog.html",
+    "listing": "/index.html",
     "items": [
+      "/posts/202611_how-to-make-a-python-library/index.html",
       "/posts/202610_text-cleaning-decisions/index.html",
       "/posts/202604_texas-triangle-ev-gap/index.html",
       "/posts/202604_katrina-spatial-analysis/index.html",
@@ -12,8 +13,9 @@
     ]
   },
   {
-    "listing": "/index.html",
+    "listing": "/blog.html",
     "items": [
+      "/posts/202611_how-to-make-a-python-library/index.html",
       "/posts/202610_text-cleaning-decisions/index.html",
       "/posts/202604_texas-triangle-ev-gap/index.html",
       "/posts/202604_katrina-spatial-analysis/index.html",
