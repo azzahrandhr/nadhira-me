@@ -60,7 +60,7 @@ Used outlier and spatial analysis to size revenue opportunities, from vehicle dw
 
 [Senior Data Analyst, Platform & Cross Selling · Jakarta, Indonesia]{.cv-role}
 
-Designed and analyzed 40+ A/B experiments across personalization and cross-selling. Wrote the company's A/B testing guide, which led to the first experiment run fully self-service by a product team. Built propensity and ranking models for flight add-ons, and defined a retention metric that became a 2025 company north-star metric.
+Joined as a Data Analyst and was promoted to Senior in 9 months. Designed and analyzed 40+ A/B experiments across personalization and cross-selling. Wrote the company's A/B testing guide, which led to the first experiment run fully self-service by a product team. Built propensity and ranking models for flight add-ons, and defined a retention metric that became a 2025 company north-star metric.
 :::
 
 ::: {.cv-entry}
@@ -78,7 +78,7 @@ Designed a transaction-level early warning system for corporate loans with the c
 
 [M.A. Quantitative Methods in the Social Sciences · New York City, USA]{.cv-role}
 
-Data Science and Experimentation Track, funded by LPDP, the Indonesian government's merit scholarship. Coursework in causal inference, field experiments, machine learning, NLP, and GIS.
+Data Science and Experimentation Track, GPA 3.7, funded by LPDP, the Indonesian government's merit scholarship. Coursework in causal inference, field experiments, machine learning, NLP, and GIS.
 :::
 
 ::: {.cv-entry}
